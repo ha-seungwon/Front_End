@@ -35,11 +35,11 @@
 
             <div class="text793">대시보드</div>
           </div>
-          <button class="menu-0210" id="menu02">
+          <div class="menu-0210" id="menu02Container">
             <img class="frame-icon97" alt="" src="./public/559-frame.svg" />
 
             <div class="text794">측정기록</div>
-          </button>
+          </div>
           <div class="menu-0310" id="menu03Container">
             <img class="frame-icon97" alt="" src="./public/748-frame.svg" />
 
@@ -270,9 +270,11 @@
         });
       }
       
-      var menu02 = document.getElementById("menu02");
-      if (menu02) {
-        menu02.addEventListener("click", function (e) {
+ 
+
+      var menu02Container = document.getElementById("menu02Container");
+      if (menu02Container) {
+        menu02Container.addEventListener("click", function (e) {
           window.location.href = "./record.html";
         });
       }

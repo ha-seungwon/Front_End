@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/personal-information.56313847.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   </head>
   <body>
     <div class="personal-information">
@@ -75,14 +77,10 @@
             <b class="text658">내 점수 분포</b>
             <div class="frame1245">
               <div class="frame1246">
-                <img class="group-icon" alt="" src="/599-group.4e5188d6.svg">
+                <div class="graph-container">
+                  <canvas id="radarChart" width="500" height="500"></canvas>
+                </div>
 
-                <div class="text666">팔굽혀피기 (회/분)</div>
-                <div class="text667">윗몸일으키기 (회/분)</div>
-                <div class="text668">50m 오래달리기 (초)</div>
-                <div class="text669">왕복오래달리기 (회)</div>
-                <div class="text670">약력 (kg)</div>
-                <img class="group-icon1" alt="" src="/611-group.2df9caeb.svg">
               </div>
               <div class="frame1247">
                 <div class="frame1248">
@@ -109,154 +107,161 @@
             </div>
           </div>
         </div>
-        <div class="frame1254">
-          <div class="frame1255">
-            <b class="text675">종목별 점수 분포</b>
-            <div class="frame1256">
-              <div class="frame1249">
-                <img class="frame-icon64" alt="" src="/634-frame.8453492a.svg">
-
-                <div class="text671">나</div>
-              </div>
-              <div class="frame1249">
-                <img class="frame-icon64" alt="" src="/638-frame.3479a002.svg">
-
-                <div class="text671">평균</div>
-              </div>
-              <div class="frame1249">
-                <img class="frame-icon64" alt="" src="/642-frame.e7bac0c5.svg">
-
-                <div class="text671">상위 30%</div>
-              </div>
-            </div>
-            <div class="frame1260">
-              <div class="frame1261">
-                <div class="frame1262">
-                  <div class="frame1263">
-                    <div class="text679">10점</div>
-                  </div>
-                  <div class="line2"></div>
-                </div>
-                <div class="frame1262">
-                  <div class="frame1263">
-                    <div class="text679">9점</div>
-                  </div>
-                  <div class="line2"></div>
-                </div>
-                <div class="frame1262">
-                  <div class="frame1263">
-                    <div class="text679">8점</div>
-                  </div>
-                  <div class="line2"></div>
-                </div>
-                <div class="frame1262">
-                  <div class="frame1263">
-                    <b class="text679">7점</b>
-                  </div>
-                  <div class="line2"></div>
-                </div>
-                <div class="frame1262">
-                  <div class="frame1263">
-                    <div class="text679">6점</div>
-                  </div>
-                  <div class="line2"></div>
-                </div>
-                <div class="frame1262">
-                  <div class="frame1263">
-                    <div class="text679">5점</div>
-                  </div>
-                  <div class="line2"></div>
-                </div>
-                <div class="frame1262">
-                  <div class="frame1263">
-                    <div class="text679">4점</div>
-                  </div>
-                  <div class="line2"></div>
-                </div>
-                <div class="frame1262">
-                  <div class="frame1263">
-                    <div class="text679">3점</div>
-                  </div>
-                  <div class="line2"></div>
-                </div>
-                <div class="frame1262">
-                  <div class="frame1263">
-                    <div class="text679">2점</div>
-                  </div>
-                  <div class="line2"></div>
-                </div>
-                <div class="frame1262">
-                  <div class="frame1263">
-                    <div class="text679">1점</div>
-                  </div>
-                  <div class="line2"></div>
-                </div>
-                <div class="frame1262">
-                  <div class="frame1263">
-                    <div class="text679">0점</div>
-                  </div>
-                  <div class="line2"></div>
-                </div>
-              </div>
-              <div class="frame1284">
-                <div class="frame1285">
-                  <div class="frame1286">
-                    <div class="rectangle"></div>
-                    <div class="rectangle1"></div>
-                    <div class="rectangle2"></div>
-                  </div>
-                  <div class="frame1287">
-                    <div class="text679">악력 (kg)</div>
-                  </div>
-                </div>
-                <div class="frame1285">
-                  <div class="frame1286">
-                    <div class="rectangle"></div>
-                    <div class="rectangle1"></div>
-                    <div class="rectangle2"></div>
-                  </div>
-                  <div class="frame1287">
-                    <div class="text679">팔굽혀피기 (회/분)</div>
-                  </div>
-                </div>
-                <div class="frame1285">
-                  <div class="frame1286">
-                    <div class="rectangle"></div>
-                    <div class="rectangle1"></div>
-                    <div class="rectangle2"></div>
-                  </div>
-                  <div class="frame1287">
-                    <div class="text679">윗몸일으키기 (회/분)</div>
-                  </div>
-                </div>
-                <div class="frame1285">
-                  <div class="frame1286">
-                    <div class="rectangle"></div>
-                    <div class="rectangle1"></div>
-                    <div class="rectangle2"></div>
-                  </div>
-                  <div class="frame1287">
-                    <div class="text679">50m 오래달리기 (초)</div>
-                  </div>
-                </div>
-                <div class="frame1285">
-                  <div class="frame1286">
-                    <div class="rectangle"></div>
-                    <div class="rectangle1"></div>
-                    <div class="rectangle2"></div>
-                  </div>
-                  <div class="frame1287">
-                    <div class="text679">왕복오래달리기 (회)</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+ 
+        <canvas id="myChart" width="150" height="40"></canvas>
+        
         </div>
       </div>
-    </div>
+    
 
-    <script>var settingContainer = document.getElementById("settingContainer");
+    <script>const data = {
+    labels: [
+        "악력",
+        "팔굽혀피기",
+        "윗몸일으키기",
+        "50m 오래달리기",
+        "왕복오래달리기"
+    ],
+    datasets: [
+        {
+            label: "My Scores",
+            data: [
+                71,
+                92,
+                63,
+                80,
+                56
+            ],
+            backgroundColor: "rgba(66, 135, 245, 0.5)",
+            borderColor: "rgba(66, 135, 245, 1)",
+            pointBackgroundColor: "rgba(66, 135, 245, 1)"
+        },
+        {
+            label: "your Scores",
+            data: [
+                31,
+                92,
+                23,
+                80,
+                96
+            ],
+            backgroundColor: "rgba(33, 33, 33, 0.5)",
+            borderColor: "rgba(33, 33, 33, 1)",
+            pointBackgroundColor: "rgba(66, 135, 245, 1)"
+        }
+    ]
+};
+// Create the radar chart
+const ctx = document.getElementById("radarChart").getContext("2d");
+const radarChart = new Chart(ctx, {
+    type: "radar",
+    data: data,
+    options: {
+        line: {
+            borderWidth: 3
+        },
+        pointLabels: {
+            fontSize: 20 // Adjust the font size as needed
+        },
+        legend: {
+            display: false
+        },
+        scale: {
+            ticks: {
+                beginAtZero: true,
+                max: 100,
+                stepSize: 10
+            }
+        },
+        tooltips: {
+            enabled: false
+        }
+    }
+});
+//막대 그래프
+// 데이터 준비
+// 데이터 준비
+var bar_labels = [
+    "악력 (kg)",
+    "팔굽혀피기 (회/분)",
+    "윗몸일으키기 (회/분)",
+    "50m 오래달리기 (초)",
+    "왕복오래달리기 (회)"
+];
+var myScore = [
+    7,
+    9,
+    8,
+    6,
+    5
+];
+var avgScore = [
+    5,
+    7,
+    6,
+    8,
+    7
+];
+var top30Score = [
+    9,
+    10,
+    9,
+    9,
+    8
+];
+// 차트 생성
+var bar_ctx = document.getElementById("myChart").getContext("2d");
+var myChart = new Chart(bar_ctx, {
+    type: "bar",
+    data: {
+        labels: bar_labels,
+        datasets: [
+            {
+                label: "나",
+                data: myScore,
+                backgroundColor: "rgba(0, 0, 0, 0.2)",
+                borderColor: "rgba(0, 0, 0, 1)",
+                borderWidth: 1
+            },
+            {
+                label: "평균",
+                data: avgScore,
+                backgroundColor: "rgba(128, 128, 128, 0.2)",
+                borderColor: "rgba(128, 128, 128, 1)",
+                borderWidth: 1
+            },
+            {
+                label: "상위 30%",
+                data: top30Score,
+                backgroundColor: "rgba(192, 192, 192, 0.2)",
+                borderColor: "rgba(192, 192, 192, 1)",
+                borderWidth: 1
+            }
+        ]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: "점"
+                },
+                ticks: {
+                    stepSize: 1,
+                    precision: 0 // 소수점 없이 정수로 표시
+                }
+            }
+        },
+        plugins: {
+            title: {
+                display: true,
+                text: "종목별 점수 분포"
+            }
+        }
+    }
+});
+var settingContainer = document.getElementById("settingContainer");
 if (settingContainer) settingContainer.addEventListener("click", function(e) {
     window.location.href = "./setting-account.html";
 });

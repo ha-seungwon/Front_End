@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="/record.6ca82c5f.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   </head>
   <body>
     <div class="record">
@@ -53,97 +56,12 @@
             <div class="frame1393">
               <b class="text742">점수 통계</b>
             </div>
-            <div class="frame1394">
-              <div class="frame1395">
-                <img class="frame-icon94" alt="" src="/188-frame.0e6519c6.svg">
 
-                <div class="text749">현재 점수</div>
-              </div>
-              <div class="frame1395">
-                <img class="frame-icon94" alt="" src="/192-frame.5ed9d4a0.svg">
+            
+            <div class="frame1397"><canvas id="myChart" width="100" height="100"></canvas>
+            </div>
+            
 
-                <div class="text749">예상 도달 점수</div>
-              </div>
-            </div>
-            <div class="frame1397">
-              <div class="frame1398">
-                <div class="frame1399">
-                  <div class="frame1400">
-                    <div class="text751">50</div>
-                  </div>
-                  <div class="line13"></div>
-                </div>
-                <div class="frame1401">
-                  <div class="frame1400">
-                    <div class="text751">40</div>
-                  </div>
-                  <div class="line13"></div>
-                </div>
-                <div class="frame1403">
-                  <div class="frame1400">
-                    <div class="text751">30</div>
-                  </div>
-                  <div class="line13"></div>
-                </div>
-                <div class="frame1405">
-                  <div class="frame1400">
-                    <div class="text751">20</div>
-                  </div>
-                  <div class="line13"></div>
-                </div>
-                <div class="frame1407">
-                  <div class="frame1400">
-                    <div class="text751">10</div>
-                  </div>
-                  <div class="line13"></div>
-                </div>
-                <div class="frame1409">
-                  <div class="frame1400">
-                    <div class="text751">0</div>
-                  </div>
-                  <div class="line13"></div>
-                </div>
-                <img class="frame-icon96" alt="" src="/221-frame.f5ac2976.svg">
-              </div>
-              <div class="frame1411">
-                <div class="frame1412">
-                  <div class="text751">1월</div>
-                </div>
-                <div class="frame1412">
-                  <div class="text751">2월</div>
-                </div>
-                <div class="frame1412">
-                  <div class="text751">3월</div>
-                </div>
-                <div class="frame1412">
-                  <div class="text751">4월</div>
-                </div>
-                <div class="frame1412">
-                  <div class="text751">5월</div>
-                </div>
-                <div class="frame1412">
-                  <div class="text751">6월</div>
-                </div>
-                <div class="frame1412">
-                  <div class="text751">7월</div>
-                </div>
-                <div class="frame1412">
-                  <div class="text751">8월</div>
-                </div>
-                <div class="frame1412">
-                  <div class="text751">9월</div>
-                </div>
-                <div class="frame1412">
-                  <div class="text751">10월</div>
-                </div>
-                <div class="frame1412">
-                  <div class="text751">11월</div>
-                </div>
-                <div class="frame1412">
-                  <div class="text751">12월</div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <div class="frame1424">
@@ -158,82 +76,83 @@
               <div class="frame1428">
                 <div class="item-01">약력 (kg)</div>
                 <div class="input-01">
-                  <div class="text773">Placeholder</div>
+                    <input type="text" id="약력" placeholder="데이터 입력">
                 </div>
                 <div class="input-01">
                   <div class="text773">점</div>
                 </div>
               </div>
-              <div class="frame1428">
-                <div class="item-01">팔굽혀피기기 (회/분)</div>
-                <div class="input-01">
-                  <div class="text773">Placeholder</div>
-                </div>
-                <div class="input-01">
-                  <div class="text773">점</div>
-                </div>
-              </div>
-              <div class="frame1428">
-                <div class="item-01">왕복오래달리기 (회)</div>
-                <div class="input-01">
-                  <div class="text773">Placeholder</div>
-                </div>
-                <div class="input-01">
-                  <div class="text773">점</div>
-                </div>
-              </div>
-              <div class="frame1428">
-                <div class="item-01">윗몸일으키기 (회/분)</div>
-                <div class="input-01">
-                  <div class="text773">Placeholder</div>
-                </div>
-                <div class="input-01">
-                  <div class="text773">점</div>
-                </div>
-              </div>
-              <div class="frame1428">
-                <div class="item-01">50m 오래달리기 (초)</div>
-                <div class="input-01">
-                  <div class="text773">Placeholder</div>
-                </div>
-                <div class="input-01">
-                  <div class="text773">점</div>
-                </div>
-              </div>
-              <div class="frame1433">
-                <div class="frame1434">
-                  <div class="frame1434">
-                    <div class="frame1435">
 
-                    </div>
-                  </div>
+              <div class="frame1428">
+                <div class="item-01">팔굽혀피기기 (kg)</div>
+                <div class="input-01">
+                    <input type="text" id="팔굽혀피기기" placeholder="데이터 입력">
                 </div>
-                <div class="text749">
-                  본인의 점수를 거짓 없이 입력했음을 맹세합니다.
+                <div class="input-01">
+                    <div class="text773">점</div>
+                </div>
+              </div>
+
+              <div class="frame1428">
+                <div class="item-01">왕복오래달리기 (kg)</div>
+                <div class="input-01">
+                    <input type="text" id="왕복오래달리기" placeholder="데이터 입력">
+                </div>
+                <div class="input-01">
+                    <div class="text773">점</div>
+                </div>
+              </div>
+
+              <div class="frame1428">
+                <div class="item-01">윗몸일으키기 (kg)</div>
+                <div class="input-01">
+                    <input type="text" id="윗몸일으키기" placeholder="데이터 입력">
+                </div>
+                <div class="input-01">
+                    <div class="text773">점</div>
+                </div>
+              </div>
+              <div class="frame1428">
+                <div class="item-01">오래달리기 (kg)</div>
+                <div class="input-01">
+                    <input type="text" id="오래달리기" placeholder="데이터 입력">
+                </div>
+                <div class="input-01">
+                    <div class="text773">점</div>
+                </div>
+              </div>
+                <!-- 다른 입력 필드도 위와 같은 구조로 생성 -->
+                <!-- ... -->
+
+        
+
+
+              <div class="frame1433">
+                <div class="container">
+                  <div class="checkbox-container">
+                    <div class="frame1434" id="checkbox"></div>
+                  </div>
+              
+                  <div class="text749">
+                    본인의 점수를 거짓 없이 입력했음을 맹세합니다.
+                  </div>
                 </div>
               </div>
               <div class="frame1436">
                 <div class="button-01">
-                  <div class="frame1437">
-                    <div class="text784">저장하기</div>
-                  </div>
-                </div>
-                <div class="button-02">
-                  <div class="frame1437">
-                    <div class="text784">초기화</div>
-                  </div>
+                    <div class="frame1437">
+                        <button class="text784" onclick="saveData()">저장하기</button>
+                    </div>
                 </div>
               </div>
+
             </div>
           </div>
           <div class="frame1392">
             <b class="text742">측정 결과</b>
             <div class="frame1440">
               <div class="frame1441">
-                <img class="boolean-operation-icon" alt="" src="/311-boolean-operation.b982cb17.svg">
-
-                <b class="text742">74%</b>
-                <img class="boolean-operation-icon1" alt="" src="/315-boolean-operation.28c55028.svg">
+                <div id="gauge-container"></div>
               </div>
               <div class="frame1442">
                 <b class="text742">Gold</b>
@@ -249,7 +168,119 @@
       </div>
     </div>
 
-    <script>var settingContainer = document.getElementById("settingContainer");
+    <script>// 저장하기 버튼을 클릭했을 때 호출되는 함수
+function saveData() {
+    // 입력된 데이터를 가져옴
+    var data = {
+        약력: document.getElementById("약력").value,
+        팔굽혀피기기: document.getElementById("팔굽혀피기기").value,
+        왕복오래달리기: document.getElementById("왕복오래달리기").value,
+        윗몸일으키기: document.getElementById("윗몸일으키기").value,
+        오래달리기: document.getElementById("오래달리기").value,
+        동의: document.getElementById("동의").checked
+    };
+    log.console(data);
+    // 벡엔드 API로 데이터 전송 (예시 코드)
+    fetch("벡엔드_API_URL", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    }).then((response)=>response.json()).then((result)=>{
+        // 처리 결과에 따른 동작 수행
+        console.log(result);
+        alert("데이터가 저장되었습니다.");
+    }).catch((error)=>{
+        console.error("에러 발생:", error);
+        alert("데이터 저장 중에 오류가 발생했습니다.");
+    });
+}
+const checkbox = document.getElementById("checkbox");
+checkbox.addEventListener("click", ()=>{
+    checkbox.classList.toggle("checked");
+});
+const percentage = 74; // Change this value dynamically
+const container = d3.select("#gauge-container");
+const width = 256;
+const height = 214;
+const radius = Math.min(width, height) / 2;
+const data = [
+    percentage,
+    100 - percentage
+];
+const color = d3.scaleOrdinal().domain(data).range([
+    "#DDE1E6",
+    "#878D96"
+]);
+const pie = d3.pie().sort(null).value((d)=>d);
+const arc = d3.arc().innerRadius(radius - 30).outerRadius(radius - 10);
+const svg = container.append("svg").attr("width", width).attr("height", height).append("g").attr("transform", `translate(${width / 2},${height / 2})`);
+svg.selectAll("path").data(pie(data)).enter().append("path").attr("d", arc).attr("fill", (d)=>color(d.data));
+svg.append("text").attr("class", "percentage").attr("text-anchor", "middle").attr("dy", "0.35em").text(percentage + "%");
+var months = [
+    "1월",
+    "2월",
+    "3월",
+    "4월",
+    "5월",
+    "6월",
+    "7월",
+    "8월",
+    "9월",
+    "10월",
+    "11월",
+    "12월"
+];
+var currentScores = [
+    50,
+    40,
+    30,
+    20,
+    10,
+    0
+];
+var expectedScores = [
+    30,
+    25,
+    20,
+    15,
+    0,
+    5
+];
+var ctx = document.getElementById("myChart").getContext("2d");
+var myChart = new Chart(ctx, {
+    type: "line",
+    data: {
+        labels: months,
+        datasets: [
+            {
+                label: "현재 점수",
+                data: currentScores,
+                borderColor: "black",
+                borderWidth: 2,
+                fill: false
+            },
+            {
+                label: "예상 도달 점수",
+                data: expectedScores,
+                borderColor: "gray",
+                borderWidth: 2,
+                fill: false
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+var settingContainer = document.getElementById("settingContainer");
 if (settingContainer) settingContainer.addEventListener("click", function(e) {
     window.location.href = "./setting-account.html";
 });

@@ -281,8 +281,8 @@
 }
 
 .frame-icon64, .frame1246 {
-  width: 308.39px;
-  height: 300px;
+  width: 430px;
+  height: 330px;
   position: relative;
 }
 
@@ -542,6 +542,14 @@
   width: 100%;
   height: 1024px;
   position: relative;
+}
+
+.graph-container {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
 }
 
 /*# sourceMappingURL=personal-information.56313847.css.map */

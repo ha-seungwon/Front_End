@@ -258,8 +258,8 @@
 .frame-icon64,
 .frame1246 {
   position: relative;
-  width: 308.39px;
-  height: 300px;
+  width: 430px;
+  height: 330px;
 }
 .frame-icon64 {
   width: 16px;
@@ -499,4 +499,13 @@
   font-size: var(--heading-4-size);
   color: var(--coolgray-60);
   font-family: var(--body-xs);
+}
+
+
+.graph-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Adjust the width as needed */
+  height: 100%; /* Adjust the height as needed */
 }
