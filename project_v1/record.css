@@ -381,8 +381,10 @@
 .text784 {
   position: relative;
   letter-spacing: 0.5px;
-  line-height: 100%;
-  font-weight: 500;
+  line-height: 30px;
+  font-weight: 800;
+  background-color: var(--primary-60);
+  color:azure;
 }
 .frame1437 {
   padding: 0 var(--padding-base);
@@ -395,12 +397,13 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+
 }
 .button-01 {
-  background-color: var(--primary-60);
+  background-color: var(--primary-80);
   border: 2px solid var(--primary-60);
   box-sizing: border-box;
-  height: 48px;
+  height: 80px;
   padding: var(--padding-base) var(--padding-xs);
 }
 .button-02,
@@ -415,7 +418,7 @@
 }
 .frame1436 {
   gap: var(--gap-base);
-  font-size: var(--button-m-size);
+  font-size: 35px;
   color: var(--default-white);
 }
 .frame1425,

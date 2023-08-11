@@ -278,6 +278,9 @@
 }
 
 .text707 {
+  background-color: var(--coolgray-10);
+  border: none;
+  outline: none;
   flex: 1;
 }
 

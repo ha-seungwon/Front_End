@@ -145,11 +145,8 @@
                 </div>
               </div>
               <div class="frame1436">
-                <div class="button-01">
-                    <div class="frame1437">
-                        <button class="text784" onclick="saveData()">저장하기</button>
-                    </div>
-                </div>
+                <button class="text784" onclick="saveData()">저장하기</button>
+
               </div>
 
             </div>
@@ -184,9 +181,9 @@
             왕복오래달리기: document.getElementById("왕복오래달리기").value,
             윗몸일으키기: document.getElementById("윗몸일으키기").value,
             오래달리기: document.getElementById("오래달리기").value,
-            동의: document.getElementById("동의").checked
+            동의: document.getElementById("checkbox").checked
         };
-        log.console(data)
+        console.log(data)
 
         // 벡엔드 API로 데이터 전송 (예시 코드)
         fetch("벡엔드_API_URL", {

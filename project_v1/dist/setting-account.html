@@ -74,7 +74,8 @@
                     <div class="frame1359">
                       <div class="text724">이름</div>
                       <div class="name2">
-                        <div class="text725">Name</div>
+                        <input type="text" id="full-name" class="text725" placeholder="Name">
+        
                       </div>
                     </div>
                   </div>
@@ -103,7 +104,7 @@
                   <div class="frame1359">
                     <div class="text724">이메일</div>
                     <div class="name2">
-                      <div class="text725">Email</div>
+                      <input type="email" id="email" class="text725" placeholder="Email Address">
                     </div>
                   </div>
                 </div>
@@ -111,8 +112,8 @@
                   <div class="frame1359">
                     <div class="text724">비밀번호</div>
                     <div class="password2">
-                      <div class="text725">Password</div>
-                      <img class="frame-icon79" alt="" src="/400-frame.cb7bf800.svg">
+                      <input type="password" id="password" class="text725" placeholder="Password">
+                      <img class="frame-icon79 toggle-password" alt="" src="/400-frame.cb7bf800.svg">
                     </div>
                   </div>
                   <div class="text733">
@@ -125,8 +126,8 @@
                     <div class="text724">비밀번호 확인</div>
                   </div>
                   <div class="password-check">
-                    <div class="text725">Password</div>
-                    <img class="frame-icon79" alt="" src="/400-frame.cb7bf800.svg">
+                    <input type="password" id="password" class="text725" placeholder="Password">
+                    <img class="frame-icon79 toggle-password" alt="" src="/400-frame.cb7bf800.svg">
                   </div>
                   <div class="text736">비밀번호가 일치하지 않습니다.</div>
                 </div>
@@ -183,6 +184,14 @@
     </div>
 
     <script>document.addEventListener("DOMContentLoaded", function() {
+    const togglePasswordIcons = document.querySelectorAll(".toggle-password");
+    togglePasswordIcons.forEach((icon)=>{
+        icon.addEventListener("click", function() {
+            const passwordInput = icon.parentElement.querySelector(".text725");
+            if (passwordInput.type === "password") passwordInput.type = "text";
+            else passwordInput.type = "password";
+        });
+    });
     var ellipse6 = document.querySelector(".ellipse6");
     var ellipse7 = document.querySelector(".ellipse7");
     ellipse6.addEventListener("click", function() {
@@ -196,30 +205,30 @@
     // 초기 상태 설정
     ellipse6.classList.remove("selected");
     ellipse7.classList.remove("selected");
-});
-var settingContainer = document.getElementById("settingContainer");
-if (settingContainer) settingContainer.addEventListener("click", function(e) {
-    window.location.href = "setting-account.html";
-});
-var menu01Container = document.getElementById("menu01Container");
-if (menu01Container) menu01Container.addEventListener("click", function(e) {
-    window.location.href = "./dashboard.html";
-});
-var menu02 = document.getElementById("menu02");
-if (menu02) menu02.addEventListener("click", function(e) {
-    window.location.href = "./record.html";
-});
-var menu03Container = document.getElementById("menu03Container");
-if (menu03Container) menu03Container.addEventListener("click", function(e) {
-    window.location.href = "./personal-information.html";
-});
-var menu04Container = document.getElementById("menu04Container");
-if (menu04Container) menu04Container.addEventListener("click", function(e) {
-    window.location.href = "./application-information1.html";
-});
-var option02Container = document.getElementById("option02Container");
-if (option02Container) option02Container.addEventListener("click", function(e) {
-    window.location.href = "./setting-personal-information.html";
+    var settingContainer = document.getElementById("settingContainer");
+    if (settingContainer) settingContainer.addEventListener("click", function(e) {
+        window.location.href = "setting-account.html";
+    });
+    var menu01Container = document.getElementById("menu01Container");
+    if (menu01Container) menu01Container.addEventListener("click", function(e) {
+        window.location.href = "./dashboard.html";
+    });
+    var menu02 = document.getElementById("menu02");
+    if (menu02) menu02.addEventListener("click", function(e) {
+        window.location.href = "./record.html";
+    });
+    var menu03Container = document.getElementById("menu03Container");
+    if (menu03Container) menu03Container.addEventListener("click", function(e) {
+        window.location.href = "./personal-information.html";
+    });
+    var menu04Container = document.getElementById("menu04Container");
+    if (menu04Container) menu04Container.addEventListener("click", function(e) {
+        window.location.href = "./application-information1.html";
+    });
+    var option02Container = document.getElementById("option02Container");
+    if (option02Container) option02Container.addEventListener("click", function(e) {
+        window.location.href = "./setting-personal-information.html";
+    });
 });
 
 </script>

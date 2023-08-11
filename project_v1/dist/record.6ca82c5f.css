@@ -393,6 +393,7 @@
 
 .text784 {
   letter-spacing: .5px;
+  background-color: var(--primary-60);
   font-weight: 500;
   line-height: 100%;
   position: relative;
@@ -410,11 +411,11 @@
 }
 
 .button-01 {
-  background-color: var(--primary-60);
+  background-color: var(--primary-80);
   border: 2px solid var(--primary-60);
   box-sizing: border-box;
   padding: var(--padding-base) var(--padding-xs);
-  height: 48px;
+  height: 80px;
 }
 
 .button-02, .frame1436 {
