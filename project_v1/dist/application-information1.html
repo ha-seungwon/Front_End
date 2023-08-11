@@ -89,7 +89,7 @@
             </div>
             <div class="frame1058">
               <div class="frame1059">
-                <img class="frame-icon51" alt="" src="/787-frame1.a2069df6.svg">
+                <img class="frame-icon51" alt="" src="/808-instance.c29a9756.svg">
               </div>
               <div class="frame1060">
                 <b class="text564">원서접수</b>
@@ -98,7 +98,7 @@
             </div>
             <div class="frame1058">
               <div class="frame1059">
-                <img class="frame-icon51" alt="" src="/787-frame1.a2069df6.svg">
+                <img class="frame-icon51" alt="" src="/808-instance.c29a9756.svg">
               </div>
               <div class="frame1060">
                 <b class="text564">1·2차 시험</b>
@@ -107,7 +107,7 @@
             </div>
             <div class="frame1064">
               <div class="frame1059">
-                <img class="frame-icon51" alt="" src="/801-instance.d57c1b1e.svg">
+                <img class="frame-icon51" alt="" src="/808-instance.c29a9756.svg">
               </div>
               <div class="frame1060">
                 <b class="text564">3·4·5차 시험</b>
@@ -541,7 +541,27 @@
       </div>
     </div>
 
-    <script>var settingContainer = document.getElementById("settingContainer");
+    <script>document.addEventListener("DOMContentLoaded", function() {
+    const frames = document.querySelectorAll(".frame1058, .frame1064, .frame1067");
+    frames.forEach((frame)=>{
+        frame.addEventListener("click", ()=>{
+            frames.forEach((f)=>{
+                f.classList.remove("menu_activate");
+                const textElements = f.querySelectorAll(".text564, .text578"); // 텍스트 엘리먼트들을 선택
+                textElements.forEach((text)=>{
+                    text.style.color = ""; // 기존 색상으로 되돌리기
+                });
+            });
+            frame.classList.add("menu_activate");
+            const textElements = frame.querySelectorAll(".text564, .text578");
+            textElements.forEach((text)=>{
+                text.style.color = "black"; // 텍스트 색상을 검은색으로 변경
+            });
+        });
+    });
+// ... (다른 이벤트 리스너들은 그대로 두세요)
+});
+var settingContainer = document.getElementById("settingContainer");
 if (settingContainer) settingContainer.addEventListener("click", function(e) {
     window.location.href = "./setting-account.html";
 });

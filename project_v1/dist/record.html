@@ -174,9 +174,9 @@ function saveData() {
         왕복오래달리기: document.getElementById("왕복오래달리기").value,
         윗몸일으키기: document.getElementById("윗몸일으키기").value,
         오래달리기: document.getElementById("오래달리기").value,
-        동의: document.getElementById("동의").checked
+        동의: document.getElementById("checkbox").checked
     };
-    log.console(data);
+    console.log(data);
     // 벡엔드 API로 데이터 전송 (예시 코드)
     fetch("벡엔드_API_URL", {
         method: "POST",
@@ -197,7 +197,7 @@ const checkbox = document.getElementById("checkbox");
 checkbox.addEventListener("click", ()=>{
     checkbox.classList.toggle("checked");
 });
-const percentage = 74; // Change this value dynamically
+const percentage = 53; // Change this value dynamically
 const container = d3.select("#gauge-container");
 const width = 256;
 const height = 214;
@@ -231,7 +231,7 @@ var months = [
 ];
 var currentScores = [
     50,
-    40,
+    null,
     30,
     20,
     10,
@@ -242,7 +242,7 @@ var expectedScores = [
     25,
     20,
     15,
-    0,
+    null,
     5
 ];
 var ctx = document.getElementById("myChart").getContext("2d");

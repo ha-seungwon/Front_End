@@ -394,8 +394,9 @@
 .text784 {
   letter-spacing: .5px;
   background-color: var(--primary-60);
-  font-weight: 500;
-  line-height: 100%;
+  color: azure;
+  font-weight: 800;
+  line-height: 30px;
   position: relative;
 }
 
@@ -431,8 +432,8 @@
 
 .frame1436 {
   gap: var(--gap-base);
-  font-size: var(--button-m-size);
   color: var(--default-white);
+  font-size: 35px;
 }
 
 .frame1425, .frame1426 {

@@ -213,7 +213,7 @@
         checkbox.classList.toggle('checked');
       });
 
-      const percentage = 74; // Change this value dynamically
+      const percentage = 53; // Change this value dynamically
 
       const container = d3.select("#gauge-container");
       const width = 256;
@@ -252,8 +252,8 @@
         .text(percentage + "%");
 
       var months = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
-      var currentScores = [50, 40, 30, 20, 10, 0];
-      var expectedScores = [30, 25, 20, 15, 0, 5];
+      var currentScores = [50, null, 30, 20, 10, 0];
+      var expectedScores = [30, 25, 20, 15, null, 5];
 
       var ctx = document.getElementById('myChart').getContext('2d');
       var myChart = new Chart(ctx, {
