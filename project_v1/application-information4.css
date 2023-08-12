@@ -549,12 +549,14 @@
   align-items: flex-start;
   font-size: var(--body-s-size);
   color: var(--coolgray-100);
+  width: 1100px;
 }
 .frame424 {
   padding: var(--padding-base);
   align-items: center;
   gap: var(--gap-base);
   font-size: var(--heading-6-size);
+  width: 1109px;
 }
 .application-information4,
 .frame391 {
@@ -583,3 +585,31 @@
   color: var(--coolgray-60);
   font-family: var(--body-xs);
 }
+/* 테이블 전체 스타일 조정 */
+#dic {
+  width: 100%; /* Make the table fill its container */
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+/* 테이블 헤더 스타일 조정 */
+.tabulator-col {
+  background-color: var(--coolgray-10);
+  font-weight: bold;
+}
+
+/* 테이블 셀 스타일 조정 */
+.tabulator-row {
+  background-color: #ffffff;
+}
+
+/* 홀수 행 배경색 변경 */
+.tabulator-row:nth-child(odd) {
+  background-color: #f5f5f5;
+}
+
+/* 선택된 행 스타일 변경 */
+.tabulator-row.tabulator-selected {
+  background-color: #c3d5e4;
+}
+ 
