@@ -196,21 +196,8 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
-.frame1058 {
-  background-color: var(--coolgray-10);
-}
-.frame1058,
-.frame1064 {
-  border-top: 3px solid var(--primary-90);
-  box-sizing: border-box;
-  width: 445px;
-  display: flex;
-  flex-direction: row;
-  padding: 0 var(--padding-5xs);
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: var(--gap-5xs);
-}
+
+
 .text578,
 .text579 {
   align-self: stretch;
@@ -226,10 +213,14 @@
 }
 .frame1056,
 .frame1067,
+.frame1058,
+.frame1064,
 .frame1076 {
   display: flex;
   align-items: flex-start;
 }
+.frame1058,
+.frame1064,
 .frame1067 {
   border-top: 3px solid var(--coolgray-30);
   box-sizing: border-box;
@@ -563,4 +554,78 @@
   font-size: var(--heading-4-size);
   color: var(--coolgray-60);
   font-family: var(--body-xs);
+}
+
+
+.menu_activate_text {
+  color: black;
+}
+
+.selected {
+  background-color: var(--coolgray-10);
+  border-top: 3px solid var(--primary-90);
+}
+.menu_activate{
+  background-color: var(--coolgray-10);
+  border-top: 3px solid var(--primary-90);
+  box-sizing: border-box;
+  width: 445px;
+  display: flex;
+  flex-direction: row;
+  padding: 0 var(--padding-5xs);
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
+}
+
+.menu_activate_icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.menu_current{
+  border-top: 3px solid var(--primary-90);
+  box-sizing: border-box;
+  width: 445px;
+  display: flex;
+  flex-direction: row;
+  padding: 0 var(--padding-5xs);
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
+}
+
+.menu_current_icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.menu_deactivate{
+  border-top: 3px solid var(--primary-90);
+  box-sizing: border-box;
+  width: 445px;
+  display: flex;
+  flex-direction: row;
+  padding: 0 var(--padding-5xs);
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
+  display: flex;
+  align-items: flex-start;
+  display: flex;
+  align-items: flex-start;
+}
+
+.menu_deactivate_icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  flex-shrink: 0;
 }

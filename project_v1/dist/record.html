@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, width=device-width">
-    <link rel="stylesheet" href="/application-information1.689f5f05.css">
-    <link rel="stylesheet" href="/record.6ca82c5f.css">
+    <link rel="stylesheet" href="/application-information1.4757af46.css">
+    <link rel="stylesheet" href="/record.f22e6f49.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
     <script src="https://d3js.org/d3.v6.min.js"></script>
@@ -23,27 +23,27 @@
         </div>
         <div class="frame1388">
           <div class="setting9" id="settingContainer">
-            <img class="frame-icon89" alt="" src="/735-frame.a49b127b.svg">
+            <img class="frame-icon89" alt="" src="/735-frame.651a35f2.svg">
           </div>
         </div>
         <form class="frame1389">
           <div class="menu-019" id="menu01Container">
-            <img class="frame-icon89" alt="" src="/555-frame.4d0bea5b.svg">
+            <img class="frame-icon89" alt="" src="/555-frame.b49f0f78.svg">
 
             <div class="text743">대시보드</div>
           </div>
           <button class="menu-029" id="menu02">
-            <img class="frame-icon89" alt="" src="/559-frame.9f0a343c.svg">
+            <img class="frame-icon89" alt="" src="/559-frame.6cff5913.svg">
 
             <div class="text744">측정기록</div>
           </button>
           <div class="menu-019" id="menu03Container">
-            <img class="frame-icon89" alt="" src="/748-frame.f5e31ec4.svg">
+            <img class="frame-icon89" alt="" src="/748-frame.8d773b6b.svg">
 
             <div class="text743">개인정보</div>
           </div>
           <div class="menu-019" id="menu04Container">
-            <img class="frame-icon89" alt="" src="/755-frame.8326ebd5.svg">
+            <img class="frame-icon89" alt="" src="/755-frame.0a98b08f.svg">
 
             <div class="text743">직렬정보</div>
           </div>
@@ -174,9 +174,9 @@ function saveData() {
         왕복오래달리기: document.getElementById("왕복오래달리기").value,
         윗몸일으키기: document.getElementById("윗몸일으키기").value,
         오래달리기: document.getElementById("오래달리기").value,
-        동의: document.getElementById("동의").checked
+        동의: document.getElementById("checkbox").checked
     };
-    log.console(data);
+    console.log(data);
     // 벡엔드 API로 데이터 전송 (예시 코드)
     fetch("벡엔드_API_URL", {
         method: "POST",
@@ -197,7 +197,7 @@ const checkbox = document.getElementById("checkbox");
 checkbox.addEventListener("click", ()=>{
     checkbox.classList.toggle("checked");
 });
-const percentage = 74; // Change this value dynamically
+const percentage = 53; // Change this value dynamically
 const container = d3.select("#gauge-container");
 const width = 256;
 const height = 214;
@@ -231,7 +231,7 @@ var months = [
 ];
 var currentScores = [
     50,
-    40,
+    null,
     30,
     20,
     10,
@@ -242,7 +242,7 @@ var expectedScores = [
     25,
     20,
     15,
-    0,
+    null,
     5
 ];
 var ctx = document.getElementById("myChart").getContext("2d");
@@ -299,5 +299,5 @@ if (menu04Container) menu04Container.addEventListener("click", function(e) {
 });
 
 </script>
-  <script src="/record.dbe1b582.js"></script></body>
+  <script src="/record.c5dc465d.js"></script></body>
 </html>

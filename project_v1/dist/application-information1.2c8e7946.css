@@ -219,22 +219,6 @@
   display: flex;
 }
 
-.frame1058 {
-  background-color: var(--coolgray-10);
-}
-
-.frame1058, .frame1064 {
-  border-top: 3px solid var(--primary-90);
-  box-sizing: border-box;
-  padding: 0 var(--padding-5xs);
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: var(--gap-5xs);
-  flex-direction: row;
-  width: 445px;
-  display: flex;
-}
-
 .text578, .text579 {
   align-self: stretch;
   position: relative;
@@ -250,12 +234,12 @@
   line-height: 140%;
 }
 
-.frame1056, .frame1067, .frame1076 {
+.frame1056, .frame1067, .frame1058, .frame1064, .frame1076 {
   align-items: flex-start;
   display: flex;
 }
 
-.frame1067 {
+.frame1058, .frame1064, .frame1067 {
   border-top: 3px solid var(--coolgray-30);
   box-sizing: border-box;
   padding: 0 var(--padding-5xs);
@@ -618,6 +602,77 @@
   justify-content: flex-start;
   width: 100%;
   position: relative;
+}
+
+.menu_activate_text {
+  color: #000;
+}
+
+.selected {
+  background-color: var(--coolgray-10);
+  border-top: 3px solid var(--primary-90);
+}
+
+.menu_activate {
+  background-color: var(--coolgray-10);
+  border-top: 3px solid var(--primary-90);
+  box-sizing: border-box;
+  padding: 0 var(--padding-5xs);
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--gap-5xs);
+  flex-direction: row;
+  width: 445px;
+  display: flex;
+}
+
+.menu_activate_icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu_current {
+  border-top: 3px solid var(--primary-90);
+  box-sizing: border-box;
+  padding: 0 var(--padding-5xs);
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--gap-5xs);
+  flex-direction: row;
+  width: 445px;
+  display: flex;
+}
+
+.menu_current_icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu_deactivate {
+  border-top: 3px solid var(--primary-90);
+  box-sizing: border-box;
+  padding: 0 var(--padding-5xs);
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--gap-5xs);
+  flex-direction: row;
+  align-items: flex-start;
+  width: 445px;
+  display: flex;
+}
+
+.menu_deactivate_icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: hidden;
 }
 
 /*# sourceMappingURL=application-information1.2c8e7946.css.map */

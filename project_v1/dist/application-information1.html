@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, width=device-width">
-    <link rel="stylesheet" href="/application-information1.689f5f05.css">
-    <link rel="stylesheet" href="/application-information1.2c8e7946.css">
+    <link rel="stylesheet" href="/application-information1.4757af46.css">
+    <link rel="stylesheet" href="/application-information1.63e54ae4.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
   </head>
@@ -20,27 +20,27 @@
         </div>
         <div class="frame1044">
           <div class="setting5" id="settingContainer">
-            <img class="frame-icon51" alt="" src="/735-frame.a49b127b.svg">
+            <img class="frame-icon51" alt="" src="/735-frame.651a35f2.svg">
           </div>
         </div>
         <div class="frame1045">
           <div class="menu-015" id="menu01Container">
-            <img class="frame-icon51" alt="" src="/739-frame.91c699d2.svg">
+            <img class="frame-icon51" alt="" src="/739-frame.ff08e64b.svg">
 
             <div class="text560">대시보드</div>
           </div>
           <button class="menu-025" id="menu02">
-            <img class="frame-icon51" alt="" src="/743-frame1.a4726059.svg">
+            <img class="frame-icon51" alt="" src="/743-frame1.82eb415c.svg">
 
             <div class="text561">측정기록</div>
           </button>
           <div class="menu-015" id="menu03Container">
-            <img class="frame-icon51" alt="" src="/748-frame.f5e31ec4.svg">
+            <img class="frame-icon51" alt="" src="/748-frame.8d773b6b.svg">
 
             <div class="text560">개인정보</div>
           </div>
           <div class="menu-045" id="menu04Container">
-            <img class="frame-icon51" alt="" src="/755-frame.8326ebd5.svg">
+            <img class="frame-icon51" alt="" src="/755-frame.0a98b08f.svg">
 
             <div class="text560">직렬정보</div>
           </div>
@@ -89,7 +89,7 @@
             </div>
             <div class="frame1058">
               <div class="frame1059">
-                <img class="frame-icon51" alt="" src="/787-frame1.a2069df6.svg">
+                <img class="frame-icon51" alt="" src="/808-instance.846e76e9.svg">
               </div>
               <div class="frame1060">
                 <b class="text564">원서접수</b>
@@ -98,7 +98,7 @@
             </div>
             <div class="frame1058">
               <div class="frame1059">
-                <img class="frame-icon51" alt="" src="/787-frame1.a2069df6.svg">
+                <img class="frame-icon51" alt="" src="/808-instance.846e76e9.svg">
               </div>
               <div class="frame1060">
                 <b class="text564">1·2차 시험</b>
@@ -107,7 +107,7 @@
             </div>
             <div class="frame1064">
               <div class="frame1059">
-                <img class="frame-icon51" alt="" src="/801-instance.d57c1b1e.svg">
+                <img class="frame-icon51" alt="" src="/808-instance.846e76e9.svg">
               </div>
               <div class="frame1060">
                 <b class="text564">3·4·5차 시험</b>
@@ -116,7 +116,7 @@
             </div>
             <div class="frame1067">
               <div class="frame1059">
-                <img class="frame-icon51" alt="" src="/808-instance.c29a9756.svg">
+                <img class="frame-icon51" alt="" src="/808-instance.846e76e9.svg">
               </div>
               <div class="frame1060">
                 <div class="text578">서류 전형</div>
@@ -125,7 +125,7 @@
             </div>
             <div class="frame1067">
               <div class="frame1059">
-                <img class="frame-icon51" alt="" src="/808-instance.c29a9756.svg">
+                <img class="frame-icon51" alt="" src="/808-instance.846e76e9.svg">
               </div>
               <div class="frame1060">
                 <div class="text578">면접 시험</div>
@@ -149,12 +149,12 @@
               </div>
               <div class="frame1077" id="frameContainer34">
                 <div class="instance10" id="instanceContainer1">
-                  <img class="instance-icon29" alt="" src="/828-instance.264da749.svg">
+                  <img class="instance-icon29" alt="" src="/828-instance.1fdc7590.svg">
 
                   <div class="frame1078">
                     <div class="text565">경찰대학 원서접수하러 가기</div>
                   </div>
-                  <img class="instance-icon30" alt="" src="/832-instance.1667c654.svg">
+                  <img class="instance-icon30" alt="" src="/832-instance.bf773479.svg">
 
                   <div class="instance11">
                     <div class="text585">9</div>
@@ -541,7 +541,27 @@
       </div>
     </div>
 
-    <script>var settingContainer = document.getElementById("settingContainer");
+    <script>document.addEventListener("DOMContentLoaded", function() {
+    const frames = document.querySelectorAll(".frame1058, .frame1064, .frame1067");
+    frames.forEach((frame)=>{
+        frame.addEventListener("click", ()=>{
+            frames.forEach((f)=>{
+                f.classList.remove("menu_activate");
+                const textElements = f.querySelectorAll(".text564, .text578"); // 텍스트 엘리먼트들을 선택
+                textElements.forEach((text)=>{
+                    text.style.color = ""; // 기존 색상으로 되돌리기
+                });
+            });
+            frame.classList.add("menu_activate");
+            const textElements = frame.querySelectorAll(".text564, .text578");
+            textElements.forEach((text)=>{
+                text.style.color = "black"; // 텍스트 색상을 검은색으로 변경
+            });
+        });
+    });
+// ... (다른 이벤트 리스너들은 그대로 두세요)
+});
+var settingContainer = document.getElementById("settingContainer");
 if (settingContainer) settingContainer.addEventListener("click", function(e) {
     window.location.href = "./setting-account.html";
 });
@@ -591,5 +611,5 @@ if (frameContainer34) frameContainer34.addEventListener("click", function() {
 });
 
 </script>
-  <script src="/application-information1.5e37117e.js"></script></body>
+  <script src="/application-information1.9a2f1843.js"></script></body>
 </html>
