@@ -311,15 +311,7 @@
   gap: var(--gap-base);
   text-align: left;
 }
-.frame1245 {
-  flex: 1;
-  flex-direction: row;
-  padding: 0 0 0 64px;
-  align-items: center;
-  gap: 90px;
-  text-align: center;
-  font-size: var(--button-m-size);
-}
+
 .frame1237,
 .frame1244,
 .frame1245 {
@@ -327,6 +319,18 @@
   display: flex;
   justify-content: flex-start;
 }
+.frame1245 {
+  flex: 1;
+  flex-direction: row;
+  padding: 0 0 0 64px;
+  align-items: center;
+  gap: 90px;
+  justify-content: center; /* 가로 중앙 정렬 추가 */
+  text-align: center;
+  font-size: var(--button-m-size);
+
+}
+
 .frame1244 {
   background-color: var(--default-white);
   border: 1px solid var(--coolgray-20);
@@ -506,6 +510,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%; /* Adjust the width as needed */
-  height: 100%; /* Adjust the height as needed */
+  width: 330px; /* Adjust the width as needed */
+  height: 330px; /* Adjust the height as needed */
+  margin-right: 60px; /* 왼쪽으로 10px 이동 */
 }

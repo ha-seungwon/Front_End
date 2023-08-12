@@ -26,11 +26,12 @@
           </div>
         </div>
         <div class="frame580">
-          <div class="menu-013">
+          <div class="menu-013" id="menu01Container">
             <img class="frame-icon21" alt="" src="/739-frame.91c699d2.svg">
 
             <div class="text300">대시보드</div>
           </div>
+          
           <button class="menu-023" id="menu02">
             <img class="frame-icon21" alt="" src="/743-frame1.a4726059.svg">
 
@@ -312,6 +313,10 @@ var table = new Tabulator("#dic", {
 var settingContainer = document.getElementById("settingContainer");
 if (settingContainer) settingContainer.addEventListener("click", function(e) {
     window.location.href = "./setting-account.html";
+});
+var menu01Container = document.getElementById("menu01Container");
+if (menu01Container) menu01Container.addEventListener("click", function(e) {
+    window.location.href = "./dashboard.html";
 });
 var menu02 = document.getElementById("menu02");
 if (menu02) menu02.addEventListener("click", function(e) {

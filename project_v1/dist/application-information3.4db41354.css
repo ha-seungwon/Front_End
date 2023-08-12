@@ -57,12 +57,15 @@
 }
 
 .menu-013 {
+  border: 0;
+  border-left: 2px solid var(--coolgray-10);
   border-bottom: 1px solid var(--coolgray-10);
   padding: var(--padding-xs) var(--padding-5xs);
   justify-content: flex-start;
   align-self: stretch;
   align-items: center;
   gap: var(--gap-5xs);
+  background-color: #0000;
   flex-direction: row;
   display: flex;
 }

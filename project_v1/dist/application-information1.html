@@ -26,16 +26,16 @@
           </div>
         </div>
         <div class="frame770">
-          <div class="menu-014">
+          <div class="menu-014" id="menu01Container">
             <img class="frame-icon28" alt="" src="/739-frame.91c699d2.svg">
 
             <div class="text399">대시보드</div>
           </div>
-          <button class="menu-024" id="menu02">
+          <div class="menu-024" id="menu02Container">
             <img class="frame-icon28" alt="" src="/743-frame1.a4726059.svg">
 
             <div class="text400">측정기록</div>
-          </button>
+          </div>
           <div class="menu-034" id="menu03Container">
             <img class="frame-icon28" alt="" src="/748-frame.f5e31ec4.svg">
 
@@ -311,8 +311,12 @@ var settingContainer = document.getElementById("settingContainer");
 if (settingContainer) settingContainer.addEventListener("click", function(e) {
     window.location.href = "./setting-account.html";
 });
-var menu02 = document.getElementById("menu02");
-if (menu02) menu02.addEventListener("click", function(e) {
+var menu01Container = document.getElementById("menu01Container");
+if (menu01Container) menu01Container.addEventListener("click", function(e) {
+    window.location.href = "./dashboard.html";
+});
+var menu02Container = document.getElementById("menu02Container");
+if (menu02Container) menu02Container.addEventListener("click", function(e) {
     window.location.href = "./record.html";
 });
 var menu03Container = document.getElementById("menu03Container");

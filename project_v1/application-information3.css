@@ -51,6 +51,9 @@
 }
 .menu-013 {
   align-self: stretch;
+  border: 0;
+  background-color: transparent;
+  border-left: 2px solid var(--coolgray-10);
   border-bottom: 1px solid var(--coolgray-10);
   display: flex;
   flex-direction: row;

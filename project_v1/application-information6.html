@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="frame390">
-          <div class="menu-012">
+          <div class="menu-012" id="menu01Container">
             <img class="frame-icon14" alt="" src="./public/739-frame.svg" />
 
             <div class="text201">대시보드</div>
@@ -249,6 +249,12 @@
       if (settingContainer) {
         settingContainer.addEventListener("click", function (e) {
           window.location.href = "./setting-account.html";
+        });
+      }
+      var menu01Container = document.getElementById("menu01Container");
+      if (menu01Container) {
+        menu01Container.addEventListener("click", function (e) {
+          window.location.href = "./dashboard.html";
         });
       }
       

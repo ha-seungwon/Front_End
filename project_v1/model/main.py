@@ -1,25 +1,17 @@
-import numpy as np
 import torch
 import torch.nn as nn
-import torch.optim as optim
+from fastapi import FastAPI
+import ast
+import numpy as np
+from fastapi.middleware.cors import CORSMiddleware
 
-# 가상의 데이터 생성
-num_users = 100
-num_months = 12
-num_features = 3
-
-data = np.random.rand(num_users, num_months, num_features).astype(np.float32)
-labels = np.random.randint(2, size=(num_users, num_months)).astype(np.float32)
-
-# 데이터 전처리
-train_size = int(0.8 * num_users)
-x_train, y_train = data[:train_size], labels[:train_size]
-x_test, y_test = data[train_size:], labels[train_size:]
-
-x_train = torch.tensor(x_train)
-y_train = torch.tensor(y_train, dtype=torch.float32)  # 데이터 타입 변경
-x_test = torch.tensor(x_test)
-y_test = torch.tensor(y_test, dtype=torch.float32)  # 데이터 타입 변경
+app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:1234"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class LSTMModel(nn.Module):
     def __init__(self, input_size, hidden_size, num_layers, output_size):
@@ -29,58 +21,38 @@ class LSTMModel(nn.Module):
     
     def forward(self, x):
         out, _ = self.lstm(x)
-        out = self.fc(out[:, -1, :])
+        out = self.fc(out)
+        
         return out
-input_size = num_features
+
+input_size = 12
 hidden_size = 64
 num_layers = 2
 output_size = 1
-
 model = LSTMModel(input_size, hidden_size, num_layers, output_size)
-
-# 손실 함수와 옵티마이저 정의
-criterion = nn.BCEWithLogitsLoss()
-optimizer = optim.Adam(model.parameters(), lr=0.001)
-
-
-num_epochs = 10
-for epoch in range(num_epochs):
-    model.train()
-    optimizer.zero_grad()
-    outputs = model(x_train)
-    
-    # 시그모이드 함수를 적용하여 확률로 변환
-    outputs_prob = torch.sigmoid(outputs)
-    
-    # BCEWithLogitsLoss에는 모델 출력과 대상(target)이 동일한 크기여야 합니다.
-    # 따라서 대상의 크기도 (batch_size, num_months)로 변환합니다.
-    y_train_viewed = y_train.view(-1, num_months)
-    print(outputs_prob.size(),y_train_viewed.size())
-    
-    loss = criterion(outputs_prob, y_train_viewed)
-    loss.backward()
-    optimizer.step()
-    print(f"Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}")
-
-# ...
-
-# 모델 평가
+model.load_state_dict(torch.load('lstm_model.pth'))
 model.eval()
-with torch.no_grad():
-    test_outputs = model(x_test)
-    
-    # 시그모이드 함수를 적용하여 확률로 변환
-    test_outputs_prob = torch.sigmoid(test_outputs)
-    
-    # BCEWithLogitsLoss에는 모델 출력과 대상(target)이 동일한 크기여야 합니다.
-    y_test_viewed = y_test.view(-1, num_months)
-    
-    test_loss = criterion(test_outputs_prob, y_test_viewed)
-    print(f"Test Loss: {test_loss.item():.4f}")
 
-# 예측
-user_to_predict = data[0]
-user_to_predict_tensor = torch.tensor(user_to_predict).unsqueeze(0)
-prediction = model(user_to_predict_tensor)
-pass_probability = torch.sigmoid(prediction)
-print(f"Next Month's Pass Probability: {pass_probability.item():.4f}")
+def predict_single_input(input_data):
+    model.eval()
+    with torch.no_grad():
+        input_tensor = torch.tensor(input_data, dtype=torch.float32).view(1, -1)
+        output = model(input_tensor)
+        prediction = torch.sigmoid(output).round().item()
+    return prediction
+
+@app.post("/predict/")
+async def predict(input_data: str):
+    input_data = ast.literal_eval(input_data)
+    filtered_values = [value for value in input_data if value != -1]
+    mean_value = np.mean(filtered_values)
+    
+    input_data = [mean_value if value == -1 else value for value in input_data]
+    print(f"model input data is {input_data}")
+
+    result = predict_single_input(input_data)
+    return {"prediction": result}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)

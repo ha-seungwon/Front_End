@@ -86,41 +86,8 @@
           <div class="frame1244">
             <b class="text658">내 점수 분포</b>
             <div class="frame1245">
-              <div class="frame1246">
-                <div class="graph-container">
-                  <canvas id="radarChart"width="500" height="500"></canvas>
-                </div>
-
-              </div>
-              <div class="frame1247">
-                <div class="frame1248">
-                  <div class="frame1249">
-                    <img
-                      class="frame-icon64"
-                      alt=""
-                      src="./public/617-frame.svg"
-                    />
-
-                    <div class="text671">현재 점수</div>
-                  </div>
-                  <div class="frame1250">
-                    <div class="text672">37점</div>
-                  </div>
-                </div>
-                <div class="frame1248">
-                  <div class="frame1249">
-                    <img
-                      class="frame-icon64"
-                      alt=""
-                      src="./public/624-frame.svg"
-                    />
-
-                    <div class="text671">예상 점수</div>
-                  </div>
-                  <div class="frame1250">
-                    <div class="text672">40점</div>
-                  </div>
-                </div>
+              <div class="graph-container"> 
+                <canvas id="radarChart"width="100" height="100"></canvas>
               </div>
             </div>
           </div>
@@ -162,14 +129,17 @@
           line: {
             borderWidth: 3
           },
-          pointLabels: {
-            fontSize: 20 // Adjust the font size as needed
-
-          },
           legend: {
             display: false, // 범례 숨기기
           },
           scale: {
+            r: {
+              pointLabels: {
+                font: {
+                  size: 100
+                }
+              }
+            },
 
             ticks: {
               beginAtZero: true,
