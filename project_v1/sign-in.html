@@ -28,8 +28,11 @@
             <div class="frame1022">
               <div class="text546">이메일 주소</div>
               <div class="email1">
-                <input type="text" id="email" class="text123" placeholder="Email" />
+                <input type="text" id="emailFront" class="text123" placeholder="Email 앞 부분" />
+                @
+                <input type="text" id="emailAfterAt" class="text123" placeholder="직접입력하기" />
               </div>
+              <div>결과: <span id="mergedEmail"></span></div>
             </div>
           </div>
           <div class="frame1021">
@@ -100,10 +103,49 @@
     </div>
 
     <script>
+      var validDomains = ['naver.com', 'google.com', 'daum.net'];
+
+      var emailFrontInput = document.getElementById("emailFront");
+      var emailAfterAtInput = document.getElementById("emailAfterAt");
+      var mergedEmailResult = document.getElementById("mergedEmail");
+
+      emailFrontInput.addEventListener("input", updateMergedEmail);
+      emailAfterAtInput.addEventListener("input", updateMergedEmail);
+
+      function updateMergedEmail() {
+        var emailFront = emailFrontInput.value;
+        var emailAfterAt = emailAfterAtInput.value;
+        var errorMessage = '';
+
+        if (!emailFront || !emailAfterAt) {
+          errorMessage = "이메일 앞과 @ 이후의 부분을 모두 입력하세요.";
+        } else if (emailFront.includes(" ") || emailFront.includes("@")) {
+          errorMessage = "올바른 이메일 앞 부분을 입력하세요.";
+        } else if (!isValidDomain(emailAfterAt)) {
+          errorMessage = "올바른 도메인 주소를 입력하세요.";
+        } else if (!isValidDomainInList(emailAfterAt)) {
+          errorMessage = "지원하지 않는 도메인 주소입니다.";
+        }
+
+        if (errorMessage) {
+          mergedEmailResult.textContent = errorMessage;
+        } else {
+          mergedEmailResult.textContent = emailFront + "@" + emailAfterAt;
+        }
+      }
+
+      function isValidDomain(domain) {
+        return validDomains.includes(domain);
+      }
+
+      function isValidDomainInList(domain) {
+        return validDomains.includes(domain);
+      }
 
       function toggleCheckbox(checkbox) {
         checkbox.classList.toggle("checked");
       }
+      
       function togglePasswordVisibility() {
         var passwordInput = document.getElementById("password1");
         if (passwordInput.type === "password") {
@@ -112,19 +154,21 @@
           passwordInput.type = "password";
         }
       }
+
       var text7 = document.getElementById("text7");
       if (text7) {
         text7.addEventListener("click", function (e) {
           window.location.href = "./reset-password.html";
         });
       }
-      
+
       var signUpText = document.getElementById("signUpText");
       if (signUpText) {
         signUpText.addEventListener("click", function (e) {
           window.location.href = "./sign-up.html";
         });
       }
+
       </script>
   </body>
 </html>

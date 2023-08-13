@@ -58,11 +58,15 @@
   padding: var(--padding-xs) var(--padding-base);
   gap: var(--gap-5xs);
   flex-direction: row;
-  width: 200px;
+  width: 220px;
 }
 
 .frame992, .open {
   flex-direction: column;
+}
+
+.open {
+  width: 250px;
 }
 
 .frame992 {
@@ -85,7 +89,7 @@
   flex: 1;
 }
 
-.frame994, .frame995, .name {
+.frame995, .name {
   justify-content: flex-start;
   display: flex;
 }
@@ -103,18 +107,19 @@
   height: 48px;
 }
 
-.frame994, .frame995 {
-  flex-direction: column;
-  align-items: flex-start;
-}
-
 .frame995 {
   align-self: stretch;
+  align-items: flex-start;
   gap: var(--gap-5xs);
+  flex-direction: column;
 }
 
 .frame994 {
+  align-items: center;
+  gap: var(--gap-base);
+  flex-direction: row;
   flex: 1;
+  display: flex;
 }
 
 .text526 {
@@ -175,11 +180,10 @@
   inset: 58.33% 0 0;
 }
 
-.check-cir {
-  z-index: 1;
-  width: 20px;
-  height: 48px;
-  position: relative;
+.check-cir1 {
+  align-items: center;
+  gap: var(--gap-5xs);
+  display: flex;
 }
 
 .text527 {
@@ -218,8 +222,10 @@
 }
 
 .frame997 {
-  gap: var(--gap-5xs);
-  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-base);
+  flex-direction: row;
+  display: flex;
   position: relative;
 }
 
@@ -291,11 +297,11 @@
 }
 
 .frame1013 {
-  z-index: 6;
+  z-index: 2;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  width: 162px;
+  gap: 10px;
+  width: 200px;
   display: flex;
 }
 
@@ -330,7 +336,17 @@
   z-index: 7;
   font-size: var(--button-m-size);
   color: var(--default-white);
+  z-index: 1;
   align-self: stretch;
+}
+
+.text_input {
+  background-color: var(--coolgray-10);
+  border: none;
+  outline: none;
+  flex: 1;
+  line-height: 140%;
+  position: relative;
 }
 
 .frame1016 {
@@ -346,13 +362,13 @@
 
 .check-box {
   z-index: 8;
+  border: 1px solid #000;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   display: flex;
-  position: absolute;
   top: 526px;
   left: 154px;
   margin: 0 !important;
@@ -411,6 +427,138 @@
   width: 100%;
   height: 1024px;
   position: relative;
+}
+
+.frame1349 {
+  flex-direction: column;
+  flex: 1;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+}
+
+.frame1349 > * + * {
+  margin-top: 10px;
+}
+
+.text728 {
+  z-index: 3;
+  top: calc(50% + 28px);
+}
+
+.text727, .text728 {
+  white-space: nowrap;
+  z-index: 2;
+  margin: 0;
+  position: relative;
+}
+
+.check-cir1 {
+  align-items: center;
+  width: 20px;
+  height: auto;
+  display: flex;
+  position: relative;
+}
+
+.controlsvariant43, .controlsvariant33 {
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  display: flex;
+  position: relative;
+}
+
+.frame1363, .frame1362 {
+  border-radius: var(--br-14xl);
+  border: 1px solid var(--primary-60);
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+  display: flex;
+}
+
+.selected {
+  background-color: var(--primary-60);
+}
+
+.selected_box {
+  background-color: #000;
+}
+
+.frame1318 {
+  background-color: var(--default-white);
+  box-sizing: border-box;
+  padding: var(--padding-xs) var(--padding-base);
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+  display: flex;
+}
+
+.application1 {
+  mix-blend-mode: normal;
+  border-bottom: 1px solid var(--primary-60);
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 48px;
+  display: flex;
+}
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.menu-text {
+  align-items: center;
+  display: flex;
+}
+
+.menu-text .text704 {
+  margin-right: 10px;
+}
+
+.text704 {
+  z-index: 1;
+  flex: 1;
+  align-self: stretch;
+  line-height: 140%;
+  position: relative;
+}
+
+.menu-text .frame-icon75 {
+  width: 16px;
+  height: 16px;
+}
+
+.dropdown-content {
+  background-color: #f9f9f9;
+  min-width: 160px;
+  display: none;
+  position: relative;
+  box-shadow: 0 8px 16px #0003;
+}
+
+.dropdown.active .dropdown-content {
+  z-index: 3;
+  display: block;
+}
+
+.dropdown-content a {
+  color: #000;
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
 }
 
 /*# sourceMappingURL=sign-up.8dafa585.css.map */

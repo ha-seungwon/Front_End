@@ -63,8 +63,14 @@
             <div class="frame995">
               <div class="text524">이메일 주소</div>
               <div class="name">
-                <input type="text" id="name" class="text_input" placeholder="Email">
+
+                <input type="text" id="emailFront" class="text_input" placeholder="Email 앞 부분" />
+                @
+                <input type="text" id="emailAfterAt" class="text_input" placeholder="직접입력하기" />
+
+
               </div>
+              <div>결과: <span id="mergedEmail"></span></div>
             </div>
             <div class="text535">올바르지 않는 이메일 주소 형식입니다.</div>
           </div>
@@ -138,6 +144,47 @@
     </div>
 
     <script>
+      var validDomains = ['naver.com', 'google.com', 'daum.net'];
+      var emailFrontInput = document.getElementById("emailFront");
+      var emailAfterAtInput = document.getElementById("emailAfterAt");
+      var mergedEmailResult = document.getElementById("mergedEmail");
+
+      emailFrontInput.addEventListener("input", updateMergedEmail);
+      emailAfterAtInput.addEventListener("input", updateMergedEmail);
+
+      function updateMergedEmail() {
+        var emailFront = emailFrontInput.value;
+        var emailAfterAt = emailAfterAtInput.value;
+        var errorMessage = '';
+
+        if (!emailFront || !emailAfterAt) {
+          errorMessage = "이메일 앞과 @ 이후의 부분을 모두 입력하세요.";
+        } else if (emailFront.includes(" ") || emailFront.includes("@")) {
+          errorMessage = "올바른 이메일 앞 부분을 입력하세요.";
+        } else if (!isValidDomain(emailAfterAt)) {
+          errorMessage = "올바른 도메인 주소를 입력하세요.";
+        } else if (!isValidDomainInList(emailAfterAt)) {
+          errorMessage = "지원하지 않는 도메인 주소입니다.";
+        }
+
+        if (errorMessage) {
+          mergedEmailResult.textContent = errorMessage;
+        } else {
+          mergedEmailResult.textContent = emailFront + "@" + emailAfterAt;
+        }
+      }
+
+      function isValidDomain(domain) {
+        return validDomains.includes(domain);
+      }
+
+      function isValidDomainInList(domain) {
+        return validDomains.includes(domain);
+      }
+
+
+
+
       document.addEventListener("DOMContentLoaded", function () {
       var dropdown = document.querySelector(".dropdown");
       var dropdownText = dropdown.querySelector(".text704");
