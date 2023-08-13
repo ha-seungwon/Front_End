@@ -202,9 +202,6 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("비밀번호 확인 입력 값:", password2InputValue);
         console.log("개인정보 이용 동의 여부:", checkBoxSelected);
         console.log("희망 지망 직렬 선택:", selectedOption);
-
-
-        // 추가적인 처리나 서버로의 전송 등을 수행할 수 있습니다.
     });
 });
 
@@ -247,3 +244,42 @@ if (signInText) {
         window.location.href = "./sign-in.html";
     });
 }
+
+
+// const currentDomain = window.location.origin
+const currentDomain = "http://localhost:8080"
+
+async function fetchTotalApplication() {
+    let response1 = await fetch(currentDomain + "/api/auth/count");
+    if (!response1.ok) {
+        throw new Error('Error fetching products.');
+    }
+    totalApplicationContainer.innerText = (await response1.json()).count
+
+    let response2 = await fetch(currentDomain + "/api/records/count");
+    if (!response2.ok) {
+        throw new Error('Error fetching products.');
+    }
+    totalRecordsContainer.innerText = (await response2.json()).count
+}
+
+async function fetchApplicationTypeName() {
+    const applicationTypeDropDownContent = document.getElementById("applicationTypeDropDownContent");
+
+    fetch(currentDomain + "/api/applicationType/names")
+        .then(response => response.json())
+        .then(responseJson => {
+            const options = responseJson.applicationTypeNames;
+            options.forEach(function (option) {
+                const aElement = document.createElement("a");
+                aElement.href = "#"; // 링크를 원하는 주소로 수정 가능
+                aElement.textContent = option;
+                applicationTypeDropDownContent.appendChild(aElement);
+            });
+        })
+        .catch(() => {
+            throw new Error('Failed to fetch data');
+        });
+}
+
+fetchApplicationTypeName()
