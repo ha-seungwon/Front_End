@@ -27,11 +27,6 @@
             </div>
           </div>
         </div>
-        <div class="frame1388">
-          <div class="setting9" id="settingContainer">
-            <img class="frame-icon89" alt="" src="./public/735-frame.svg" />
-          </div>
-        </div>
         <form class="frame1389">
           <div class="menu-019" id="menu01Container">
             <img class="frame-icon89" alt="" src="./public/555-frame.svg" />
@@ -53,6 +48,11 @@
 
             <div class="text743">직렬정보</div>
           </div>
+          <div class="setting9" id="settingContainer">
+            <img class="frame-icon89" alt="" src="./public/735-frame.svg" />
+
+            <div class="text743">환경설정</div>
+          </div>
         </form>
       </div>
       <div class="frame1390">
@@ -64,7 +64,8 @@
             </div>
 
             
-            <div class="frame1397"><canvas id="myChart" width="100" height="100"></canvas>
+            <div class="frame1397">
+              <canvas id="myChart"></canvas>
             </div>
             
 
@@ -127,11 +128,6 @@
                     <div class="text773">점</div>
                 </div>
               </div>
-                <!-- 다른 입력 필드도 위와 같은 구조로 생성 -->
-                <!-- ... -->
-
-        
-
 
               <div class="frame1433">
                 <div class="container">
@@ -146,25 +142,30 @@
               </div>
               <div class="frame1436">
                 <button class="text784" onclick="saveData()">저장하기</button>
-
               </div>
-
             </div>
           </div>
+          
           <div class="frame1392">
             <b class="text742">측정 결과</b>
-            <div class="frame1440">
-              <div class="frame1441">
-                <div id="gauge-container"></div>
+            <div class="frame14401">
+              <div class="frame1440">
+                <div class="frame1441">
+                  <div id="gauge-container"></div>
+                </div>
               </div>
-              <div class="frame1442">
-                <b class="text742">Gold</b>
+              <div class="frame14403">
+                <div class="frame14402">
+                  <div class="frame1442">
+                    <b class="text742">Gold</b>
+                  </div>
+                  <div class="frame1443">
+                    <div class="text742">현재 예상 통과 점수는 42점입니다.</div>
+                  </div>
+                  <div class="text742">현재 내 점수는 37점입니다.</div>
+                  <b class="text742">합격 보류가 예상입니다.</b>
+                </div>
               </div>
-              <div class="frame1443">
-                <div class="text742">현재 예상 통과 점수는 42점입니다.</div>
-              </div>
-              <div class="text742">현재 내 점수는 37점입니다.</div>
-              <b class="text742">합격 보류가 예상입니다.</b>
             </div>
           </div>
         </div>
@@ -287,6 +288,11 @@
                   y: {
                       beginAtZero: true
                   }
+              },
+              plugins: {
+                legend: {
+                  display: false
+                }
               }
           }
       });
