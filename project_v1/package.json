@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "scripts": {
-      "start": "parcel ./sign-in.html ",
+      "start": "parcel ./*.html",
       "build": "parcel build ./*.html  --dist-dir ./build"
     },
     "author": "",
