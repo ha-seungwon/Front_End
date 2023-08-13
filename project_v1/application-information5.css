@@ -35,10 +35,14 @@
   justify-content: center;
 }
 .setting2 {
-  height: 48px;
-  padding: var(--padding-base) var(--padding-xs);
-  box-sizing: border-box;
-  cursor: pointer;
+  align-self: stretch;
+  border-bottom: 1px solid var(--coolgray-10);
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding-xs) var(--padding-5xs);
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
 }
 .frame389 {
   align-self: stretch;
@@ -71,7 +75,6 @@
 .menu-022 {
   border: 0;
   background-color: transparent;
-  border-left: 2px solid var(--coolgray-10);
 }
 .menu-022,
 .menu-032,
@@ -138,22 +141,31 @@
   padding: var(--padding-base) 0;
 }
 .label-012,
-.label-042{
+.label-022 {
   display: flex;
   flex-direction: row;
   align-items: center;
   cursor: pointer;
   color: var(--color-black);
 }
-
-
-.label-042{
+.label-022,
+.label-032,
+.label-042 {
   box-sizing: border-box;
   height: 48px;
   padding: var(--padding-base) 0;
   justify-content: center;
 }
-
+.label-032 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+.label-042 {
+  border-bottom: 2px solid var(--primary-90);
+  color: var(--primary-90);
+}
 .frame392,
 .frame393,
 .label-042 {
@@ -359,14 +371,15 @@
 }
 .frame419 {
   flex: 1;
-  width: 603px;
+  width: 100%;
   align-items: flex-start;
 }
 .frame418 {
+  width: 100%;
+  height: 100%;
   background-color: var(--default-white);
   border: 1px solid var(--coolgray-20);
   box-sizing: border-box;
-  height: 452px;
   padding: var(--padding-base);
   align-items: center;
   font-size: var(--heading-5-size);
@@ -536,18 +549,19 @@
   border: 1px solid var(--coolgray-20);
 }
 .frame426 {
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   align-items: flex-start;
   font-size: var(--body-s-size);
   color: var(--coolgray-100);
-  width: 1100px;
 }
 .frame424 {
+  height: 100%;
   padding: var(--padding-base);
   align-items: center;
   gap: var(--gap-base);
   font-size: var(--heading-6-size);
-  width: 1109px;
 }
 .application-information4,
 .frame391 {

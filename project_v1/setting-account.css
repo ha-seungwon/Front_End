@@ -35,11 +35,14 @@
   justify-content: center;
 }
 .setting8 {
-  border-radius: var(--br-29xl);
-  background-color: var(--coolgray-10);
-  height: 48px;
-  padding: var(--padding-base) var(--padding-xs);
-  box-sizing: border-box;
+  align-self: stretch;
+  border-bottom: 1px solid var(--coolgray-10);
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding-xs) var(--padding-5xs);
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
   cursor: pointer;
 }
 .frame1345 {
@@ -78,7 +81,6 @@
   background-color: transparent;
   align-self: stretch;
   border-bottom: 1px solid var(--coolgray-10);
-  border-left: 2px solid var(--coolgray-10);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -477,6 +479,8 @@
   display: flex;
   align-items: center;
   width: 20px;
+  gap: 5px;
+  margin-top: 10px;
   height: auto; /* 높이를 자동으로 조정하여 내용에 맞게 설정 */
 }
 
@@ -511,4 +515,81 @@
 .selected {
   opacity: 1;
   /* 다른 스타일 속성을 추가할 수 있습니다 */
+}
+
+.application1,
+.frame1316 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.application1 {
+  height: 48px;
+  width: 200px;
+  flex-direction: column;
+  mix-blend-mode: normal;
+}
+.frame1316 {
+  width: 668px;
+  flex-direction: row;
+  padding: 0 var(--padding-29xl) 0 0;
+  box-sizing: border-box;
+  gap: var(--gap-5xl);
+}
+.frame1317 {
+  border-radius: var(--br-81xl);
+  background-color: var(--coolgray-10);
+  width: 96px;
+  height: 96px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.frame1318 {
+  background-color: var(--default-white);
+  border-bottom: 1px solid var(--primary-60);
+  box-sizing: border-box;
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding-xs) var(--padding-base);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.menu-text {
+  display: flex;
+  align-items: center;
+}
+.menu-text .text704 {
+  margin-right: 10px;
+}
+.menu-text .frame-icon75 {
+  width: 16px; /* 아이콘의 크기 조절 */
+  height: 16px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown.active .dropdown-content {
+  display: block;
+}
+.dropdown-content a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+}
+.dropdown-content a:hover {
+  background-color: #ddd;
 }
