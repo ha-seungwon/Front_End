@@ -13,8 +13,40 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
     />
-    <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
-    <script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
+    <style>
+      /* 테이블 스타일링 */
+      table {
+          width: 100%;
+          height: 100%;
+          border-collapse: collapse;
+          border: 1px solid #ddd;
+      }
+
+      th, td {
+          padding: 8px;
+          text-align: left;
+          border-right: 1px solid #ddd;
+          border-bottom: 1px solid #ddd;
+      }
+
+      th {
+          background-color: #f2f2f2;
+      }
+
+      tr:hover {
+          background-color: #f5f5f5;
+      }
+
+      /* 컨테이너 스타일링 */
+      #table-container {
+          width: 100%;
+          height: 100%;
+      }
+
+      h1 {
+          text-align: center;
+      }
+  </style>
   </head>
   <body>
     <div class="application-information4">
@@ -24,11 +56,6 @@
             <div class="frame388">
               <b class="text200">CSPFT</b>
             </div>
-          </div>
-        </div>
-        <div class="frame389">
-          <div class="setting2" id="settingContainer">
-            <img class="frame-icon14" alt="" src="./public/735-frame.svg" />
           </div>
         </div>
         <div class="frame390">
@@ -51,6 +78,11 @@
             <img class="frame-icon14" alt="" src="./public/755-frame.svg" />
 
             <div class="text201">직렬정보</div>
+          </div>
+          <div class="setting2" id="settingContainer">
+            <img class="frame-icon14" alt="" src="./public/735-frame.svg" />
+
+            <div class="text201">환경설정</div>
           </div>
         </div>
       </div>
@@ -205,44 +237,53 @@
             <b class="text200">지원 직렬 체력시험 기준</b>
           </div>
           <div class="frame426">
-            <div id="dic"></div>
+            <div id="table-container"></div>
           </div>
         </div>
       </div>
     </div>
 
     <script>
-            var tableData = [
-            { id: "악력(kg)", 10: "64 이상", 9: "63~61" ,8:"63~61" ,7:"57~55" ,6:"54~52" ,5:"51~29" ,4:"48~46" ,3:"45~43" ,2:"42~40" ,1:"39이하" },
-            { id: "팔굽혀피기(회/분)", 10: "64 이상", 9: "63~61" ,8:"63~61" ,7:"57~55" ,6:"54~52" ,5:"51~29" ,4:"48~46" ,3:"45~43" ,2:"42~40" ,1:"39이하" },
-            { id: "윗몸일으키기(회/분)", 10: "64 이상", 9: "63~61" ,8:"63~61" ,7:"57~55" ,6:"54~52" ,5:"51~29" ,4:"48~46" ,3:"45~43" ,2:"42~40" ,1:"39이하" },
-            { id: "50m 달리기", 10: "64 이상", 9: "63~61" ,8:"63~61" ,7:"57~55" ,6:"54~52" ,5:"51~29" ,4:"48~46" ,3:"45~43" ,2:"42~40" ,1:"39이하" },
-            { id: "왕복오래달리기", 10: "64 이상", 9: "63~61" ,8:"63~61" ,7:"57~55" ,6:"54~52" ,5:"51~29" ,4:"48~46" ,3:"45~43" ,2:"42~40" ,1:"39이하" }
-        ];
+      var tableContainer = document.getElementById("table-container");
 
-        // 열 구성 설정
-        var tableColumns = [
-            {titel:"구분",field:"id",width: 100 },
-            { title: "10점", field: "10" ,width: 100 },
-            { title: "9점", field: "9" ,width: 100 },
-            { title: "8점", field: "8",width: 100 },
-            { title: "7점", field: "7" ,width: 100},
-            { title: "6점", field: "6" ,width: 100},
-            { title: "5점", field: "5" ,width: 100},
-            { title: "4점", field: "4" ,width: 100},
-            { title: "3점", field: "3" ,width: 100},
-            { title: "2점", field: "2" ,width: 100},
-            { title: "1점", field: "1" ,width: 100}
+      var table = document.createElement("table");
+      var thead = document.createElement("thead");
+      var tbody = document.createElement("tbody");
 
-        ];
+      var headerRow = document.createElement("tr");
+      var headers = ["구분", "10점", "9점", "8점", "7점", "6점", "5점", "4점", "3점", "2점", "1점"];
 
-        // Tabulator 인스턴스 생성
-        var table = new Tabulator("#dic", {
-            data: tableData,
-            columns: tableColumns
-            
-        });
+      for (var i = 0; i < headers.length; i++) {
+            var th = document.createElement("th");
+            th.textContent = headers[i];
+            headerRow.appendChild(th);
+      }
 
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      var data = [
+            ["악력(kg)", "64 이상", "63~61", "63~61", "57~55", "54~52", "51~29", "48~46", "45~43", "42~40", "39이하"],
+            ["팔굽혀피기(회/분)", "64 이상", "63~61", "63~61", "57~55", "54~52", "51~29", "48~46", "45~43", "42~40", "39이하"],
+            ["윗몸일으키기(회/분)", "64 이상", "63~61", "63~61", "57~55", "54~52", "51~29", "48~46", "45~43", "42~40", "39이하"],
+            ["50m 달리기", "64 이상", "63~61", "63~61", "57~55", "54~52", "51~29", "48~46", "45~43", "42~40", "39이하"],
+            ["왕복오래달리기", "64 이상", "63~61", "63~61", "57~55", "54~52", "51~29", "48~46", "45~43", "42~40", "39이하"]
+      ];
+
+      for (var i = 0; i < data.length; i++) {
+          var dataRow = document.createElement("tr");
+
+          for (var j = 0; j < data[i].length; j++) {
+              var td = document.createElement("td");
+              td.textContent = data[i][j];
+              dataRow.appendChild(td);
+          }
+
+          tbody.appendChild(dataRow);
+      }
+
+      table.appendChild(tbody);
+      tableContainer.appendChild(table);
 
 
       var settingContainer = document.getElementById("settingContainer");
