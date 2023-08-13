@@ -285,7 +285,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  z-index: 1;
+  z-index: 2;
 }
 .text543 {
   position: relative;
@@ -317,6 +317,7 @@
   z-index: 7;
   font-size: var(--button-m-size);
   color: var(--default-white);
+  z-index: 1;
 }
 .text_input{
   flex: 1;
@@ -461,7 +462,6 @@
 }
 .frame1318 {
   background-color: var(--default-white);
-  border-bottom: 1px solid var(--primary-60);
   box-sizing: border-box;
   width: 200px;
   display: flex;
@@ -473,11 +473,15 @@
 .application1 {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between; /* 각 요소 사이에 여백을 두어 겹치지 않도록 */
   height: 48px;
   flex-direction: column;
   mix-blend-mode: normal;
+  border-bottom: 1px solid var(--primary-60);
 }
+
+
+
 .dropdown {
   position: relative;
   display: inline-block;
@@ -507,15 +511,17 @@
 
 .dropdown-content {
   display: none;
-  position: absolute;
+
   background-color: #f9f9f9;
+  position: relative;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+
 }
 
 .dropdown.active .dropdown-content {
   display: block;
+  z-index: 3;
 }
 
 .dropdown-content a {
