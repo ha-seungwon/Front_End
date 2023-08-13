@@ -117,7 +117,7 @@
   border-right: 1px solid var(--coolgray-20);
   border-left: 1px solid var(--coolgray-20);
   box-sizing: border-box;
-  width: 256px;
+  width: 15%;
   height: 1024px;
   padding: var(--padding-5xl) var(--padding-base);
   justify-content: center;
@@ -455,6 +455,7 @@
 }
 .frame1450 {
   flex: 1;
+  width: 85%;
   flex-direction: column;
   padding: var(--padding-5xl);
   gap: var(--gap-5xl);
@@ -465,7 +466,7 @@
   position: relative;
   background-color: var(--coolgray-10);
   width: 100%;
-  height: 1024px;
+  height: 100%;
   flex-direction: row;
   text-align: left;
   font-size: var(--heading-4-size);

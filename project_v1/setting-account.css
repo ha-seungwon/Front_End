@@ -105,7 +105,7 @@
   border-right: 1px solid var(--coolgray-20);
   border-left: 1px solid var(--coolgray-20);
   box-sizing: border-box;
-  width: 256px;
+  width: 15%;
   height: 1024px;
   padding: var(--padding-5xl) var(--padding-base);
   justify-content: center;
