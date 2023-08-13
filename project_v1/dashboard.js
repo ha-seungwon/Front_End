@@ -18,41 +18,51 @@ menu04Container.addEventListener("click", function (e) {
     window.location.href = "./application-information1.html";
 });
 
-const totalApplicationContainer = document.getElementById("total-application")
-const totalRecordsContainer = document.getElementById("total-records")
 
 // const currentDomain = window.location.origin
 const currentDomain = "http://localhost:8080"
 
 async function fetchTotalApplication() {
+    const totalApplicationContainer = document.getElementById("total-application")
+    const totalRecordsContainer = document.getElementById("total-records")
+
     let response1 = await fetch(currentDomain + "/api/auth/count");
     if (!response1.ok) {
         throw new Error('Error fetching products.');
     }
     totalApplicationContainer.innerText = (await response1.json()).count
 
-    let response2 = await fetch(currentDomain + "/api/records/count");
+    let response2 = await fetch(currentDomain + "/api/score/count");
     if (!response2.ok) {
         throw new Error('Error fetching products.');
     }
     totalRecordsContainer.innerText = (await response2.json()).count
 }
 
-const currentScoreContainer = document.getElementById("current-score")
-const expectedScoreContainer = document.getElementById("expected-score")
-
 async function fetchMyScore() {
-    let response1 = await fetch(currentDomain + "/api/me/scores");
+    const currentScoreContainer = document.getElementById("current-score")
+    const expectedScoreContainer = document.getElementById("expected-score")
+
+    let response1 = await fetch(currentDomain + "/api/score/me");
     if (!response1.ok) {
         throw new Error('Error fetching products.');
     }
     currentScoreContainer.innerText = (await response1.json()).score
+}
 
-    let response2 = await fetch(currentDomain + "/api/records/count" + new URLSearchParams());
-    if (!response2.ok) {
-        throw new Error('Error fetching products.');
+async function fetchRank() {
+    let response = await fetch(currentDomain + "/api/score/rank?rankCnt=5");
+    for (const item of (await response.json())) {
+        const rank = item.rank
+        const rn = document.getElementById("rank-name-"+rank)
+        const rs = document.getElementById("rank-score-"+rank)
+        const rat = document.getElementById("rank-application-type-"+rank)
+        rn.innerText = item.memberName
+        rs.innerText = item.score
+        rat.innerText = item.applicationType
     }
-    totalRecordsContainer.innerText = (await response2.json()).count
 }
 
 fetchTotalApplication()
+fetchMyScore()
+fetchRank()
