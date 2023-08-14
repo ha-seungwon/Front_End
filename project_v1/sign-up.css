@@ -402,12 +402,13 @@
   font-family: var(--body-xs);
 }
 .frame1349 {
-
- display: flex;
+  flex: 1;
+  display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  flex: 1;
-  flex-direction: column;}
+  gap: var(--gap-5xs);
+  flex-direction: column;
+}
 
 .text728 {
   top: calc(50% + 28px); /* 수직 중앙 정렬을 위한 위치 조정 */
