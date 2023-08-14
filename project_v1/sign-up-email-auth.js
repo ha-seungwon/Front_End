@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
             clearInterval(timerInterval);
             timerSpan.textContent = "Timer expired!";
             // Redirect to reset-password.html after timer expiration
-            window.location.href = "./reset-password.html";
+            window.location.href = "./sign-up.html";
         } else {
             var remainingTime = timerDuration - elapsedTime;
             updateTimerDisplay(remainingTime);

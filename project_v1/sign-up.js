@@ -8,13 +8,61 @@ const passwordResult2 = document.getElementById("password_result2");
 const nameInput = document.getElementById("name");
 const nameCheckResult = document.getElementById("name_check");
 const mergedEmailResult = document.getElementById("mergedEmail");
+const dropdown = document.querySelector(".dropdown");
+const dropdownText = dropdown.querySelector(".text704");
+const dropdownContent = dropdown.querySelector(".dropdown-content");
+const check_box = document.querySelector(".check-box");
+const ellipse6 = document.querySelector(".frame1362");//남자 체크표시
+const ellipse7 = document.querySelector(".frame1363");//여자 체크표시
 
 let mail_result = 0
+var flag=0
 
+// 쿠키 가져오는 함수
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
 
-
+    }
 
 document.addEventListener("DOMContentLoaded", function () {
+    flag = localStorage.getItem("flag") === "1" ? 1 : 0;
+    console.log("first flag",flag)
+    if (flag==1){
+        var cookie_userName = getCookie("userName");
+        var cookie_userEmail = getCookie("userEmail");
+        var cookie_userSex = getCookie("sex");
+        var cookie_userPassword = getCookie("passWord");
+        var cookie_userPassword2 = getCookie("passWord2");
+        var cookie_userTestTpye = getCookie("testType");
+        var cookie_userAgree= getCookie("agree");
+
+    
+        console.log(cookie_userName)
+        nameInput.value=cookie_userName
+        emailInput.value=cookie_userEmail
+        passwordInput.value=cookie_userPassword
+        passwordInput2.value=cookie_userPassword2
+        dropdownText.textContent=cookie_userTestTpye
+        if (cookie_userSex=="MALE"){
+
+            ellipse6.classList.add("selected");
+        }
+        else{
+            ellipse7.classList.add("selected");
+        }
+
+        if (cookie_userAgree){
+            check_box.classList.toggle("selected_box");
+        }
+    }
+
+
+    
+
+
+
     let name_result = 0
     let password1_result = 0
     let password2_result = 0
@@ -107,13 +155,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
             else{
-                document.cookie = "userEmail=" + encodeURIComponent(emailInputValue);
+                document.cookie = "userEmail=" +emailInputValue;
 
                 document.cookie="userName="+ nameInput.value.trim()
                 document.cookie="passWord="+ encodeURIComponent(passwordInput.value.trim())
                 document.cookie="passWord2="+ encodeURIComponent(passwordInput2.value.trim())
+                document.cookie="sex="+ selectedGender
+                document.cookie="testType="+ dropdownText.textContent
+                document.cookie="agree="+ (check_box.classList.contains("selected_box") ? "true" : "")
                 
+
                 console.log("!!!쿠키", document.cookie);
+                flag=1
+                localStorage.setItem("flag", "1");
+                console.log("!!!!!!flag",flag)
 
                 window.location.href = "./sign-up-email-auth.html";
             }
@@ -166,9 +221,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    const dropdown = document.querySelector(".dropdown");
-    const dropdownText = dropdown.querySelector(".text704");
-    const dropdownContent = dropdown.querySelector(".dropdown-content");
+
 
     // application type 드롭 다운 데이터 처리
     dropdownText.addEventListener("click", function () {
@@ -279,8 +332,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-const ellipse6 = document.querySelector(".frame1362");
-const ellipse7 = document.querySelector(".frame1363");
 
 ellipse6.addEventListener("click", function () {
     ellipse6.classList.add("selected");
@@ -295,7 +346,7 @@ ellipse7.addEventListener("click", function () {
 ellipse6.classList.remove("selected");
 ellipse7.classList.remove("selected");
 
-const check_box = document.querySelector(".check-box");
+
 
 check_box.addEventListener("click", function () {
     check_box.classList.toggle("selected_box");
