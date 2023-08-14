@@ -124,10 +124,6 @@ fetchMyInfo()
 
 const checkbox = document.getElementById('checkbox');
 
-checkbox.addEventListener('click', () => {
-    checkbox.classList.toggle('checked');
-});
-
 const percentage = 53; // Change this value dynamically
 
 const container = d3.select("#gauge-container");
