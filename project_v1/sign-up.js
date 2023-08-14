@@ -24,30 +24,6 @@ function getCookie(name) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    flag = localStorage.getItem("flag") === "1" ? 1 : 0;
-    console.log("first flag", flag)
-    if (flag === 1) {
-        var cookie_userName = getCookie("userName");
-        var cookie_userEmail = getCookie("userEmail");
-        var cookie_userPassword = getCookie("passWord");
-        var cookie_userPassword2 = getCookie("passWord2");
-        var cookie_userTestTpye = getCookie("testType");
-        var cookie_userAgree = getCookie("agree");
-
-
-        console.log(cookie_userName)
-        nameInput.value = cookie_userName
-        emailInput.value = cookie_userEmail
-        passwordInput.value = cookie_userPassword
-        passwordInput2.value = cookie_userPassword2
-        dropdownText.textContent = cookie_userTestTpye
-
-        if (cookie_userAgree) {
-            check_box.classList.toggle("selected_box");
-        }
-    }
-
-
     let name_result = 0
     let password1_result = 0
     let password2_result = 0
@@ -132,10 +108,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 // document.cookie="agree="+ (check_box.classList.contains("selected_box") ? "true" : "")
                 
 
-                console.log("!!!쿠키", document.cookie);
-                flag = 1
-                localStorage.setItem("flag", "1");
-                console.log("!!!!!!flag", flag)
 
                 window.open("./sign-up-email-auth.html", "SignUpEmailAuth", "width=800,height=600");
             }
