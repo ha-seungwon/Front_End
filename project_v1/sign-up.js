@@ -11,6 +11,9 @@ const mergedEmailResult = document.getElementById("mergedEmail");
 
 let mail_result = 0
 
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
     let name_result = 0
     let password1_result = 0
@@ -80,6 +83,45 @@ document.addEventListener("DOMContentLoaded", function () {
             mail_result = 1
         }
     }
+    //이메일 인증하기
+    function isValidEmail(email) {
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        return emailRegex.test(email);
+    }
+    
+    
+    // 이메일 인증하기 버튼 이벤트 리스너
+    const email_Auth = document.getElementById("email_auth");
+    if (email_Auth) {
+        email_Auth.addEventListener("click", function (e) {
+            console.log(emailInput)
+            const emailInputValue = emailInput.value.trim();
+
+            if (!emailInputValue) {
+                alert("이메일을 입력하세요.");
+                return;
+            }
+
+            if (!isValidEmail(emailInputValue)) {
+                alert("올바른 이메일 주소 형식이 아닙니다.");
+                return;
+            }
+            else{
+                document.cookie = "userEmail=" + encodeURIComponent(emailInputValue);
+
+                document.cookie="userName="+ nameInput.value.trim()
+                document.cookie="passWord="+ encodeURIComponent(passwordInput.value.trim())
+                document.cookie="passWord2="+ encodeURIComponent(passwordInput2.value.trim())
+                
+                console.log("!!!쿠키", document.cookie);
+
+                window.location.href = "./sign-up-email-auth.html";
+            }
+
+            
+        });
+    }
+
 
     // password 처리
     passwordInput.addEventListener("input", checkPasswordValidity);
@@ -274,6 +316,7 @@ if (signInText) {
         window.location.href = "./sign-in.html";
     });
 }
+
 
 // const currentDomain = window.location.origin
 const currentDomain = "http://localhost:8080"
