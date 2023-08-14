@@ -590,29 +590,63 @@ const menu04Container = document.getElementById("menu04Container");
 menu04Container.addEventListener("click", function(e) {
     window.location.href = "./application-information1.html";
 });
-const totalApplicationContainer = document.getElementById("total-application");
-const totalRecordsContainer = document.getElementById("total-records");
 // const currentDomain = window.location.origin
 const currentDomain = "http://localhost:8080";
 async function fetchTotalApplication() {
-    let response1 = await fetch(currentDomain + "/api/auth/count");
-    if (!response1.ok) throw new Error("Error fetching products.");
+    const totalApplicationContainer = document.getElementById("total-application");
+    const totalRecordsContainer = document.getElementById("total-records");
+    let response1 = await fetch(currentDomain + "/api/applicant/count");
+    if (!response1.ok) throw new Error("Error fetching.");
     totalApplicationContainer.innerText = (await response1.json()).count;
-    let response2 = await fetch(currentDomain + "/api/records/count");
-    if (!response2.ok) throw new Error("Error fetching products.");
+    let response2 = await fetch(currentDomain + "/api/score/count");
+    if (!response2.ok) throw new Error("Error fetching.");
     totalRecordsContainer.innerText = (await response2.json()).count;
 }
-const currentScoreContainer = document.getElementById("current-score");
-const expectedScoreContainer = document.getElementById("expected-score");
 async function fetchMyScore() {
-    let response1 = await fetch(currentDomain + "/api/me/scores");
-    if (!response1.ok) throw new Error("Error fetching products.");
+    const currentScoreContainer = document.getElementById("current-score");
+    const expectedScoreContainer = document.getElementById("expected-score");
+    let response1 = await fetch(currentDomain + "/api/score/me");
+    if (!response1.ok) throw new Error("Error fetching.");
     currentScoreContainer.innerText = (await response1.json()).score;
-    let response2 = await fetch(currentDomain + "/api/records/count" + new URLSearchParams());
-    if (!response2.ok) throw new Error("Error fetching products.");
-    totalRecordsContainer.innerText = (await response2.json()).count;
+}
+async function fetchRank() {
+    let response = await fetch(currentDomain + "/api/score/rank?rankCnt=7");
+    if (!response.ok) throw new Error("Error fetching.");
+    const rankTable = document.getElementById("rankTable");
+    for (const item of (await response.json())){
+        const rankContainer = document.createElement("div");
+        rankContainer.className = "rank-01";
+        const frameDiv = document.createElement("div");
+        frameDiv.className = "frame1475";
+        const tierDiv = document.createElement("div");
+        tierDiv.className = "tier-01";
+        tierDiv.textContent = item.rank + "등";
+        const nameDiv = document.createElement("div");
+        nameDiv.className = "name-01";
+        nameDiv.id = "rank-name-1";
+        nameDiv.textContent = item.memberName;
+        const scoreFrameDiv = document.createElement("div");
+        scoreFrameDiv.className = "frame1476";
+        const scoreDiv = document.createElement("div");
+        scoreDiv.className = "score-01";
+        scoreDiv.id = "rank-score-1";
+        scoreDiv.textContent = item.score + "점";
+        const labelDiv = document.createElement("div");
+        labelDiv.className = "label-016";
+        labelDiv.id = "rank-application-type-1";
+        labelDiv.textContent = item.applicationType;
+        frameDiv.appendChild(tierDiv);
+        scoreFrameDiv.appendChild(scoreDiv);
+        scoreFrameDiv.appendChild(labelDiv);
+        rankContainer.appendChild(frameDiv);
+        rankContainer.appendChild(nameDiv);
+        rankContainer.appendChild(scoreFrameDiv);
+        rankTable.appendChild(rankContainer);
+    }
 }
 fetchTotalApplication();
+fetchMyScore();
+fetchRank();
 
 },{}]},["cw4qy","1Mu3k"], "1Mu3k", "parcelRequiredc1e")
 

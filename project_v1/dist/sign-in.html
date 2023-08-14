@@ -22,8 +22,7 @@
             <div class="frame1022">
               <div class="text546">이메일 주소</div>
               <div class="email1">
-                <input type="email" id="email" class="text123" placeholder="Email 입력하기">
-            
+                <input type="text" id="email" class="text123" placeholder="Email">
               </div>
               <div>결과: <span id="mergedEmail"></span></div>
             </div>
@@ -33,7 +32,8 @@
               <div class="text546">패스워드</div>
               <div class="password1">
                 <div class="password-container">
-                  <input type="password" id="password1" class="text123" placeholder="Password">
+                  <input type="password" id="password1" class="text_input" placeholder="Password">
+
                   <img class="frame-icon48 password-toggle" alt="" src="/1256-frame.02eaebe3.svg" onclick="togglePasswordVisibility()">
                 </div>
                 
@@ -50,8 +50,7 @@
             <div class="frame1027">
               <div class="text550">로그인 정보 저장하기</div>
             </div>
-
-            <span class="text551" id="text7">비밀번호를 잊어버렸습니까?</span>
+            <div class="text551" id="text7">비밀번호를 잊어버렸습니까?</div>
           </div>
           <button class="button">
             <div class="frame1028">
@@ -85,70 +84,6 @@
       </div>
     </div>
 
-    <script>var validDomains = [
-    "naver.com",
-    "google.com",
-    "daum.net"
-];
-var emailInput = document.getElementById("email"); // 변경된 이메일 입력 요소 가져오기
-var mergedEmailResult = document.getElementById("mergedEmail");
-emailInput.addEventListener("input", updateMergedEmail);
-function updateMergedEmail() {
-    var email = emailInput.value;
-    var errorMessage = "";
-    var regex = /^[a-z0-9]+$/i; // 대소문자 구분 없이 검사하는 정규식
-    if (!email) errorMessage = "이메일을 입력하세요.";
-    else if (!email.includes("@")) errorMessage = "올바른 이메일 주소를 입력하세요.";
-    else {
-        var parts = email.split("@");
-        var emailFront = parts[0];
-        var emailAfterAt = parts[1];
-        if (!regex.test(emailFront)) errorMessage = "올바른 이메일 앞 부분을 입력하세요.";
-        else if (!isValidDomain(emailAfterAt)) errorMessage = "올바른 도메인 주소를 입력하세요.";
-        else if (!isValidDomainInList(emailAfterAt)) errorMessage = "지원하지 않는 도메인 주소입니다.";
-    }
-    if (errorMessage) mergedEmailResult.textContent = errorMessage;
-    else mergedEmailResult.textContent = emailFront + "@" + emailAfterAt;
-}
-function isValidDomain(domain) {
-    return validDomains.includes(domain);
-}
-function isValidDomainInList(domain) {
-    return validDomains.includes(domain);
-}
-function toggleCheckbox(checkbox) {
-    checkbox.classList.toggle("checked");
-}
-var passwordInput = document.getElementById("password1"); // 패스워드 입력 요소 가져오기
-var passwordResult = document.getElementById("password_result"); // 결과를 표시할 <span> 요소 가져오기
-passwordInput.addEventListener("input", checkPasswordValidity); // 입력 변화 시 패스워드 유효성 확인
-function checkPasswordValidity() {
-    var password = passwordInput.value;
-    var errorMessage = "";
-    var lengthRegex = /^.{9,16}$/; // 9 이상 16 이하 길이 체크를 위한 정규식
-    var alphanumericRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/; // 영어, 숫자, 특수문자 포함 여부 체크를 위한 정규식
-    var nameCheck = true; // 이름 체크 여부
-    var pastPasswordsCheck = true; // 과거 패스워드 체크 여부
-    if (!lengthRegex.test(password)) errorMessage = "비밀번호는 9자 이상 16자 이하로 입력하세요.";
-    else if (!alphanumericRegex.test(password)) errorMessage = "비밀번호는 영어, 숫자, 특수문자를 모두 포함해야 합니다.";
-    else if (nameCheck) errorMessage = "비밀번호에 사용자 이름이 포함되어 있습니다.";
-    else if (pastPasswordsCheck) errorMessage = "비밀번호가 과거에 사용된 적이 있습니다.";
-    passwordResult.textContent = errorMessage || "비밀번호가 유효합니다.";
-}
-function togglePasswordVisibility() {
-    var passwordInput = document.getElementById("password1");
-    if (passwordInput.type === "password") passwordInput.type = "text";
-    else passwordInput.type = "password";
-}
-var text7 = document.getElementById("text7");
-if (text7) text7.addEventListener("click", function(e) {
-    window.location.href = "./reset-password.html";
-});
-var signUpText = document.getElementById("signUpText");
-if (signUpText) signUpText.addEventListener("click", function(e) {
-    window.location.href = "./sign-up.html";
-});
-
-</script>
+    <script src="/sign-in.a6e7c06e.js"></script>
   <script src="/sign-in.cd514e82.js"></script></body>
 </html>

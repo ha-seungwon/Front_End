@@ -7,8 +7,38 @@
     <link rel="stylesheet" href="/application-information4.88ed6d9f.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
-    <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
+    <style>table {
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  width: 100%;
+  height: 100%;
+}
+
+th, td {
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+#table-container {
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  text-align: center;
+}
+
+</style>
   </head>
   <body>
     <div class="application-information4">
@@ -18,11 +48,6 @@
             <div class="frame388">
               <b class="text200">CSPFT</b>
             </div>
-          </div>
-        </div>
-        <div class="frame389">
-          <div class="setting2" id="settingContainer">
-            <img class="frame-icon14" alt="" src="/735-frame.a49b127b.svg">
           </div>
         </div>
         <div class="frame390">
@@ -45,6 +70,11 @@
             <img class="frame-icon14" alt="" src="/755-frame.8326ebd5.svg">
 
             <div class="text201">직렬정보</div>
+          </div>
+          <div class="setting2" id="settingContainer">
+            <img class="frame-icon14" alt="" src="/735-frame.a49b127b.svg">
+
+            <div class="text201">환경설정</div>
           </div>
         </div>
       </div>
@@ -74,12 +104,12 @@
             </div>
             <div class="label-032" id="label05Container">
               <div class="frame394">
-                <div class="text206">교정직공무원 (남)</div>
+                <div class="text206">경호공무원 (남)</div>
               </div>
             </div>
             <div class="label-032" id="label06Container">
               <div class="frame394">
-                <div class="text206">교정직공무원 (여)</div>
+                <div class="text206">경호공무원 (여)</div>
               </div>
             </div>
           </div>
@@ -89,31 +119,13 @@
             <div class="frame402">
               <b class="text200">직렬 일정</b>
             </div>
-            <div class="frame403">
-              <div class="frame404">
-                <img class="frame-icon14" alt="" src="/787-frame1.a2069df6.svg">
-              </div>
-              <div class="frame405">
-                <b class="text205">원서접수</b>
-                <div class="text214">8.24 (목) 09:00 ~ 9.3 (목) 18:00</div>
-              </div>
-            </div>
-            <div class="frame403">
-              <div class="frame404">
-                <img class="frame-icon14" alt="" src="/787-frame1.a2069df6.svg">
-              </div>
-              <div class="frame405">
-                <b class="text205">1·2차 시험</b>
-                <div class="text214">10.17 (토) 17:00</div>
-              </div>
-            </div>
             <div class="frame409">
               <div class="frame404">
                 <img class="frame-icon14" alt="" src="/801-instance.d57c1b1e.svg">
               </div>
               <div class="frame405">
-                <b class="text205">3·4·5차 시험</b>
-                <div class="text214">10.30 (금) ~ 11.6 (금)</div>
+                <b class="text205">원서 접수</b>
+                <div class="text214">12.12 (월) ~ 12.16 (금)</div>
               </div>
             </div>
             <div class="frame412">
@@ -121,8 +133,8 @@
                 <img class="frame-icon14" alt="" src="/808-instance.c29a9756.svg">
               </div>
               <div class="frame405">
-                <div class="text219">서류 전형</div>
-                <div class="text220">11.16 (월) ~ 11.20 (금)</div>
+                <div class="text219">1차 시험</div>
+                <div class="text220">1.14 (토)</div>
               </div>
             </div>
             <div class="frame412">
@@ -130,8 +142,26 @@
                 <img class="frame-icon14" alt="" src="/808-instance.c29a9756.svg">
               </div>
               <div class="frame405">
-                <div class="text219">면접 시험</div>
-                <div class="text220">12.7 (월) ~ 12.11 (금)</div>
+                <div class="text219">2차 시험</div>
+                <div class="text220">2.14 (화)</div>
+              </div>
+            </div>
+            <div class="frame412">
+              <div class="frame404">
+                <img class="frame-icon14" alt="" src="/808-instance.c29a9756.svg">
+              </div>
+              <div class="frame405">
+                <div class="text219">3차 시험</div>
+                <div class="text220">2.14 (화)</div>
+              </div>
+            </div>
+            <div class="frame412">
+              <div class="frame404">
+                <img class="frame-icon14" alt="" src="/808-instance.c29a9756.svg">
+              </div>
+              <div class="frame405">
+                <div class="text219">4차 시험</div>
+                <div class="text220">2.22 (수) ~ 2.24 (금)</div>
               </div>
             </div>
           </div>
@@ -139,28 +169,13 @@
             <div class="frame419">
               <div class="frame420">
                 <div class="frame421">
-                  <b class="text205">현재는 3·4·5차 시험입니다.</b>
+                  <b class="text205">현재는 채용 시작 전입니다.</b>
                 </div>
                 <div class="text224">
-                  <p class="p4">10.22 (목)까지</p>
+                  <p class="p4">12.12일부터 채용 일정이 시작됩니다.</p>
                   <p class="p4">
-                    경찰대학의 원서접수 사이트 홈페이지를 방문하여 등록하시기
-                    바랍니다.
+                    해당 날짜까지 기다려주시기 바랍니다.
                   </p>
-                </div>
-              </div>
-              <div class="frame422" id="frameContainer34">
-                <div class="instance4" id="instanceContainer1">
-                  <img class="instance-icon13" alt="" src="/828-instance1.dd45ea22.svg">
-
-                  <div class="frame423">
-                    <div class="text206">경찰대학 원서접수하러 가기</div>
-                  </div>
-                  <img class="instance-icon14" alt="" src="/832-instance.1667c654.svg">
-
-                  <div class="instance5">
-                    <div class="text226">9</div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -171,142 +186,115 @@
             <b class="text200">지원 직렬 체력시험 기준</b>
           </div>
           <div class="frame426">
-            <div id="dic"></div>
+            <div id="table-container"></div>
           </div>
         </div>
       </div>
     </div>
 
-    <script>var tableData = [
-    {
-        id: "악력(kg)",
-        10: "64 이상",
-        9: "63~61",
-        8: "63~61",
-        7: "57~55",
-        6: "54~52",
-        5: "51~29",
-        4: "48~46",
-        3: "45~43",
-        2: "42~40",
-        1: "39이하"
-    },
-    {
-        id: "팔굽혀피기(회/분)",
-        10: "64 이상",
-        9: "63~61",
-        8: "63~61",
-        7: "57~55",
-        6: "54~52",
-        5: "51~29",
-        4: "48~46",
-        3: "45~43",
-        2: "42~40",
-        1: "39이하"
-    },
-    {
-        id: "윗몸일으키기(회/분)",
-        10: "64 이상",
-        9: "63~61",
-        8: "63~61",
-        7: "57~55",
-        6: "54~52",
-        5: "51~29",
-        4: "48~46",
-        3: "45~43",
-        2: "42~40",
-        1: "39이하"
-    },
-    {
-        id: "50m 달리기",
-        10: "64 이상",
-        9: "63~61",
-        8: "63~61",
-        7: "57~55",
-        6: "54~52",
-        5: "51~29",
-        4: "48~46",
-        3: "45~43",
-        2: "42~40",
-        1: "39이하"
-    },
-    {
-        id: "왕복오래달리기",
-        10: "64 이상",
-        9: "63~61",
-        8: "63~61",
-        7: "57~55",
-        6: "54~52",
-        5: "51~29",
-        4: "48~46",
-        3: "45~43",
-        2: "42~40",
-        1: "39이하"
-    }
+    <script>var tableContainer = document.getElementById("table-container");
+var table = document.createElement("table");
+var thead = document.createElement("thead");
+var tbody = document.createElement("tbody");
+var headerRow = document.createElement("tr");
+var headers = [
+    "구분",
+    "10점",
+    "9점",
+    "8점",
+    "7점",
+    "6점",
+    "5점",
+    "4점",
+    "3점",
+    "2점",
+    "1점"
 ];
-// 열 구성 설정
-var tableColumns = [
-    {
-        titel: "구분",
-        field: "id",
-        width: 100
-    },
-    {
-        title: "10점",
-        field: "10",
-        width: 100
-    },
-    {
-        title: "9점",
-        field: "9",
-        width: 100
-    },
-    {
-        title: "8점",
-        field: "8",
-        width: 100
-    },
-    {
-        title: "7점",
-        field: "7",
-        width: 100
-    },
-    {
-        title: "6점",
-        field: "6",
-        width: 100
-    },
-    {
-        title: "5점",
-        field: "5",
-        width: 100
-    },
-    {
-        title: "4점",
-        field: "4",
-        width: 100
-    },
-    {
-        title: "3점",
-        field: "3",
-        width: 100
-    },
-    {
-        title: "2점",
-        field: "2",
-        width: 100
-    },
-    {
-        title: "1점",
-        field: "1",
-        width: 100
-    }
+for(var i = 0; i < headers.length; i++){
+    var th = document.createElement("th");
+    th.textContent = headers[i];
+    headerRow.appendChild(th);
+}
+thead.appendChild(headerRow);
+table.appendChild(thead);
+var data = [
+    [
+        "악력(kg)",
+        "37.0 이상",
+        "36.9~35.8",
+        "35.7~34.7",
+        "34.6~33.8",
+        "33.7~33.0",
+        "32.9~32.0",
+        "31.9~31.2",
+        "31.1~30.3",
+        "30.2~29.0",
+        "28.9~27.6"
+    ],
+    [
+        "제자리 멀리 뛰기(cm)",
+        "199 이상",
+        "198~194",
+        "193~189",
+        "188~185",
+        "184~181",
+        "180~177",
+        "176~173",
+        "172~169",
+        "168~165",
+        "164~160"
+    ],
+    [
+        "윗몸일으키기(회/1분)",
+        "42 이상",
+        "41",
+        "40",
+        "39",
+        "38",
+        "37",
+        "36",
+        "35",
+        "34",
+        "33"
+    ],
+    [
+        "왕복오래달리기(회)",
+        "43 이상",
+        "42",
+        "41",
+        "40",
+        "39~37",
+        "36~34~",
+        "33~32",
+        "31",
+        "30~29",
+        "28"
+    ],
+    [
+        "앉아 윗몸 앞으로 굽히기(cm)",
+        "28.0 이상",
+        "27.9~26.8",
+        "26.7~26.2",
+        "26.1~25.5",
+        "25.4~24.9",
+        "24.8~23.5",
+        "23.4~22.7",
+        "22.6~21.7",
+        "21.6~20.7",
+        "20.6~19.5"
+    ]
 ];
-// Tabulator 인스턴스 생성
-var table = new Tabulator("#dic", {
-    data: tableData,
-    columns: tableColumns
-});
+for(var i = 0; i < data.length; i++){
+    var dataRow = document.createElement("tr");
+    for(var j = 0; j < data[i].length; j++){
+        var td = document.createElement("td");
+        td.textContent = data[i][j];
+        dataRow.appendChild(td);
+    }
+    tbody.appendChild(dataRow);
+}
+table.appendChild(tbody);
+tableContainer.appendChild(table);
 var settingContainer = document.getElementById("settingContainer");
 if (settingContainer) settingContainer.addEventListener("click", function(e) {
     window.location.href = "./setting-account.html";

@@ -299,8 +299,8 @@
 .frame1013 {
   z-index: 2;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
   width: 200px;
   display: flex;
 }
@@ -435,10 +435,6 @@
   justify-content: flex-start;
   align-items: flex-start;
   display: flex;
-}
-
-.frame1349 > * + * {
-  margin-top: 10px;
 }
 
 .text728 {

@@ -19,6 +19,15 @@
   position: relative;
 }
 
+.text_input {
+  background-color: var(--coolgray-10);
+  border: none;
+  outline: none;
+  flex: 1;
+  line-height: 140%;
+  position: relative;
+}
+
 .frame1018 {
   justify-content: flex-start;
   align-self: stretch;

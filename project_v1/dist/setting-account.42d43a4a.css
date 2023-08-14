@@ -39,12 +39,15 @@
 }
 
 .setting8 {
-  border-radius: var(--br-29xl);
-  background-color: var(--coolgray-10);
-  padding: var(--padding-base) var(--padding-xs);
-  box-sizing: border-box;
+  border-bottom: 1px solid var(--coolgray-10);
+  padding: var(--padding-xs) var(--padding-5xs);
+  justify-content: flex-start;
+  align-self: stretch;
+  align-items: center;
+  gap: var(--gap-5xs);
   cursor: pointer;
-  height: 48px;
+  flex-direction: row;
+  display: flex;
 }
 
 .frame1345 {
@@ -85,7 +88,6 @@
   padding: var(--padding-xs) var(--padding-5xs);
   border: 0;
   border-bottom: 1px solid var(--coolgray-10);
-  border-left: 2px solid var(--coolgray-10);
   justify-content: flex-start;
   align-self: stretch;
   align-items: center;
@@ -117,7 +119,7 @@
   padding: var(--padding-5xl) var(--padding-base);
   justify-content: center;
   gap: var(--gap-base);
-  width: 256px;
+  width: 15%;
   height: 1024px;
 }
 
@@ -509,8 +511,10 @@
 
 .check-cir1 {
   align-items: center;
+  gap: 5px;
   width: 20px;
   height: auto;
+  margin-top: 10px;
   display: flex;
   position: relative;
 }
@@ -542,6 +546,93 @@
 
 .selected {
   opacity: 1;
+}
+
+.application1, .frame1316 {
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.application1 {
+  mix-blend-mode: normal;
+  flex-direction: column;
+  width: 200px;
+  height: 48px;
+}
+
+.frame1316 {
+  padding: 0 var(--padding-29xl) 0 0;
+  box-sizing: border-box;
+  gap: var(--gap-5xl);
+  flex-direction: row;
+  width: 668px;
+}
+
+.frame1317 {
+  border-radius: var(--br-81xl);
+  background-color: var(--coolgray-10);
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 96px;
+  height: 96px;
+  display: flex;
+}
+
+.frame1318 {
+  background-color: var(--default-white);
+  border-bottom: 1px solid var(--primary-60);
+  box-sizing: border-box;
+  padding: var(--padding-xs) var(--padding-base);
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+  display: flex;
+}
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.menu-text {
+  align-items: center;
+  display: flex;
+}
+
+.menu-text .text704 {
+  margin-right: 10px;
+}
+
+.menu-text .frame-icon75 {
+  width: 16px;
+  height: 16px;
+}
+
+.dropdown-content {
+  z-index: 1;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  display: none;
+  position: absolute;
+  box-shadow: 0 8px 16px #0003;
+}
+
+.dropdown.active .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: #000;
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
 }
 
 /*# sourceMappingURL=setting-account.42d43a4a.css.map */
