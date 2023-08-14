@@ -22,6 +22,10 @@ async function scoreInputEvents() {
     }
 }
 
+document.getElementById('saveButton').addEventListener(
+    "click", ()=>saveData()
+)
+
 async function fetchEvaluationItemScore(itemKey) {
     const response = await fetch(currentDomain + "/api/score?" + new URLSearchParams({
         evaluationItemId: document.getElementById('item-' + itemKey + '-id').innerText,
@@ -38,39 +42,38 @@ async function fetchEvaluationItemScore(itemKey) {
 fetchEvaluationItem()
 scoreInputEvents()
 
-
-// 저장하기 버튼을 클릭했을 때 호출되는 함수
 function saveData() {
-    // 입력된 데이터를 가져옴
-    var data = {
-        약력: document.getElementById("약력").value,
-        팔굽혀피기기: document.getElementById("팔굽혀피기기").value,
-        왕복오래달리기: document.getElementById("왕복오래달리기").value,
-        윗몸일으키기: document.getElementById("윗몸일으키기").value,
-        오래달리기: document.getElementById("오래달리기").value,
-        동의: document.getElementById("checkbox").checked
-    };
-
-    data = [95, 69, 21, 90, 31, 78, 11, 66, 74, null, null, null]
-    for (let i = 0; i < data.length; i++) {
-        if (data[i] === null) {
-            data[i] = -1;
+    var data = [
+        {
+            evaluationItemId: document.getElementById('item-1-id').innerText,
+            score : document.getElementById('item-1-score').value,
+        },
+        {
+            evaluationItemId: document.getElementById('item-2-id').innerText,
+            score : document.getElementById('item-2-score').value,
+        },
+        {
+            evaluationItemId: document.getElementById('item-3-id').innerText,
+            score : document.getElementById('item-3-score').value,
         }
-    }
-    console.log(data)
-    // 벡엔드 API로 데이터 전송 (예시 코드)
-    fetch("http://0.0.0.0:8000/predict/?input_data=" + encodeURIComponent(JSON.stringify(data)), {
+        ,{
+            evaluationItemId: document.getElementById('item-4-id').innerText,
+            score : document.getElementById('item-4-score').value,
+        },
+        {
+            evaluationItemId: document.getElementById('item-5-id').innerText,
+            score : document.getElementById('item-5-score').value,
+        },
+    ]
+    fetch(currentDomain + "/api/score/me", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
-        }
+        },
+        body: JSON.stringify(data)
     })
         .then(response => response.json())
         .then(result => {
-            // 처리 결과에 따른 동작 수행
-            console.log(result);
-
-            // 팝업 창으로 결과 보여주기
             if (result.prediction === 1) {
                 alert("데이터가 저장되었습니다.\n결과: 합격");
             } else {
@@ -81,8 +84,19 @@ function saveData() {
             console.error("에러 발생:", error);
             alert("데이터 저장 중에 오류가 발생했습니다.");
         });
-
 }
+
+async function fetchMyInfo() {
+    const response = await fetch(currentDomain + "/api/member/me");
+    if (!response.ok) {
+        alert("Invalid score input")
+        throw new Error('Error fetching.');
+    }
+    const applicationType = document.getElementById('applicationType');
+    applicationType.innerText = (await response.json()).applicationTypeName
+}
+
+fetchMyInfo()
 
 const checkbox = document.getElementById('checkbox');
 
