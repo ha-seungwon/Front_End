@@ -16,32 +16,19 @@ const dropdownText = dropdown.querySelector(".text704");
 const dropdownContent = dropdown.querySelector(".dropdown-content");
 const check_box = document.querySelector(".check-box");
 let mail_result = 0;
-var flag = 0;
-// 쿠키 가져오는 함수
+/* 쿠키 가져오는 함수
 function getCookie(name) {
-    var value = "; " + document.cookie;
-    var parts = value.split("; " + name + "=");
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
     if (parts.length === 2) return parts.pop().split(";").shift();
 }
-document.addEventListener("DOMContentLoaded", function() {
-    flag = localStorage.getItem("flag") === "1" ? 1 : 0;
-    console.log("first flag", flag);
-    if (flag == 1) {
-        var cookie_userName = getCookie("userName");
-        var cookie_userEmail = getCookie("userEmail");
-        var cookie_userSex = getCookie("sex");
-        var cookie_userPassword = getCookie("passWord");
-        var cookie_userPassword2 = getCookie("passWord2");
-        var cookie_userTestTpye = getCookie("testType");
-        var cookie_userAgree = getCookie("agree");
-        console.log(cookie_userName);
-        nameInput.value = cookie_userName;
-        emailInput.value = cookie_userEmail;
-        passwordInput.value = cookie_userPassword;
-        passwordInput2.value = cookie_userPassword2;
-        dropdownText.textContent = cookie_userTestTpye;
-        if (cookie_userAgree) check_box.classList.toggle("selected_box");
-    }
+var cookie_userName = getCookie("userName");
+var cookie_userEmail = getCookie("userEmail");
+var cookie_userPassword = getCookie("passWord");
+var cookie_userPassword2 = getCookie("passWord2");
+var cookie_userTestTpye = getCookie("testType");
+var cookie_userAgree = getCookie("agree");
+*/ document.addEventListener("DOMContentLoaded", function() {
     let name_result = 0;
     let password1_result = 0;
     let password2_result = 0;
@@ -56,22 +43,8 @@ document.addEventListener("DOMContentLoaded", function() {
             name_result = 1;
         }
     });
-    //성별 처리
-    const maleOption = document.getElementById("maleOption");
-    const femaleOption = document.getElementById("femaleOption");
-    // 초기 선택 값
-    let selectedGender = null;
-    // 남성 선택 시
-    maleOption.addEventListener("click", function() {
-        selectedGender = "MALE";
-    });
-    // 여성 선택 시
-    femaleOption.addEventListener("click", function() {
-        selectedGender = "FEMALE";
-    });
     // 이메일 입력 처리
-    emailInput.addEventListener("input", updateMergedEmail);
-    function updateMergedEmail() {
+    emailInput.addEventListener("input", function(e) {
         const email = emailInput.value;
         const parts = email.split("@");
         const emailFront = parts[0];
@@ -90,41 +63,34 @@ document.addEventListener("DOMContentLoaded", function() {
             mergedEmailResult.textContent = emailFront + "@" + emailAfterAt;
             mail_result = 1;
         }
-    }
-    //이메일 인증하기
-    function isValidEmail(email) {
-        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-        return emailRegex.test(email);
-    }
+    });
     // 이메일 인증하기 버튼 이벤트 리스너
     const email_Auth = document.getElementById("email_auth");
-    if (email_Auth) email_Auth.addEventListener("click", function(e) {
+    if (email_Auth) email_Auth.addEventListener("click", async function(e) {
         console.log(emailInput);
         const emailInputValue = emailInput.value.trim();
         if (!emailInputValue) {
             alert("이메일을 입력하세요.");
             return;
         }
-        if (!isValidEmail(emailInputValue)) {
-            alert("올바른 이메일 주소 형식이 아닙니다.");
-            return;
-        } else {
+        //이메일 형식
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        if (!emailRegex.test(emailInputValue)) alert("올바른 이메일 주소 형식이 아닙니다.");
+        else {
             document.cookie = "userEmail=" + emailInputValue;
-            // document.cookie="userName="+ nameInput.value.trim()
-            // document.cookie="passWord="+ encodeURIComponent(passwordInput.value.trim())
-            // document.cookie="passWord2="+ encodeURIComponent(passwordInput2.value.trim())
-            // document.cookie="sex="+ selectedGender
-            // document.cookie="testType="+ dropdownText.textContent
-            // document.cookie="agree="+ (check_box.classList.contains("selected_box") ? "true" : "")
-            console.log("!!!쿠키", document.cookie);
-            flag = 1;
-            localStorage.setItem("flag", "1");
-            console.log("!!!!!!flag", flag);
+            // 이메일 인증 버튼 클릭 시 인증 코드를 메일로 보내는 로직
+            const email = emailInput.value;
+            fetch(`http://localhost:8080/api/send/mail?email=${email}`).then((response)=>{
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                return response.json();
+            }).catch((error)=>{
+                console.error("Failed to fetch data");
+            });
             window.open("./sign-up-email-auth.html", "SignUpEmailAuth", "width=800,height=600");
         }
     });
     // password 처리
-    passwordInput.addEventListener("input", checkPasswordValidity);
+    passwordInput.addEventListener("change", checkPasswordValidity);
     function checkPasswordValidity() {
         const password = passwordInput.value;
         var errorMessage = "";
@@ -141,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
         */ passwordResult.textContent = errorMessage || "비밀번호가 유효합니다.";
     }
     // repassword 처리
-    passwordInput2.addEventListener("input", checkPasswordMatch);
+    passwordInput2.addEventListener("change", checkPasswordMatch);
     function checkPasswordMatch() {
         const password1 = passwordInput.value;
         const password2 = passwordInput2.value;
@@ -197,7 +163,6 @@ document.addEventListener("DOMContentLoaded", function() {
             const applicationTypeKey = responseBody.applicationTypeKey;
             // 프론트 로그
             console.log("이름 입력 값:", nameInputValue);
-            console.log("성별", selectedGender);
             console.log("이메일 입력 값:", emailInputValue);
             console.log("비밀번호 입력 값:", password1InputValue);
             console.log("개인정보 이용 동의 여부:", checkBoxSelected);
@@ -205,7 +170,6 @@ document.addEventListener("DOMContentLoaded", function() {
             // 회원가입 - 서버에 요청
             const userData = {
                 name: nameInputValue,
-                gender: selectedGender,
                 email: emailInputValue,
                 password: password1InputValue,
                 applicationType: applicationTypeKey
@@ -229,7 +193,6 @@ document.addEventListener("DOMContentLoaded", function() {
         } else alert("개인정보 이용 동의 여부를 체크해주세요");
     });
 });
-
 check_box.addEventListener("click", function() {
     check_box.classList.toggle("selected_box");
 });
@@ -261,7 +224,7 @@ if (signInText) signInText.addEventListener("click", function(e) {
 const currentDomain = "http://localhost:8080";
 async function fetchApplicationTypeName() {
     const applicationTypeDropDownContent = document.getElementById("applicationTypeDropDownContent");
-    fetch(currentDomain + "/api/applicationType/names").then((response)=>response.json()).then((responseJson)=>{
+    await fetch(currentDomain + "/api/applicationType/names").then((response)=>response.json()).then((responseJson)=>{
         const options = responseJson.applicationTypeNames;
         options.forEach(function(option) {
             const aElement = document.createElement("a");

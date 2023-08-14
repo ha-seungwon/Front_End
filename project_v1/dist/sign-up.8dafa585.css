@@ -70,7 +70,6 @@
 }
 
 .frame992 {
-  z-index: 0;
   font-size: var(--button-m-size);
   color: var(--color-dodgerblue);
   justify-content: center;
@@ -123,7 +122,6 @@
 }
 
 .text526 {
-  z-index: 0;
   align-self: stretch;
   line-height: 140%;
   position: relative;
@@ -192,7 +190,6 @@
 }
 
 .frame1000 {
-  z-index: 2;
   flex-direction: row;
   align-items: center;
   position: absolute;
@@ -207,7 +204,6 @@
 }
 
 .frame1001 {
-  z-index: 3;
   flex-direction: row;
   align-items: center;
   position: absolute;
@@ -231,7 +227,6 @@
 
 .frame993 {
   gap: var(--gap-base);
-  z-index: 1;
   flex-direction: row;
 }
 
@@ -266,7 +261,6 @@
 .frame1002 {
   align-items: flex-start;
   gap: var(--gap-base);
-  z-index: 2;
 }
 
 .text535 {
@@ -283,21 +277,11 @@
   align-self: stretch;
   align-items: flex-start;
   gap: var(--gap-9xs);
-  z-index: 3;
   flex-direction: column;
   display: flex;
 }
 
-.frame1009, .frame1011 {
-  z-index: 4;
-}
-
-.frame1011 {
-  z-index: 5;
-}
-
 .frame1013 {
-  z-index: 2;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -333,10 +317,8 @@
 }
 
 .frame1014 {
-  z-index: 7;
   font-size: var(--button-m-size);
   color: var(--default-white);
-  z-index: 1;
   align-self: stretch;
 }
 
@@ -361,7 +343,6 @@
 }
 
 .check-box {
-  z-index: 8;
   border: 1px solid #000;
   flex-direction: row;
   justify-content: space-between;
@@ -430,21 +411,20 @@
 }
 
 .frame1349 {
-  flex-direction: column;
-  flex: 1;
   justify-content: flex-start;
   align-items: flex-start;
+  gap: var(--gap-5xs);
+  flex-direction: column;
+  flex: 1;
   display: flex;
 }
 
 .text728 {
-  z-index: 3;
   top: calc(50% + 28px);
 }
 
 .text727, .text728 {
   white-space: nowrap;
-  z-index: 2;
   margin: 0;
   position: relative;
 }
@@ -521,7 +501,6 @@
 }
 
 .text704 {
-  z-index: 1;
   flex: 1;
   align-self: stretch;
   line-height: 140%;
@@ -534,6 +513,7 @@
 }
 
 .dropdown-content {
+  z-index: 1;
   background-color: #f9f9f9;
   min-width: 160px;
   display: none;
@@ -542,7 +522,6 @@
 }
 
 .dropdown.active .dropdown-content {
-  z-index: 3;
   display: block;
 }
 
