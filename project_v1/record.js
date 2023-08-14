@@ -205,3 +205,33 @@ if (menu04Container) {
     });
 }
 
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    // 정규식: 1~3자리 숫자
+    const scorePattern = /^(?!-)(?!.*[a-zA-Z])(?!.*[!@#$%^&*()])(?!.*\d{5,})(?=.*\d).+$/;
+
+    // 입력 칸들의 ID와 오류 메시지를 매핑하는 객체
+    const inputErrorMapping = {
+      'item-1-score': 'item-1-error',
+      'item-2-score': 'item-2-error',
+      'item-3-score': 'item-3-error',
+      'item-4-score': 'item-4-error',
+      'item-5-score': 'item-5-error'
+    };
+
+    // 입력 칸들의 이벤트 리스너 추가
+    Object.keys(inputErrorMapping).forEach(inputId => {
+      const inputElement = document.getElementById(inputId);
+      const errorElement = document.getElementById(inputErrorMapping[inputId]);
+
+      inputElement.addEventListener('input', () => {
+        if (inputElement.value.trim() === '') {
+          errorElement.textContent = ''; // 입력 값이 비어있을 때 오류 메시지 지우기
+        } else if (!scorePattern.test(inputElement.value)) {
+          errorElement.textContent = '유효하지 않은 측정값입니다.';
+        } else {
+          errorElement.textContent = '';
+        }
+      });
+    });
+  });
