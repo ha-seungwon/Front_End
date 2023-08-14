@@ -484,8 +484,8 @@
   height: auto; /* 높이를 자동으로 조정하여 내용에 맞게 설정 */
 }
 
-.controlsvariant43,
-.controlsvariant33 {
+.menCheckedSignUp,
+.womenCheckedSignUp {
   position: relative;
   display: flex;
   flex-direction: row; /* 가로 정렬 */

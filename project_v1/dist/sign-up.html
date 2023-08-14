@@ -31,7 +31,7 @@
             <div class="frame1349">
               <div class="text726">성별</div>
               <div class="check-cir1">
-                  <div class="controlsvariant43">
+                  <div class="menCheckedSignUp">
                     <div class="frame1362">
 
                     </div>
@@ -39,7 +39,7 @@
                   <div class="text727">남성</div>
                 </div>
                 <div class="check-cir1">
-                  <div class="controlsvariant33">
+                  <div class="womenCheckedSignUp">
                     <div class="frame1363">
 
                     </div>
@@ -113,7 +113,7 @@
             <div class="text527">개인정보 이용에 동의합니다</div>
           </div>
           <div class="frame1014">
-            <div class="generate-account-button">
+            <div class="sign-up-btn">
               <div class="frame1015">
                 <div class="text543">계정 생성하기</div>
               </div>
@@ -211,8 +211,8 @@ document.addEventListener("DOMContentLoaded", function() {
     var dropdownText = dropdown.querySelector(".text704");
     var dropdownContent = dropdown.querySelector(".dropdown-content");
     var selectedOption = null;
-    var genderMale = document.querySelector(".controlsvariant43");
-    var genderFemale = document.querySelector(".controlsvariant33");
+    var genderMale = document.querySelector(".menCheckedSignUp");
+    var genderFemale = document.querySelector(".womenCheckedSignUp");
     dropdownText.addEventListener("click", function() {
         dropdown.classList.toggle("active");
     });
@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener("click", function(event) {
         if (!dropdown.contains(event.target)) dropdown.classList.remove("active");
     });
-    var generateAccountButton = document.querySelector(".generate-account-button");
+    var generateAccountButton = document.querySelector(".sign-up-btn");
     generateAccountButton.addEventListener("click", function() {
         var nameInputValue = "";
         if (name_result) nameInputValue = nameInput.value;

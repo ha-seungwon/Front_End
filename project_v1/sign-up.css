@@ -298,13 +298,13 @@
 }
 .frame1014,
 .frame1015,
-.generate-account-button {
+.sign-up-btn {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
-.generate-account-button {
+.sign-up-btn {
   flex: 1;
   background-color: var(--primary-60);
   border: 2px solid var(--primary-60);
@@ -430,8 +430,8 @@
   width: 20px;
   height: auto; /* 높이를 자동으로 조정하여 내용에 맞게 설정 */
 }
-.controlsvariant43,
-.controlsvariant33 {
+.menCheckedSignUp,
+.womenCheckedSignUp {
   position: relative;
   display: flex;
   flex-direction: row; /* 가로 정렬 */

@@ -515,7 +515,7 @@
   position: relative;
 }
 
-.controlsvariant43, .controlsvariant33 {
+.menCheckedSignUp, .womenCheckedSignUp {
   flex-direction: row;
   align-items: center;
   gap: 5px;
