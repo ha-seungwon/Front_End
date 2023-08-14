@@ -268,12 +268,12 @@
   flex-direction: column;
 }
 
-.password2, .text733 {
+.password1, .password2, .text733 {
   color: var(--coolgray-60);
   align-self: stretch;
 }
 
-.password2 {
+.password1, .password2 {
   background-color: var(--coolgray-10);
   border-bottom: 1px solid var(--coolgray-30);
   box-sizing: border-box;
@@ -297,6 +297,7 @@
 .frame1366 {
   align-items: flex-start;
   gap: var(--gap-9xs);
+  color: var(--coolgray-60);
   flex-direction: column;
 }
 
@@ -634,6 +635,11 @@
 
 .dropdown-content a:hover {
   background-color: #ddd;
+}
+
+.error-message {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /*# sourceMappingURL=setting-account.42d43a4a.css.map */

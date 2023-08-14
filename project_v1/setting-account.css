@@ -250,11 +250,15 @@
 .frame1364 {
   flex-direction: column;
 }
+
+.password1,
 .password2,
 .text733 {
   align-self: stretch;
   color: var(--coolgray-60);
 }
+
+.password1,
 .password2 {
   background-color: var(--coolgray-10);
   border-bottom: 1px solid var(--coolgray-30);
@@ -278,6 +282,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--gap-9xs);
+  color: var(--coolgray-60);
 }
 .frame1366,
 .frame1369,
@@ -593,4 +598,9 @@
 }
 .dropdown-content a:hover {
   background-color: #ddd;
+}
+
+.error-message {
+  margin-top: 0; /* 상단 마진 제거 */
+  margin-bottom: 0; /* 하단 마진 제거 */
 }
