@@ -68,10 +68,14 @@ function toggleCheckbox(checkbox) {
 }
 function togglePasswordVisibility() {
   var passwordInput = document.getElementById("password1");
+  var eyeIcon = document.querySelector(".password-toggle"); // Select the eye icon element
+
   if (passwordInput.type === "password") {
     passwordInput.type = "text";
+    eyeIcon.src = "./public/eye_icon.svg"; // Change the eye icon to slash icon
   } else {
     passwordInput.type = "password";
+    eyeIcon.src = "./public/1256-frame.svg"; // Change the eye icon back to normal
   }
 }
 var text7 = document.getElementById("text7");

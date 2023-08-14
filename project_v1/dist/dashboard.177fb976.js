@@ -602,12 +602,16 @@ async function fetchTotalApplication() {
     if (!response2.ok) throw new Error("Error fetching.");
     totalRecordsContainer.innerText = (await response2.json()).count;
 }
-async function fetchMyScore() {
+async function fetchMyInfo() {
+    const memberName = document.getElementById("memberName");
     const currentScoreContainer = document.getElementById("current-score");
     const expectedScoreContainer = document.getElementById("expected-score");
+    let response = await fetch(currentDomain + "/api/member/me");
+    if (!response.ok) throw new Error("Error fetching.");
+    else memberName.innerText = (await response.json()).name + "님 안녕하세요.";
     let response1 = await fetch(currentDomain + "/api/score/me");
     if (!response1.ok) throw new Error("Error fetching.");
-    currentScoreContainer.innerText = (await response1.json()).score;
+    else currentScoreContainer.innerText = (await response1.json()).score;
 }
 async function fetchRank() {
     let response = await fetch(currentDomain + "/api/score/rank?rankCnt=7");
@@ -645,7 +649,7 @@ async function fetchRank() {
     }
 }
 fetchTotalApplication();
-fetchMyScore();
+fetchMyInfo();
 fetchRank();
 
 },{}]},["cw4qy","1Mu3k"], "1Mu3k", "parcelRequiredc1e")
