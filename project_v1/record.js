@@ -1,5 +1,6 @@
 // const currentDomain = window.location.origin
 const currentDomain = "http://localhost:8080"
+const scorePattern = /^(?!-)(?!.*[a-zA-Z])(?!.*[!@#$%^&*()])(?!.*\d{5,})(?=.*\d).+$/;
 
 async function fetchEvaluationItem() {
     let response = await fetch(currentDomain + "/api/evaluation/items");
@@ -27,16 +28,22 @@ document.getElementById('saveButton').addEventListener(
 )
 
 async function fetchEvaluationItemScore(itemKey) {
+    const evaluationScore = document.getElementById('item-' + itemKey + '-evaluation-score')
+    let score = document.getElementById('item-' + itemKey + '-score').value;
+    if(score === '' || !scorePattern.test(score)) {
+        evaluationScore.innerText = '' +"점"
+        return
+    }
     const response = await fetch(currentDomain + "/api/score?" + new URLSearchParams({
         evaluationItemId: document.getElementById('item-' + itemKey + '-id').innerText,
         score: document.getElementById('item-' + itemKey + '-score').value,
     }))
     if (!response.ok) {
         alert("Invalid score input")
+        evaluationScore.innerText = '' +"점"
         throw new Error('Error fetching.');
     }
-    const evaluationScore = document.getElementById('item-' + itemKey + '-evaluation-score')
-    evaluationScore.innerText = (await response.json()).score
+    evaluationScore.innerText = (await response.json()).score + "점"
 }
 
 fetchEvaluationItem()
@@ -116,10 +123,6 @@ async function fetchMyInfo() {
 fetchMyInfo()
 
 const checkbox = document.getElementById('checkbox');
-
-checkbox.addEventListener('click', () => {
-    checkbox.classList.toggle('checked');
-});
 
 const percentage = 53; // Change this value dynamically
 
@@ -222,11 +225,8 @@ if (menu04Container) {
     });
 }
 
-
 window.addEventListener('DOMContentLoaded', (event) => {
     // 정규식: 1~3자리 숫자
-    const scorePattern = /^(?!-)(?!.*[a-zA-Z])(?!.*[!@#$%^&*()])(?!.*\d{5,})(?=.*\d).+$/;
-
     // 입력 칸들의 ID와 오류 메시지를 매핑하는 객체
     const inputErrorMapping = {
       'item-1-score': 'item-1-error',
