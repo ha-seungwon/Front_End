@@ -39,7 +39,7 @@ async function fetchEvaluationItemScore(itemKey) {
         score: document.getElementById('item-' + itemKey + '-score').value,
     }))
     if (!response.ok) {
-        alert("Invalid score input")
+        sAlert("Invalid score input")
         evaluationScore.innerText = '' +"점"
         throw new Error('Error fetching.');
     }
@@ -58,12 +58,12 @@ function saveData() {
     let agreeCheckbox = document.getElementById('agreeCheckbox');
 
     if(item1.value === '' || item2.value === '' || item3.value === '' || item4.value === '' || item5.value === '') {
-        alert("모든 점수를 입력해주세요");
+        sAlert("모든 점수를 입력해주세요");
         return;
     }
 
     if(agreeCheckbox.checked !== true) {
-        alert("점수 입력에 동의해주세요");
+        sAlert("점수 입력에 동의해주세요");
         return;
     }
 
@@ -99,27 +99,27 @@ function saveData() {
         .then(response => response.json())
         .then(result => {
             if (result.prediction === 1) {
-                alert("데이터가 저장되었습니다.\n결과: 합격");
+                sAlert("데이터가 저장되었습니다.\n결과: 합격");
             } else {
-                alert("데이터가 저장되었습니다.\n결과: 불합격");
+                sAlert("데이터가 저장되었습니다.\n결과: 불합격");
             }
         })
         .catch(error => {
             console.error("에러 발생:", error);
-            alert("데이터 저장 중에 오류가 발생했습니다.");
+            sAlert("데이터 저장 중에 오류가 발생했습니다.");
         });
 }
 
 async function fetchMyInfo() {
     const responseMemberInfo = await fetch(currentDomain + "/api/member/me");
     if (!responseMemberInfo.ok) {
-        alert("Failed to fetch member")
+        sAlert("Failed to fetch member")
         throw new Error('Error fetching.');
     }
 
     const responseScoreInfo = await fetch(currentDomain + "/api/score/expect");
     if (!responseScoreInfo.ok) {
-        alert("Failed to fetch expected")
+        sAlert("Failed to fetch expected")
         throw new Error('Error fetching.');
     }
 
@@ -285,9 +285,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
   });
 
 // sAlert('custom alert example!');
-function sAlert(txt) {
+function sAlert(txt, title = 'ERROR',) {
     Swal.fire({
-        title: 'ERROR',
+        title: title,
         text: txt,
         confirmButtonText: '닫기'
     });
