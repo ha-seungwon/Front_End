@@ -64,7 +64,6 @@
 }
 .frame992 {
   justify-content: center;
-  z-index: 0;
   font-size: var(--button-m-size);
   color: var(--color-dodgerblue);
 }
@@ -117,7 +116,6 @@
   align-self: stretch;
   position: relative;
   line-height: 140%;
-  z-index: 0;
 }
 .ellipse4 {
   position: relative;
@@ -187,7 +185,6 @@
   left: 18px;
   flex-direction: row;
   align-items: center;
-  z-index: 2;
 }
 .frame1000,
 .frame1001,
@@ -203,7 +200,6 @@
   left: 18px;
   flex-direction: row;
   align-items: center;
-  z-index: 3;
 }
 .frame993,
 .frame997 {
@@ -220,7 +216,6 @@
 .frame993 {
   flex-direction: row;
   gap: var(--gap-base);
-  z-index: 1;
 }
 .frame-icon44 {
   position: relative;
@@ -251,7 +246,6 @@
 .frame1002 {
   align-items: flex-start;
   gap: var(--gap-base);
-  z-index: 2;
 }
 .text535 {
   align-self: stretch;
@@ -270,14 +264,6 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: var(--gap-9xs);
-  z-index: 3;
-}
-.frame1009,
-.frame1011 {
-  z-index: 4;
-}
-.frame1011 {
-  z-index: 5;
 }
 .frame1013 {
   width: 200px;
@@ -285,7 +271,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  z-index: 2;
 }
 .text543 {
   position: relative;
@@ -314,10 +299,8 @@
 }
 .frame1014 {
   align-self: stretch;
-  z-index: 7;
   font-size: var(--button-m-size);
   color: var(--default-white);
-  z-index: 1;
 }
 .text_input{
   flex: 1;
@@ -347,7 +330,6 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  z-index: 8;
   border: 1px solid black; /* 검은색 테두리 추가 */
 }
 .frame991 {
@@ -412,7 +394,6 @@
 
 .text728 {
   top: calc(50% + 28px); /* 수직 중앙 정렬을 위한 위치 조정 */
-  z-index: 3;
 }
 
 .text727,
@@ -420,7 +401,6 @@
   position: relative;
   margin: 0;
   white-space: nowrap; /* 텍스트 줄바꿈 방지 */
-  z-index: 2;
 }
 
 
@@ -501,7 +481,6 @@
   flex: 1;
   position: relative;
   line-height: 140%;
-  z-index: 1;
 }
 
 .menu-text .frame-icon75 {
@@ -511,8 +490,8 @@
 
 
 .dropdown-content {
+  z-index: 1;
   display: none;
-
   background-color: #f9f9f9;
   position: relative;
   min-width: 160px;
@@ -522,7 +501,6 @@
 
 .dropdown.active .dropdown-content {
   display: block;
-  z-index: 3;
 }
 
 .dropdown-content a {

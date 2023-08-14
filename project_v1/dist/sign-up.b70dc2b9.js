@@ -15,8 +15,6 @@ const dropdown = document.querySelector(".dropdown");
 const dropdownText = dropdown.querySelector(".text704");
 const dropdownContent = dropdown.querySelector(".dropdown-content");
 const check_box = document.querySelector(".check-box");
-const ellipse6 = document.querySelector(".frame1362"); //남자 체크표시
-const ellipse7 = document.querySelector(".frame1363"); //여자 체크표시
 let mail_result = 0;
 var flag = 0;
 // 쿠키 가져오는 함수
@@ -42,8 +40,6 @@ document.addEventListener("DOMContentLoaded", function() {
         passwordInput.value = cookie_userPassword;
         passwordInput2.value = cookie_userPassword2;
         dropdownText.textContent = cookie_userTestTpye;
-        if (cookie_userSex == "MALE") ellipse6.classList.add("selected");
-        else ellipse7.classList.add("selected");
         if (cookie_userAgree) check_box.classList.toggle("selected_box");
     }
     let name_result = 0;
@@ -233,16 +229,7 @@ document.addEventListener("DOMContentLoaded", function() {
         } else alert("개인정보 이용 동의 여부를 체크해주세요");
     });
 });
-ellipse6.addEventListener("click", function() {
-    ellipse6.classList.add("selected");
-    ellipse7.classList.remove("selected");
-});
-ellipse7.addEventListener("click", function() {
-    ellipse7.classList.add("selected");
-    ellipse6.classList.remove("selected");
-});
-ellipse6.classList.remove("selected");
-ellipse7.classList.remove("selected");
+
 check_box.addEventListener("click", function() {
     check_box.classList.toggle("selected_box");
 });
