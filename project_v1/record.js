@@ -111,13 +111,39 @@ function saveData() {
 }
 
 async function fetchMyInfo() {
-    const response = await fetch(currentDomain + "/api/member/me");
-    if (!response.ok) {
-        alert("Invalid score input")
+    const responseMemberInfo = await fetch(currentDomain + "/api/member/me");
+    if (!responseMemberInfo.ok) {
+        alert("Failed to fetch member")
         throw new Error('Error fetching.');
     }
+
+    const responseScoreInfo = await fetch(currentDomain + "/api/score/expect");
+    if (!responseScoreInfo.ok) {
+        alert("Failed to fetch expected")
+        throw new Error('Error fetching.');
+    }
+
+    let responseMemberInfoValue = await responseMemberInfo.json();
+    let responseScoreInfoValue = await responseScoreInfo.json();
+
     const applicationType = document.getElementById('applicationType');
-    applicationType.innerText = (await response.json()).applicationTypeName
+    const currentScore = document.getElementById('currentScore');
+    const expectedScore = document.getElementById('expectedScore');
+    const expectedGrade = document.getElementById('expectedGrade');
+
+    applicationType.innerText = responseMemberInfoValue.applicationTypeName
+    currentScore.innerText = responseScoreInfoValue.currentScore
+    expectedScore.innerText = responseScoreInfoValue.expectedScore
+
+    if(responseScoreInfoValue.expectedGrade >= 80) {
+        expectedGrade.innerText = "합격이 예상됩니다."
+    }
+    if(responseScoreInfoValue.expectedGrade < 80 && responseScoreInfoValue.expectedGrade >= 60) {
+        expectedGrade.innerText = "합격 보류가 예상됩니다."
+    }
+    if(responseScoreInfoValue.expectedGrade < 60) {
+        expectedGrade.innerText = "탈락이 예상됩니다."
+    }
 }
 
 fetchMyInfo()

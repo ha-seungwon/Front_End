@@ -45,19 +45,18 @@ async function fetchMyInfo() {
     const currentScoreContainer = document.getElementById("current-score")
     const expectedScoreContainer = document.getElementById("expected-score")
 
-    let response = await fetch(currentDomain + "/api/member/me");
-    if (!response.ok) {
+    let responseMember = await fetch(currentDomain + "/api/member/me");
+    if (!responseMember.ok) {
         throw new Error('Error fetching.');
     } else {
-        memberName.innerText = (await response.json()).name + "님 안녕하세요."
-
+        memberName.innerText = (await responseMember.json()).name + "님 안녕하세요."
     }
 
-    let response1 = await fetch(currentDomain + "/api/score/me");
-    if (!response1.ok) {
+    let responseScore = await fetch(currentDomain + "/api/score/me");
+    if (!responseScore.ok) {
         throw new Error('Error fetching.');
     } else {
-        currentScoreContainer.innerText = (await response1.json()).score
+        currentScoreContainer.innerText = (await responseScore.json()).score
     }
 }
 
