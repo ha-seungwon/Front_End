@@ -33,6 +33,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  background-color: var(--coolgray-10);
 }
 .setting8 {
   align-self: stretch;

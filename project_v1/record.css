@@ -324,14 +324,17 @@
   flex-direction: row;
   justify-content: flex-start;
 }
+.error-message {
+  margin-top: 0; /* 상단 마진 제거 */
+  margin-bottom: 0; /* 하단 마진 제거 */
+}
 .input-01 {
   flex: 1;
+  height: 30px;
   background-color: var(--coolgray-10);
   border-bottom: 1px solid var(--coolgray-30);
-  padding: var(--padding-xs) var(--padding-base);
   align-items: center;
 }
-
 .input-01 input[type="text"] {
   border: none; /* 테두리 선 제거 */
   background-color: 1px solid var(--coolgray-30); /* 배경색 회색으로 설정 */

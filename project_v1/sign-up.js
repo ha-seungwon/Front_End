@@ -12,55 +12,40 @@ const dropdown = document.querySelector(".dropdown");
 const dropdownText = dropdown.querySelector(".text704");
 const dropdownContent = dropdown.querySelector(".dropdown-content");
 const check_box = document.querySelector(".check-box");
-const ellipse6 = document.querySelector(".frame1362");//남자 체크표시
-const ellipse7 = document.querySelector(".frame1363");//여자 체크표시
 
 let mail_result = 0
-var flag=0
+let flag = 0;
 
 // 쿠키 가져오는 함수
 function getCookie(name) {
-    var value = "; " + document.cookie;
-    var parts = value.split("; " + name + "=");
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
     if (parts.length === 2) return parts.pop().split(";").shift();
-
-    }
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     flag = localStorage.getItem("flag") === "1" ? 1 : 0;
-    console.log("first flag",flag)
-    if (flag==1){
+    console.log("first flag", flag)
+    if (flag === 1) {
         var cookie_userName = getCookie("userName");
         var cookie_userEmail = getCookie("userEmail");
-        var cookie_userSex = getCookie("sex");
         var cookie_userPassword = getCookie("passWord");
         var cookie_userPassword2 = getCookie("passWord2");
         var cookie_userTestTpye = getCookie("testType");
-        var cookie_userAgree= getCookie("agree");
+        var cookie_userAgree = getCookie("agree");
 
-    
+
         console.log(cookie_userName)
-        nameInput.value=cookie_userName
-        emailInput.value=cookie_userEmail
-        passwordInput.value=cookie_userPassword
-        passwordInput2.value=cookie_userPassword2
-        dropdownText.textContent=cookie_userTestTpye
-        if (cookie_userSex=="MALE"){
+        nameInput.value = cookie_userName
+        emailInput.value = cookie_userEmail
+        passwordInput.value = cookie_userPassword
+        passwordInput2.value = cookie_userPassword2
+        dropdownText.textContent = cookie_userTestTpye
 
-            ellipse6.classList.add("selected");
-        }
-        else{
-            ellipse7.classList.add("selected");
-        }
-
-        if (cookie_userAgree){
+        if (cookie_userAgree) {
             check_box.classList.toggle("selected_box");
         }
     }
-
-
-    
-
 
 
     let name_result = 0
@@ -83,27 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    //성별 처리
-    const maleOption = document.getElementById("maleOption");
-    const femaleOption = document.getElementById("femaleOption");
-
-    // 초기 선택 값
-    let selectedGender = null;
-
-    // 남성 선택 시
-    maleOption.addEventListener("click", function () {
-        selectedGender = 'MALE';
-    });
-
-    // 여성 선택 시
-    femaleOption.addEventListener("click", function () {
-        selectedGender = "FEMALE";
-    });
-
     // 이메일 입력 처리
-    emailInput.addEventListener("input", updateMergedEmail);
-
-    function updateMergedEmail() {
+    emailInput.addEventListener("input", function (e) {
         const email = emailInput.value;
         const parts = email.split("@");
         const emailFront = parts[0];
@@ -130,14 +96,15 @@ document.addEventListener("DOMContentLoaded", function () {
             mergedEmailResult.textContent = emailFront + "@" + emailAfterAt;
             mail_result = 1
         }
-    }
+    });
+
     //이메일 인증하기
     function isValidEmail(email) {
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         return emailRegex.test(email);
     }
-    
-    
+
+
     // 이메일 인증하기 버튼 이벤트 리스너
     const email_Auth = document.getElementById("email_auth");
     if (email_Auth) {
@@ -166,17 +133,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 
 
                 console.log("!!!쿠키", document.cookie);
-                flag=1
+                flag = 1
                 localStorage.setItem("flag", "1");
-                console.log("!!!!!!flag",flag)
+                console.log("!!!!!!flag", flag)
 
                 window.open("./sign-up-email-auth.html", "SignUpEmailAuth", "width=800,height=600");
             }
 
-            
+
         });
     }
-
 
     // password 처리
     passwordInput.addEventListener("input", checkPasswordValidity);
@@ -220,7 +186,6 @@ document.addEventListener("DOMContentLoaded", function () {
             passwordResult2.textContent = "비밀번호가 일치하지 않습니다.";
         }
     }
-
 
 
     // application type 드롭 다운 데이터 처리
@@ -295,7 +260,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // 프론트 로그
             console.log("이름 입력 값:", nameInputValue);
-            console.log("성별", selectedGender)
             console.log("이메일 입력 값:", emailInputValue);
             console.log("비밀번호 입력 값:", password1InputValue);
             console.log("개인정보 이용 동의 여부:", checkBoxSelected);
@@ -304,7 +268,6 @@ document.addEventListener("DOMContentLoaded", function () {
             // 회원가입 - 서버에 요청
             const userData = {
                 name: nameInputValue,
-                gender: selectedGender,
                 email: emailInputValue,
                 password: password1InputValue,
                 applicationType: applicationTypeKey
@@ -332,22 +295,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
-ellipse6.addEventListener("click", function () {
-    ellipse6.classList.add("selected");
-    ellipse7.classList.remove("selected");
-});
-
-ellipse7.addEventListener("click", function () {
-    ellipse7.classList.add("selected");
-    ellipse6.classList.remove("selected");
-});
-
-ellipse6.classList.remove("selected");
-ellipse7.classList.remove("selected");
-
-
-
 check_box.addEventListener("click", function () {
     check_box.classList.toggle("selected_box");
 });
@@ -368,7 +315,7 @@ function togglePasswordVisibility(inputElementId) {
 <path d="M7.77091 10.9526C7.75899 10.9406 7.74402 10.932 7.7276 10.9278C7.71118 10.9235 7.69392 10.9238 7.67767 10.9287C7.66141 10.9335 7.64676 10.9426 7.63528 10.9551C7.6238 10.9675 7.61592 10.9829 7.61247 10.9995C7.44248 11.7422 7.46382 12.5158 7.67451 13.248C7.88519 13.9801 8.27832 14.6468 8.81704 15.1855C9.35577 15.7243 10.0224 16.1174 10.7546 16.3281C11.4868 16.5388 12.2604 16.5601 13.0031 16.3901C13.0197 16.3867 13.035 16.3788 13.0475 16.3673C13.06 16.3558 13.0691 16.3412 13.0739 16.3249C13.0787 16.3087 13.0791 16.2914 13.0748 16.275C13.0706 16.2586 13.062 16.2436 13.05 16.2317L7.77091 10.9526Z" fill="#21272A"/>
 `;
 
-    
+
     } else {
       passwordInput.type = "password";
       // 변경된 path 또는 추가적인 path 등을 포함한 아이콘 내용으로 변경
@@ -384,14 +331,13 @@ if (signInText) {
     });
 }
 
-
 // const currentDomain = window.location.origin
 const currentDomain = "http://localhost:8080"
 
 async function fetchApplicationTypeName() {
     const applicationTypeDropDownContent = document.getElementById("applicationTypeDropDownContent");
 
-    fetch(currentDomain + "/api/applicationType/names")
+    await fetch(currentDomain + "/api/applicationType/names")
         .then(response => response.json())
         .then(responseJson => {
             const options = responseJson.applicationTypeNames;
