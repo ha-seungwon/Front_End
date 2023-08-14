@@ -39,15 +39,26 @@ async function fetchTotalApplication() {
     totalRecordsContainer.innerText = (await response2.json()).count
 }
 
-async function fetchMyScore() {
+async function fetchMyInfo() {
+    const memberName = document.getElementById("memberName")
+
     const currentScoreContainer = document.getElementById("current-score")
     const expectedScoreContainer = document.getElementById("expected-score")
+
+    let response = await fetch(currentDomain + "/api/member/me");
+    if (!response.ok) {
+        throw new Error('Error fetching.');
+    } else {
+        memberName.innerText = (await response.json()).name + "님 안녕하세요."
+
+    }
 
     let response1 = await fetch(currentDomain + "/api/score/me");
     if (!response1.ok) {
         throw new Error('Error fetching.');
+    } else {
+        currentScoreContainer.innerText = (await response1.json()).score
     }
-    currentScoreContainer.innerText = (await response1.json()).score
 }
 
 async function fetchRank() {
@@ -97,5 +108,5 @@ async function fetchRank() {
 }
 
 fetchTotalApplication()
-fetchMyScore()
+fetchMyInfo()
 fetchRank()
