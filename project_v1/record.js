@@ -202,7 +202,7 @@ var myChart = new Chart(ctx, {
             data: currentScores,
             borderColor: 'black',
             borderWidth: 2,
-            fill: false
+            fill: true
         }]
     },
     options: {
@@ -212,6 +212,11 @@ var myChart = new Chart(ctx, {
             y: {
                 beginAtZero: true
             }
+        }
+    },
+    plugins: {
+        legend: {
+            display: false
         }
     }
 });
@@ -278,3 +283,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
       });
     });
   });
+
+// sAlert('custom alert example!');
+function sAlert(txt) {
+    Swal.fire({
+        title: 'ERROR',
+        text: txt,
+        confirmButtonText: '닫기'
+    });
+}

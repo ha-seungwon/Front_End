@@ -567,8 +567,11 @@
   justify-content: center; /* 요소들을 수평으로 가운데로 정렬합니다 */
 }
 
-
-
 .frame1434.checked {
   background-color: black;
+}
+
+.error-message{
+  color: red;
+  font-size: 12px;
 }
