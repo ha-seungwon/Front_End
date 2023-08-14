@@ -609,26 +609,40 @@ async function fetchEvaluationItemScore(itemKey) {
 fetchEvaluationItem();
 scoreInputEvents();
 function saveData() {
+    let item1 = document.getElementById("item-1-score");
+    let item2 = document.getElementById("item-2-score");
+    let item3 = document.getElementById("item-3-score");
+    let item4 = document.getElementById("item-4-score");
+    let item5 = document.getElementById("item-5-score");
+    let agreeCheckbox = document.getElementById("agreeCheckbox");
+    if (item1.value === "" || item2.value === "" || item3.value === "" || item4.value === "" || item5.value === "") {
+        alert("모든 점수를 입력해주세요");
+        return;
+    }
+    if (agreeCheckbox.checked !== true) {
+        alert("점수 입력에 동의해주세요");
+        return;
+    }
     var data = [
         {
             evaluationItemId: document.getElementById("item-1-id").innerText,
-            score: document.getElementById("item-1-score").value
+            score: item1.value
         },
         {
             evaluationItemId: document.getElementById("item-2-id").innerText,
-            score: document.getElementById("item-2-score").value
+            score: item2.value
         },
         {
             evaluationItemId: document.getElementById("item-3-id").innerText,
-            score: document.getElementById("item-3-score").value
+            score: item3.value
         },
         {
             evaluationItemId: document.getElementById("item-4-id").innerText,
-            score: document.getElementById("item-4-score").value
+            score: item4.value
         },
         {
             evaluationItemId: document.getElementById("item-5-id").innerText,
-            score: document.getElementById("item-5-score").value
+            score: item5.value
         }
     ];
     fetch(currentDomain + "/api/score/me", {
@@ -751,6 +765,28 @@ if (menu03Container) menu03Container.addEventListener("click", function(e) {
 var menu04Container = document.getElementById("menu04Container");
 if (menu04Container) menu04Container.addEventListener("click", function(e) {
     window.location.href = "./application-information1.html";
+});
+window.addEventListener("DOMContentLoaded", (event)=>{
+    // 정규식: 1~3자리 숫자
+    const scorePattern = /^(?!-)(?!.*[a-zA-Z])(?!.*[!@#$%^&*()])(?!.*\d{5,})(?=.*\d).+$/;
+    // 입력 칸들의 ID와 오류 메시지를 매핑하는 객체
+    const inputErrorMapping = {
+        "item-1-score": "item-1-error",
+        "item-2-score": "item-2-error",
+        "item-3-score": "item-3-error",
+        "item-4-score": "item-4-error",
+        "item-5-score": "item-5-error"
+    };
+    // 입력 칸들의 이벤트 리스너 추가
+    Object.keys(inputErrorMapping).forEach((inputId)=>{
+        const inputElement = document.getElementById(inputId);
+        const errorElement = document.getElementById(inputErrorMapping[inputId]);
+        inputElement.addEventListener("input", ()=>{
+            if (inputElement.value.trim() === "") errorElement.textContent = ""; // 입력 값이 비어있을 때 오류 메시지 지우기
+            else if (!scorePattern.test(inputElement.value)) errorElement.textContent = "유효하지 않은 측정값입니다.";
+            else errorElement.textContent = "";
+        });
+    });
 });
 
 },{}]},["8q8Bw","cEPU5"], "cEPU5", "parcelRequiredc1e")

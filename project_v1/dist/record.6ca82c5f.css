@@ -342,12 +342,17 @@
   display: flex;
 }
 
+.error-message {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 .input-01 {
   background-color: var(--coolgray-10);
   border-bottom: 1px solid var(--coolgray-30);
-  padding: var(--padding-xs) var(--padding-base);
   flex: 1;
   align-items: center;
+  height: 30px;
 }
 
 .input-01 input[type="text"] {
