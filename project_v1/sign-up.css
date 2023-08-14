@@ -513,3 +513,8 @@
 .dropdown-content a:hover {
   background-color: #ddd;
 }
+
+.error-message{
+  color: red;
+  font-size: 12px;
+}

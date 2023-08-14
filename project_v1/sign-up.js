@@ -8,10 +8,13 @@ const passwordResult2 = document.getElementById("password_result2");
 const nameInput = document.getElementById("name");
 const nameCheckResult = document.getElementById("name_check");
 const mergedEmailResult = document.getElementById("mergedEmail");
+const check_box = document.querySelector(".check-box");
+
+// dropdown
 const dropdown = document.querySelector(".dropdown");
 const dropdownText = dropdown.querySelector(".text704");
 const dropdownContent = dropdown.querySelector(".dropdown-content");
-const check_box = document.querySelector(".check-box");
+const dropdownKey = document.getElementById("applicationTypeDropDownKey");
 
 let mail_result = 0
 
@@ -160,7 +163,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-
     // application type 드롭 다운 데이터 처리
     dropdownText.addEventListener("click", function () {
         dropdown.classList.toggle("active");
@@ -170,6 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (event.target.tagName === "A") {
             event.preventDefault();
             dropdownText.textContent = event.target.textContent;
+            dropdownText.id = event.target.id;
             dropdown.classList.remove("active");
         }
     });
@@ -186,7 +189,6 @@ document.addEventListener("DOMContentLoaded", function () {
         var nameInputValue = ""
         if (name_result) {
             nameInputValue = nameInput.value;
-
         }
 
         var emailInputValue = "";
@@ -203,7 +205,6 @@ document.addEventListener("DOMContentLoaded", function () {
         var password2InputValue = ""
         if (password2_result) {
             password2InputValue = passwordInput2.value; // Get the value from the second password input
-
         }
 
         if (password1InputValue !== password2InputValue) {
@@ -212,25 +213,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const checkBoxSelected = check_box.classList.contains("selected_box");
-        const selectedApplicationType = dropdownText.textContent;
+        const applicationTypeKey = dropdownText.id;
 
         if (checkBoxSelected) {
-            // applicationType name -> key
-            const response = await fetch(currentDomain + "/api/applicationType/key", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(selectedApplicationType)
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to fetch data');
-            }
-
-            const responseBody = await response.json(); // JSON 데이터 파싱
-            const applicationTypeKey = responseBody.applicationTypeKey;
-
             // 프론트 로그
             console.log("이름 입력 값:", nameInputValue);
             console.log("이메일 입력 값:", emailInputValue);
@@ -288,7 +273,6 @@ function togglePasswordVisibility(inputElementId) {
 <path d="M7.77091 10.9526C7.75899 10.9406 7.74402 10.932 7.7276 10.9278C7.71118 10.9235 7.69392 10.9238 7.67767 10.9287C7.66141 10.9335 7.64676 10.9426 7.63528 10.9551C7.6238 10.9675 7.61592 10.9829 7.61247 10.9995C7.44248 11.7422 7.46382 12.5158 7.67451 13.248C7.88519 13.9801 8.27832 14.6468 8.81704 15.1855C9.35577 15.7243 10.0224 16.1174 10.7546 16.3281C11.4868 16.5388 12.2604 16.5601 13.0031 16.3901C13.0197 16.3867 13.035 16.3788 13.0475 16.3673C13.06 16.3558 13.0691 16.3412 13.0739 16.3249C13.0787 16.3087 13.0791 16.2914 13.0748 16.275C13.0706 16.2586 13.062 16.2436 13.05 16.2317L7.77091 10.9526Z" fill="#21272A"/>
 `;
 
-
     } else {
         passwordInput.type = "password";
         // 변경된 path 또는 추가적인 path 등을 포함한 아이콘 내용으로 변경
@@ -310,15 +294,21 @@ const currentDomain = "http://localhost:8080"
 
 async function fetchApplicationTypeName() {
     const applicationTypeDropDownContent = document.getElementById("applicationTypeDropDownContent");
+    const applicationTypeDropDownKey = document.getElementById("applicationTypeDropDownKey");
 
-    await fetch(currentDomain + "/api/applicationType/names")
+    const response = await fetch(currentDomain + "/api/applicationType")
+    if (!response.ok) {
+        alert("Invalid score input")
+        throw new Error('Error fetching.');
+    }
+
+    await fetch(currentDomain + "/api/applicationType")
         .then(response => response.json())
         .then(responseJson => {
-            const options = responseJson.applicationTypeNames;
-            options.forEach(function (option) {
+            responseJson.forEach(function (option) {
                 const aElement = document.createElement("a");
-                aElement.href = "#"; // 링크를 원하는 주소로 수정 가능
-                aElement.textContent = option;
+                aElement.textContent = option.applicationTypeStandardName;
+                aElement.id = option.applicationType;
                 applicationTypeDropDownContent.appendChild(aElement);
             });
         })
