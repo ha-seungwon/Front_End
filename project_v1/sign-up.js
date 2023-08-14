@@ -157,12 +157,12 @@ document.addEventListener("DOMContentLoaded", function () {
             else{
                 document.cookie = "userEmail=" +emailInputValue;
 
-                document.cookie="userName="+ nameInput.value.trim()
-                document.cookie="passWord="+ encodeURIComponent(passwordInput.value.trim())
-                document.cookie="passWord2="+ encodeURIComponent(passwordInput2.value.trim())
-                document.cookie="sex="+ selectedGender
-                document.cookie="testType="+ dropdownText.textContent
-                document.cookie="agree="+ (check_box.classList.contains("selected_box") ? "true" : "")
+                // document.cookie="userName="+ nameInput.value.trim()
+                // document.cookie="passWord="+ encodeURIComponent(passwordInput.value.trim())
+                // document.cookie="passWord2="+ encodeURIComponent(passwordInput2.value.trim())
+                // document.cookie="sex="+ selectedGender
+                // document.cookie="testType="+ dropdownText.textContent
+                // document.cookie="agree="+ (check_box.classList.contains("selected_box") ? "true" : "")
                 
 
                 console.log("!!!쿠키", document.cookie);
@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 localStorage.setItem("flag", "1");
                 console.log("!!!!!!flag",flag)
 
-                window.location.href = "./sign-up-email-auth.html";
+                window.open("./sign-up-email-auth.html", "SignUpEmailAuth", "width=800,height=600");
             }
 
             

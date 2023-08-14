@@ -630,7 +630,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (code === "1231") {
             authNumberResult.textContent = "인증번호가 맞습니다.";
             console.log(authNumberResult.textContent);
-            window.location.href = "./sign-up.html";
+            window.close();
         } else authNumberResult.textContent = "인증번호가 다릅니다.";
     });
 });
