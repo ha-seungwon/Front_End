@@ -43,26 +43,43 @@ fetchEvaluationItem()
 scoreInputEvents()
 
 function saveData() {
+    let item1 = document.getElementById('item-1-score');
+    let item2 = document.getElementById('item-2-score');
+    let item3 = document.getElementById('item-3-score');
+    let item4 = document.getElementById('item-4-score');
+    let item5 = document.getElementById('item-5-score');
+    let agreeCheckbox = document.getElementById('agreeCheckbox');
+
+    if(item1.value === '' || item2.value === '' || item3.value === '' || item4.value === '' || item5.value === '') {
+        alert("모든 점수를 입력해주세요");
+        return;
+    }
+
+    if(agreeCheckbox.checked !== true) {
+        alert("점수 입력에 동의해주세요");
+        return;
+    }
+
     var data = [
         {
             evaluationItemId: document.getElementById('item-1-id').innerText,
-            score : document.getElementById('item-1-score').value,
+            score : item1.value,
         },
         {
             evaluationItemId: document.getElementById('item-2-id').innerText,
-            score : document.getElementById('item-2-score').value,
+            score : item2.value,
         },
         {
             evaluationItemId: document.getElementById('item-3-id').innerText,
-            score : document.getElementById('item-3-score').value,
+            score : item3.value,
         }
         ,{
             evaluationItemId: document.getElementById('item-4-id').innerText,
-            score : document.getElementById('item-4-score').value,
+            score : item4.value,
         },
         {
             evaluationItemId: document.getElementById('item-5-id').innerText,
-            score : document.getElementById('item-5-score').value,
+            score : item5.value,
         },
     ]
     fetch(currentDomain + "/api/score/me", {

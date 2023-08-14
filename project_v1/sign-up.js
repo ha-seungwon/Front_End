@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // password 처리
-    passwordInput.addEventListener("input", checkPasswordValidity);
+    passwordInput.addEventListener("change", checkPasswordValidity);
 
     function checkPasswordValidity() {
         const password = passwordInput.value;
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // repassword 처리
-    passwordInput2.addEventListener("input", checkPasswordMatch);
+    passwordInput2.addEventListener("change", checkPasswordMatch);
 
     function checkPasswordMatch() {
         const password1 = passwordInput.value;
