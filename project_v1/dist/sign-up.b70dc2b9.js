@@ -38,12 +38,22 @@ var cookie_userAgree = getCookie("agree");
     // 이름 처리
     nameInput.addEventListener("input", function() {
         const name = nameInput.value;
-        if (/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/`'" ]/.test(name)) nameCheckResult.textContent = "특수 문자 또는 공백은 입력할 수 없습니다.";
-        else if (!/^[가-힣]+$/.test(name)) nameCheckResult.textContent = "한글만 입력 가능합니다.";
-        else if (name.length < 2 || name.length > 4) nameCheckResult.textContent = "이름은 2글자 이상, 4글자 이하로 입력해주세요.";
-        else {
+        if (/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/`'" ]/.test(name)) {
+            nameCheckResult.textContent = "특수 문자 또는 공백은 입력할 수 없습니다.";
+            nameCheckResult.style.color = "red";
+            nameCheckResult.style.opacity = 1;
+        } else if (!/^[가-힣]+$/.test(name)) {
+            nameCheckResult.textContent = "한글만 입력 가능합니다.";
+            nameCheckResult.style.color = "red";
+            nameCheckResult.style.opacity = 1;
+        } else if (name.length < 2 || name.length > 4) {
+            nameCheckResult.textContent = "이름은 2글자 이상, 4글자 이하로 입력해주세요.";
+            nameCheckResult.style.color = "red";
+            nameCheckResult.style.opacity = 1;
+        } else {
             nameCheckResult.textContent = "올바른 이름입니다.";
             nameCheckResult.style.color = "black";
+            nameCheckResult.style.opacity = 0;
             name_result = 1;
         }
     });
@@ -62,8 +72,12 @@ var cookie_userAgree = getCookie("agree");
             else if (!validDomains.includes(emailAfterAt)) errorMessage = "올바른 도메인 주소를 입력하세요.";
             else if (!validDomains.includes(emailAfterAt)) errorMessage = "지원하지 않는 도메인 주소입니다.";
         }
-        if (errorMessage) mergedEmailResult.textContent = errorMessage;
-        else {
+        if (errorMessage) {
+            mergedEmailResult.style.opacity = 1;
+            mergedEmailResult.textContent = errorMessage;
+            mergedEmailResult.style.color = "red";
+        } else {
+            mergedEmailResult.style.opacity = 0;
             mergedEmailResult.textContent = emailFront + "@" + emailAfterAt;
             mail_result = 1;
             mergedEmailResult.style.color = "black"; // Change text color to black

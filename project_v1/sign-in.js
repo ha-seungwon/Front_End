@@ -25,10 +25,13 @@ function updateMergedEmail() {
         }
     }
     if (errorMessage) {
-        mergedEmailResult.textContent = errorMessage;
+      mergedEmailResult.style.opacity = 1;
+      mergedEmailResult.textContent = errorMessage;
     } else {
-        mergedEmailResult.textContent = emailFront + "@" + emailAfterAt;
-        mail_result = 1
+      mergedEmailResult.style.opacity = 0;
+      mergedEmailResult.textContent = emailFront + "@" + emailAfterAt;
+      mail_result = 1
+      mergedEmailResult.style.color="black"
     }
 }
 
@@ -57,8 +60,13 @@ function checkPasswordValidity() {
         errorMessage = "비밀번호가 과거에 사용된 적이 있습니다.";
     }
     */
-
-    passwordResult.textContent = errorMessage || "비밀번호가 유효합니다.";
+    if (errorMessage){
+      passwordResult.textContent = errorMessage;
+     }
+     else{
+      passwordResult.style.color='black';
+      passwordResult.textContent = "비밀번호가 유효합니다.";
+     }
 }
 
 

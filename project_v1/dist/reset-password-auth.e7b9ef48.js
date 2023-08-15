@@ -574,6 +574,8 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"79xv2":[function(require,module,exports) {
+var codeInput = document.getElementById("code"); // 변경된 이메일 입력 요소 가져오기
+let autocodeResult = 0;
 // reset-password-auth.html 페이지의 JavaScript 부분
 document.addEventListener("DOMContentLoaded", function() {
     // 쿠키에서 userEmail 값 가져오기
@@ -582,15 +584,6 @@ document.addEventListener("DOMContentLoaded", function() {
     var mergedEmailResult = document.getElementById("mergedEmail");
     if (userEmail) mergedEmailResult.textContent = decodeURIComponent(userEmail);
     else mergedEmailResult.textContent = "저장된 이메일 주소가 없습니다.";
-});
-// 쿠키 가져오는 함수
-function getCookie(name) {
-    console.log("쿠키", name);
-    var value = "; " + document.cookie;
-    var parts = value.split("; " + name + "=");
-    if (parts.length === 2) return parts.pop().split(";").shift();
-}
-document.addEventListener("DOMContentLoaded", function() {
     var codeInput = document.getElementById("code");
     var timerSpan = document.getElementById("timer");
     var timerInterval;
@@ -618,22 +611,51 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     // Call startTimer() when the page loads
     startTimer();
-});
-document.addEventListener("DOMContentLoaded", function() {
-    var codeInput = document.getElementById("code");
-    var verificationError = document.getElementById("verificationError");
     var authNumberResult = document.getElementById("auth_number");
-    // 인증하기 버튼 클릭 시
-    var authButton = document.querySelector(".frame977");
-    authButton.addEventListener("click", function() {
+    // 예외 결과창
+    codeInput.addEventListener("input", autoCodeCheck);
+    function autoCodeCheck() {
         var code = codeInput.value;
         // 입력값이 숫자인지 확인
-        if (!/^\d+$/.test(code)) uthNumberResult.textContent = "숫자를 입력해주세요."; // 숫자가 아닐 경우 메시지 변경
+        if (!/^\d+$/.test(code)) authNumberResult.textContent = "숫자를 입력해주세요."; // 숫자가 아닐 경우 메시지 변경
         else // 숫자일 때는
-        if (code === "1231") authNumberResult.textContent = "인증번호가 맞습니다.";
-        else authNumberResult.textContent = "인증번호가 다릅니다.";
+        if (code === "1231") {
+            authNumberResult.textContent = "인증번호가 맞습니다.";
+            authNumberResult.style.color = "black";
+            authNumberResult.style.opacity = 0;
+            autocodeResult = 1;
+        } else {
+            authNumberResult.textContent = "인증번호가 다릅니다.";
+            authNumberResult.style.color = "red";
+            authNumberResult.style.opacity = 1;
+            autocodeResult = 0;
+        }
+    }
+    // 인증하기 버튼 클릭 시
+    var authButton = document.querySelector(".frame977");
+    authButton.addEventListener("click", function(e) {
+        console.log(autocodeResult);
+        if (autocodeResult) //인증번호 맞음
+        //a
+        window.location.href = "./sign-in.html";
+        else sAlert("인증번호가 다릅니다.");
     });
 });
+// 쿠키 가져오는 함수
+function getCookie(name) {
+    console.log("쿠키", name);
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+}
+// sAlert('custom alert example!');
+function sAlert(txt, title = "ERROR") {
+    Swal.fire({
+        title: title,
+        text: txt,
+        confirmButtonText: "닫기"
+    });
+}
 
 },{}]},["6SBEO","79xv2"], "79xv2", "parcelRequiredc1e")
 

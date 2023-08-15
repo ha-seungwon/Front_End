@@ -20,10 +20,14 @@ function updateMergedEmail() {
         else if (!validDomains.includes(emailAfterAt)) errorMessage = "올바른 도메인 주소를 입력하세요.";
         else if (!validDomains.includes(emailAfterAt)) errorMessage = "지원하지 않는 도메인 주소입니다.";
     }
-    if (errorMessage) mergedEmailResult.textContent = errorMessage;
-    else {
+    if (errorMessage) {
+        mergedEmailResult.style.opacity = 1;
+        mergedEmailResult.textContent = errorMessage;
+    } else {
+        mergedEmailResult.style.opacity = 0;
         mergedEmailResult.textContent = emailFront + "@" + emailAfterAt;
         mail_result = 1;
+        mergedEmailResult.style.color = "black";
     }
 }
 const passwordInput = document.getElementById("password1");
@@ -43,7 +47,11 @@ function checkPasswordValidity() {
     } else if (!pastPasswordsCheck) {
         errorMessage = "비밀번호가 과거에 사용된 적이 있습니다.";
     }
-    */ passwordResult.textContent = errorMessage || "비밀번호가 유효합니다.";
+    */ if (errorMessage) passwordResult.textContent = errorMessage;
+    else {
+        passwordResult.style.color = "black";
+        passwordResult.textContent = "비밀번호가 유효합니다.";
+    }
 }
 function toggleCheckbox(checkbox) {
     checkbox.classList.toggle("checked");

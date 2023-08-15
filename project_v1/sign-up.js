@@ -45,13 +45,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/`'" ]/.test(name)) {
             nameCheckResult.textContent = "특수 문자 또는 공백은 입력할 수 없습니다.";
+            nameCheckResult.style.color="red"
+            nameCheckResult.style.opacity = 1;
         } else if (!/^[가-힣]+$/.test(name)) {
             nameCheckResult.textContent = "한글만 입력 가능합니다.";
+            nameCheckResult.style.color="red"
+            nameCheckResult.style.opacity = 1;
         } else if (name.length < 2 || name.length > 4) {
             nameCheckResult.textContent = "이름은 2글자 이상, 4글자 이하로 입력해주세요.";
+            nameCheckResult.style.color="red"
+            nameCheckResult.style.opacity = 1;
         } else {
             nameCheckResult.textContent = "올바른 이름입니다.";
             nameCheckResult.style.color="black"
+            nameCheckResult.style.opacity = 0;
             name_result = 1
 
         }
@@ -68,7 +75,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!email) {
             errorMessage = "이메일을 입력하세요.";
+
         } else if (!email.includes("@")) {
+            
             errorMessage = "올바른 이메일 주소를 입력하세요.";
         } else {
             if (!regex.test(emailFront)) {
@@ -80,14 +89,18 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
         if (errorMessage) {
+            mergedEmailResult.style.opacity = 1;
             mergedEmailResult.textContent = errorMessage;
+            mergedEmailResult.style.color="red"
         } else {
+            mergedEmailResult.style.opacity = 0;
             mergedEmailResult.textContent = emailFront + "@" + emailAfterAt;
             mail_result = 1
             mergedEmailResult.style.color = "black"; // Change text color to black
         
         }
     });
+
 
     // 이메일 인증하기 버튼 이벤트 리스너
     const email_Auth = document.getElementById("email_auth");

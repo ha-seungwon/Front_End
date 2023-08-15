@@ -28,11 +28,18 @@ function updateMergedEmail() {
   }
 
   if (errorMessage) {
+    mergedEmailResult.style.opacity = 1;
     mergedEmailResult.textContent = errorMessage;
-  } else {
+    mergedEmailResult.style.color="red"
+} else {
+    mergedEmailResult.style.opacity = 0;
     mergedEmailResult.textContent = emailFront + "@" + emailAfterAt;
-  }
+    mail_result = 1
+    mergedEmailResult.style.color = "black"; // Change text color to black
+
 }
+}
+
 function isValidDomain(domain) {
 return validDomains.includes(domain);
 }
@@ -42,16 +49,16 @@ return validDomains.includes(domain);
 }
 
 function getCookieValue(name) {
-var cookieValue = "";
-var cookies = document.cookie.split("; ");
-for (var i = 0; i < cookies.length; i++) {
-var cookie = cookies[i].split("=");
-if (cookie[0] === name) {
-  cookieValue = decodeURIComponent(cookie[1]);
-  break;
-}
-}
-return cookieValue;
+  var cookieValue = "";
+  var cookies = document.cookie.split("; ");
+  for (var i = 0; i < cookies.length; i++) {
+  var cookie = cookies[i].split("=");
+  if (cookie[0] === name) {
+    cookieValue = decodeURIComponent(cookie[1]);
+    break;
+  }
+  }
+  return cookieValue;
 }
 
 

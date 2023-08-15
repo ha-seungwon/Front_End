@@ -596,8 +596,16 @@ function updateMergedEmail() {
         else if (!isValidDomain(emailAfterAt)) errorMessage = "올바른 도메인 주소를 입력하세요.";
         else if (!isValidDomainInList(emailAfterAt)) errorMessage = "지원하지 않는 도메인 주소입니다.";
     }
-    if (errorMessage) mergedEmailResult.textContent = errorMessage;
-    else mergedEmailResult.textContent = emailFront + "@" + emailAfterAt;
+    if (errorMessage) {
+        mergedEmailResult.style.opacity = 1;
+        mergedEmailResult.textContent = errorMessage;
+        mergedEmailResult.style.color = "red";
+    } else {
+        mergedEmailResult.style.opacity = 0;
+        mergedEmailResult.textContent = emailFront + "@" + emailAfterAt;
+        mail_result = 1;
+        mergedEmailResult.style.color = "black"; // Change text color to black
+    }
 }
 function isValidDomain(domain) {
     return validDomains.includes(domain);
