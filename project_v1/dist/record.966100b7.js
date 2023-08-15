@@ -142,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"8q8Bw":[function(require,module,exports) {
+})({"7CnhI":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
@@ -576,6 +576,7 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 },{}],"cEPU5":[function(require,module,exports) {
 // const currentDomain = window.location.origin
 const currentDomain = "http://localhost:8080";
+const scorePattern = /^(?!-)(?!.*[a-zA-Z])(?!.*[!@#$%^&*()])(?!.*\d{5,})(?=.*\d).+$/;
 async function fetchEvaluationItem() {
     let response = await fetch(currentDomain + "/api/evaluation/items");
     if (!response.ok) throw new Error("Error fetching.");
@@ -595,16 +596,22 @@ async function scoreInputEvents() {
 }
 document.getElementById("saveButton").addEventListener("click", ()=>saveData());
 async function fetchEvaluationItemScore(itemKey) {
+    const evaluationScore = document.getElementById("item-" + itemKey + "-evaluation-score");
+    let score = document.getElementById("item-" + itemKey + "-score").value;
+    if (score === "" || !scorePattern.test(score)) {
+        evaluationScore.innerText = "점";
+        return;
+    }
     const response = await fetch(currentDomain + "/api/score?" + new URLSearchParams({
         evaluationItemId: document.getElementById("item-" + itemKey + "-id").innerText,
         score: document.getElementById("item-" + itemKey + "-score").value
     }));
     if (!response.ok) {
-        alert("Invalid score input");
+        sAlert("Invalid score input");
+        evaluationScore.innerText = "점";
         throw new Error("Error fetching.");
     }
-    const evaluationScore = document.getElementById("item-" + itemKey + "-evaluation-score");
-    evaluationScore.innerText = (await response.json()).score;
+    evaluationScore.innerText = (await response.json()).score + "점";
 }
 fetchEvaluationItem();
 scoreInputEvents();
@@ -616,11 +623,11 @@ function saveData() {
     let item5 = document.getElementById("item-5-score");
     let agreeCheckbox = document.getElementById("agreeCheckbox");
     if (item1.value === "" || item2.value === "" || item3.value === "" || item4.value === "" || item5.value === "") {
-        alert("모든 점수를 입력해주세요");
+        sAlert("모든 점수를 입력해주세요");
         return;
     }
     if (agreeCheckbox.checked !== true) {
-        alert("점수 입력에 동의해주세요");
+        sAlert("점수 입력에 동의해주세요");
         return;
     }
     var data = [
@@ -652,27 +659,39 @@ function saveData() {
         },
         body: JSON.stringify(data)
     }).then((response)=>response.json()).then((result)=>{
-        if (result.prediction === 1) alert("데이터가 저장되었습니다.\n결과: 합격");
-        else alert("데이터가 저장되었습니다.\n결과: 불합격");
+        if (result.prediction === 1) sAlert("데이터가 저장되었습니다.\n결과: 합격");
+        else sAlert("데이터가 저장되었습니다.\n결과: 불합격");
     }).catch((error)=>{
         console.error("에러 발생:", error);
-        alert("데이터 저장 중에 오류가 발생했습니다.");
+        sAlert("데이터 저장 중에 오류가 발생했습니다.");
     });
 }
 async function fetchMyInfo() {
-    const response = await fetch(currentDomain + "/api/member/me");
-    if (!response.ok) {
-        alert("Invalid score input");
+    const responseMemberInfo = await fetch(currentDomain + "/api/member/me");
+    if (!responseMemberInfo.ok) {
+        sAlert("Failed to fetch member");
         throw new Error("Error fetching.");
     }
+    const responseScoreInfo = await fetch(currentDomain + "/api/score/expect");
+    if (!responseScoreInfo.ok) {
+        sAlert("Failed to fetch expected");
+        throw new Error("Error fetching.");
+    }
+    let responseMemberInfoValue = await responseMemberInfo.json();
+    let responseScoreInfoValue = await responseScoreInfo.json();
     const applicationType = document.getElementById("applicationType");
-    applicationType.innerText = (await response.json()).applicationTypeName;
+    const currentScore = document.getElementById("currentScore");
+    const expectedScore = document.getElementById("expectedScore");
+    const expectedGrade = document.getElementById("expectedGrade");
+    applicationType.innerText = responseMemberInfoValue.applicationTypeName;
+    currentScore.innerText = responseScoreInfoValue.currentScore;
+    expectedScore.innerText = responseScoreInfoValue.expectedScore;
+    if (responseScoreInfoValue.expectedGrade >= 80) expectedGrade.innerText = "합격이 예상됩니다.";
+    if (responseScoreInfoValue.expectedGrade < 80 && responseScoreInfoValue.expectedGrade >= 60) expectedGrade.innerText = "합격 보류가 예상됩니다.";
+    if (responseScoreInfoValue.expectedGrade < 60) expectedGrade.innerText = "탈락이 예상됩니다.";
 }
 fetchMyInfo();
 const checkbox = document.getElementById("checkbox");
-checkbox.addEventListener("click", ()=>{
-    checkbox.classList.toggle("checked");
-});
 const percentage = 53; // Change this value dynamically
 const container = d3.select("#gauge-container");
 const width = 256;
@@ -732,7 +751,7 @@ var myChart = new Chart(ctx, {
                 data: currentScores,
                 borderColor: "black",
                 borderWidth: 2,
-                fill: false
+                fill: true
             }
         ]
     },
@@ -743,6 +762,11 @@ var myChart = new Chart(ctx, {
             y: {
                 beginAtZero: true
             }
+        }
+    },
+    plugins: {
+        legend: {
+            display: false
         }
     }
 });
@@ -768,7 +792,6 @@ if (menu04Container) menu04Container.addEventListener("click", function(e) {
 });
 window.addEventListener("DOMContentLoaded", (event)=>{
     // 정규식: 1~3자리 숫자
-    const scorePattern = /^(?!-)(?!.*[a-zA-Z])(?!.*[!@#$%^&*()])(?!.*\d{5,})(?=.*\d).+$/;
     // 입력 칸들의 ID와 오류 메시지를 매핑하는 객체
     const inputErrorMapping = {
         "item-1-score": "item-1-error",
@@ -788,7 +811,15 @@ window.addEventListener("DOMContentLoaded", (event)=>{
         });
     });
 });
+// sAlert('custom alert example!');
+function sAlert(txt, title = "ERROR") {
+    Swal.fire({
+        title: title,
+        text: txt,
+        confirmButtonText: "닫기"
+    });
+}
 
-},{}]},["8q8Bw","cEPU5"], "cEPU5", "parcelRequiredc1e")
+},{}]},["7CnhI","cEPU5"], "cEPU5", "parcelRequiredc1e")
 
 //# sourceMappingURL=record.966100b7.js.map

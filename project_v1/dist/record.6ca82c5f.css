@@ -586,4 +586,8 @@
   background-color: #000;
 }
 
+.error-message, .swal2-title {
+  color: red;
+}
+
 /*# sourceMappingURL=record.6ca82c5f.css.map */

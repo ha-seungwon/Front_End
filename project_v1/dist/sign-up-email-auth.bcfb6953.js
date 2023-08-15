@@ -142,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"kbkbz":[function(require,module,exports) {
+})({"brdUa":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
@@ -574,8 +574,18 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"kSC5d":[function(require,module,exports) {
+// const currentDomain = window.location.origin
+const currentDomain = "http://localhost:8080";
 // reset-password-auth.html 페이지의 JavaScript 부분
 document.addEventListener("DOMContentLoaded", function() {});
+const codeInput = document.getElementById("code");
+const timerSpan = document.getElementById("timer");
+const verificationError = document.getElementById("verificationError");
+const authNumberResult = document.getElementById("auth_number");
+// 쿠키에서 userEmail 값 가져오기
+const userEmail = getCookie("userEmail");
+// 이메일 주소 표시
+const mergedEmailResult = document.getElementById("mergedEmail");
 // 쿠키 가져오는 함수
 function getCookie(name) {
     console.log("쿠키", name);
@@ -583,31 +593,33 @@ function getCookie(name) {
     var parts = value.split("; " + name + "=");
     if (parts.length === 2) return parts.pop().split(";").shift();
 }
+//쿠키 값 가져오는 함수
+function getCookieValue(cookieName) {
+    const cookies = document.cookie.split("; ");
+    for (const cookie of cookies){
+        const [name, value] = cookie.split("=");
+        if (name === cookieName) return value;
+    }
+    return null;
+}
 document.addEventListener("DOMContentLoaded", function() {
-    var codeInput = document.getElementById("code");
-    var timerSpan = document.getElementById("timer");
-    var timerInterval;
-    var timerDuration = 180; // 3 minutes in seconds
-    // 쿠키에서 userEmail 값 가져오기
-    var userEmail = getCookie("userEmail");
-    // 이메일 주소 표시
-    var mergedEmailResult = document.getElementById("mergedEmail");
+    let timerInterval;
+    const timerDuration = 180; // 3 minutes in seconds
     if (userEmail) mergedEmailResult.textContent = decodeURIComponent(userEmail);
     else mergedEmailResult.textContent = "저장된 이메일 주소가 없습니다.";
     function updateTimerDisplay(remainingTime) {
-        var minutes = Math.floor(remainingTime / 60);
-        var seconds = remainingTime % 60;
+        const minutes = Math.floor(remainingTime / 60);
+        const seconds = remainingTime % 60;
         timerSpan.textContent = minutes + "m " + seconds + "s";
     }
     function startTimer() {
         var startTime = Date.now();
         timerInterval = setInterval(function() {
-            var currentTime = Date.now();
-            var elapsedTime = Math.floor((currentTime - startTime) / 1000);
+            const currentTime = Date.now();
+            const elapsedTime = Math.floor((currentTime - startTime) / 1000);
             if (elapsedTime >= timerDuration) {
                 clearInterval(timerInterval);
                 timerSpan.textContent = "Timer expired!";
-                // Redirect to reset-password.html after timer expiration
                 window.location.href = "./sign-up.html";
             } else {
                 var remainingTime = timerDuration - elapsedTime;
@@ -617,24 +629,40 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     // Call startTimer() when the page loads
     startTimer();
-    var codeInput = document.getElementById("code");
-    var verificationError = document.getElementById("verificationError");
-    var authNumberResult = document.getElementById("auth_number");
     // 인증하기 버튼 클릭 시
-    var authButton = document.querySelector(".frame977");
-    authButton.addEventListener("click", function() {
-        var code = codeInput.value;
+    const authButton = document.querySelector(".frame977");
+    authButton.addEventListener("click", async function() {
+        const authCode = codeInput.value;
         // 입력값이 숫자인지 확인
-        if (!/^\d+$/.test(code)) uthNumberResult.textContent = "숫자를 입력해주세요."; // 숫자가 아닐 경우 메시지 변경
-        else // 숫자일 때는
-        if (code === "1231") {
-            authNumberResult.textContent = "인증번호가 맞습니다.";
-            console.log(authNumberResult.textContent);
-            window.close();
-        } else authNumberResult.textContent = "인증번호가 다릅니다.";
+        if (!/^\d+$/.test(authCode)) authNumberResult.textContent = "숫자를 입력해주세요."; // 숫자가 아닐 경우 메시지 변경
+        else {
+            // 인증 코드 검증 로직
+            const validAuthApiData = {
+                email: userEmail,
+                authCode: authCode
+            };
+            try {
+                const response = await fetch(currentDomain + "/api/valid/authCode", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(validAuthApiData)
+                });
+                if (!response.ok) throw new Error("인증에 실패했습니다. 다시 시도해주시기 바랍니다.");
+                //인증 번호 맞음
+                // let emailAuthToken = response.getC.get("Set-Cookie");
+                // alert(emailAuthToken)
+                authNumberResult.textContent = "인증이 완료되었습니다.";
+                alert(authNumberResult.textContent);
+                window.close();
+            } catch (error) {
+                alert(error.message);
+            }
+        }
     });
 });
 
-},{}]},["kbkbz","kSC5d"], "kSC5d", "parcelRequiredc1e")
+},{}]},["brdUa","kSC5d"], "kSC5d", "parcelRequiredc1e")
 
 //# sourceMappingURL=sign-up-email-auth.bcfb6953.js.map

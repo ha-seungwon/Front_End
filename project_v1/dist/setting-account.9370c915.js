@@ -58,14 +58,22 @@ document.addEventListener("DOMContentLoaded", function() {
     let passwordMachResult = false;
     function checkPasswordValidity() {
         if (passwordMachResult) {
-            if (!(passwordInput.value === passwordInput2.value)) passwordResult2.textContent = "비밀번호가 일치하지 않습니다.";
+            if (!(passwordInput.value === passwordInput2.value)) {
+                passwordResult2.textContent = "비밀번호가 일치하지 않습니다.";
+                passwordMachResult = 0;
+            }
         }
         const password = passwordInput.value;
         var errorMessage = "";
         const lengthRegex = /^.{9,16}$/;
         const alphanumericRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
-        if (!lengthRegex.test(password)) errorMessage = "비밀번호는 9자 이상 16자 이하로 입력하세요.";
-        else if (!alphanumericRegex.test(password)) errorMessage = "비밀번호는 영어, 숫자, 특수문자를 모두 포함해야 합니다.";
+        if (!lengthRegex.test(password)) {
+            errorMessage = "비밀번호는 9자 이상 16자 이하로 입력하세요.";
+            passwordMachResult = 0;
+        } else if (!alphanumericRegex.test(password)) {
+            errorMessage = "비밀번호는 영어, 숫자, 특수문자를 모두 포함해야 합니다.";
+            passwordMachResult = 0;
+        }
         console.log("password1 error", errorMessage);
         /*
     else if (!nameCheck) {
@@ -81,14 +89,30 @@ document.addEventListener("DOMContentLoaded", function() {
         if (password1 === password2) {
             passwordResult2.textContent = "비밀번호가 일치합니다.";
             passwordMachResult = 1;
-        } else passwordResult2.textContent = "비밀번호가 일치하지 않습니다.";
+        } else {
+            passwordResult2.textContent = "비밀번호가 일치하지 않습니다.";
+            passwordMachResult = 0;
+        }
     }
-    passwordInput.addEventListener("input", checkPasswordValidity);
+    // sAlert('custom alert example!');
+    function sAlert(txt, title = "ERROR") {
+        Swal.fire({
+            title: title,
+            text: txt,
+            confirmButtonText: "닫기"
+        });
+    }
+    function handlePasswordInput() {
+        checkPasswordValidity();
+        checkPasswordMatch();
+    }
+    passwordInput.addEventListener("input", handlePasswordInput);
     passwordInput2.addEventListener("input", checkPasswordMatch);
     const signUpBtn = document.querySelector(".button2");
     signUpBtn.addEventListener("click", function() {
         if (!passwordMachResult) {
-            alert("Passwords must match.");
+            //alert("Passwords must match.");
+            sAlert("비밀번호가 일치하지 않습니다.");
             return;
         } else console.log(passwordMachResult);
     });

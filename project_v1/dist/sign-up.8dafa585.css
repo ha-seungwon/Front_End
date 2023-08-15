@@ -536,4 +536,11 @@
   background-color: #ddd;
 }
 
+.error-message {
+  color: red;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 12px;
+}
+
 /*# sourceMappingURL=sign-up.8dafa585.css.map */

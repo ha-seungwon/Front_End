@@ -142,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"cw4qy":[function(require,module,exports) {
+})({"4mShm":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
@@ -606,12 +606,12 @@ async function fetchMyInfo() {
     const memberName = document.getElementById("memberName");
     const currentScoreContainer = document.getElementById("current-score");
     const expectedScoreContainer = document.getElementById("expected-score");
-    let response = await fetch(currentDomain + "/api/member/me");
-    if (!response.ok) throw new Error("Error fetching.");
-    else memberName.innerText = (await response.json()).name + "님 안녕하세요.";
-    let response1 = await fetch(currentDomain + "/api/score/me");
-    if (!response1.ok) throw new Error("Error fetching.");
-    else currentScoreContainer.innerText = (await response1.json()).score;
+    let responseMember = await fetch(currentDomain + "/api/member/me");
+    if (!responseMember.ok) throw new Error("Error fetching.");
+    else memberName.innerText = (await responseMember.json()).name + "님 안녕하세요.";
+    let responseScore = await fetch(currentDomain + "/api/score/me");
+    if (!responseScore.ok) throw new Error("Error fetching.");
+    else currentScoreContainer.innerText = (await responseScore.json()).score;
 }
 async function fetchRank() {
     let response = await fetch(currentDomain + "/api/score/rank?rankCnt=7");
@@ -652,6 +652,6 @@ fetchTotalApplication();
 fetchMyInfo();
 fetchRank();
 
-},{}]},["cw4qy","1Mu3k"], "1Mu3k", "parcelRequiredc1e")
+},{}]},["4mShm","1Mu3k"], "1Mu3k", "parcelRequiredc1e")
 
 //# sourceMappingURL=dashboard.177fb976.js.map

@@ -3,12 +3,14 @@ var validDomains = ['naver.com', 'google.com', 'daum.net'];
 const emailInput = document.getElementById("email"); // 변경된 이메일 입력 요소 가져오기
 const passwordInput = document.getElementById("password1");
 const passwordInput2 = document.getElementById("password2");
-const passwordResult = document.getElementById("password_result");
-const passwordResult2 = document.getElementById("password_result2");
+const passwordResult = document.getElementById("password-1-error");
+const passwordResult2 = document.getElementById("password-2-error");
 const nameInput = document.getElementById("name");
 const nameCheckResult = document.getElementById("name_check");
 const mergedEmailResult = document.getElementById("mergedEmail");
 const check_box = document.querySelector(".check-box");
+
+
 
 // dropdown
 const dropdown = document.querySelector(".dropdown");
@@ -17,7 +19,7 @@ const dropdownContent = dropdown.querySelector(".dropdown-content");
 const dropdownKey = document.getElementById("applicationTypeDropDownKey");
 
 let mail_result = 0
-
+let passwordMachResult = false;
 /* 쿠키 가져오는 함수
 function getCookie(name) {
     const value = "; " + document.cookie;
@@ -49,7 +51,9 @@ document.addEventListener("DOMContentLoaded", function () {
             nameCheckResult.textContent = "이름은 2글자 이상, 4글자 이하로 입력해주세요.";
         } else {
             nameCheckResult.textContent = "올바른 이름입니다.";
+            nameCheckResult.style.color="black"
             name_result = 1
+
         }
     });
 
@@ -80,6 +84,8 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             mergedEmailResult.textContent = emailFront + "@" + emailAfterAt;
             mail_result = 1
+            mergedEmailResult.style.color = "black"; // Change text color to black
+        
         }
     });
 
@@ -119,23 +125,42 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+    function handlePasswordInput(){
+        checkPasswordValidity();
+        checkPasswordMatch();
+    }
+      
 
     // password 처리
-    passwordInput.addEventListener("change", checkPasswordValidity);
+    passwordInput.addEventListener("input", handlePasswordInput);
 
     function checkPasswordValidity() {
-        const password = passwordInput.value;
-        var errorMessage = '';
 
+        if (passwordMachResult){
+          if (!(passwordInput.value===passwordInput2.value)){
+            passwordResult2.textContent = "비밀번호가 일치하지 않습니다.";
+            passwordResult2.style.color = "red"; // Change text color to black
+            passwordMachResult=0;
+          }
+        }
+        const password = passwordInput.value;
+    
+        var errorMessage = '';
+    
         const lengthRegex = /^.{9,16}$/;
         const alphanumericRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
-
+    
         if (!lengthRegex.test(password)) {
+            passwordResult.style.color='red';
             errorMessage = "비밀번호는 9자 이상 16자 이하로 입력하세요.";
+            passwordMachResult=0;
         } else if (!alphanumericRegex.test(password)) {
+            passwordResult.style.color='red';
             errorMessage = "비밀번호는 영어, 숫자, 특수문자를 모두 포함해야 합니다.";
+            passwordMachResult=0;
         }
-
+        console.log("password1 error",errorMessage)
+    
         /*
         else if (!nameCheck) {
             errorMessage = "비밀번호에 사용자 이름이 포함되어 있습니다.";
@@ -143,12 +168,19 @@ document.addEventListener("DOMContentLoaded", function () {
             errorMessage = "비밀번호가 과거에 사용된 적이 있습니다.";
         }
         */
+       if (errorMessage){
+        passwordResult.textContent = errorMessage;
+       }
+       else{
+        passwordResult.style.color='black';
+        passwordResult.textContent = "비밀번호가 유효합니다.";
+       }
 
-        passwordResult.textContent = errorMessage || "비밀번호가 유효합니다.";
+        //passwordResult.textContent = errorMessage || "비밀번호가 유효합니다.";
     }
 
     // repassword 처리
-    passwordInput2.addEventListener("change", checkPasswordMatch);
+    passwordInput2.addEventListener("input", checkPasswordMatch);
 
     function checkPasswordMatch() {
         const password1 = passwordInput.value;
@@ -156,10 +188,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (password1 === password2) {
             passwordResult2.textContent = "비밀번호가 일치합니다.";
-            password1_result = 1
-            password2_result = 1
+
+            passwordResult2.style.color = "black"; // Change text color to black
+           
+        
+        
+            passwordMachResult=1
         } else {
             passwordResult2.textContent = "비밀번호가 일치하지 않습니다.";
+            passwordResult2.style.color = "red"; // Change text color to black
+            
+            passwordMachResult=0
         }
     }
 
@@ -190,27 +229,23 @@ document.addEventListener("DOMContentLoaded", function () {
         if (name_result) {
             nameInputValue = nameInput.value;
         }
+        else{
+            sAlert("이름이 올바르지 않습니다.")
+        }
 
         var emailInputValue = "";
         mail_result = 1
         if (mail_result) {
             emailInputValue = emailInput.value; // Get the value from the email input
         }
+        else{
+            sAlert("이메일이 올바르지 않습니다.")
+        }
+        if (!(passwordMachResult)){
+            sAlert("비밀번호와 재비밀번호의 값은 같아야합니다.")
 
-        var password1InputValue = ""
-        if (password_result) {
-            password1InputValue = passwordInput.value; // Get the value from the first password input
         }
 
-        var password2InputValue = ""
-        if (password2_result) {
-            password2InputValue = passwordInput2.value; // Get the value from the second password input
-        }
-
-        if (password1InputValue !== password2InputValue) {
-            alert("비밀번호와 재비밀번호의 값은 같아야합니다.");
-            return;
-        }
 
         const checkBoxSelected = check_box.classList.contains("selected_box");
         const applicationTypeKey = dropdownText.id;
@@ -248,7 +283,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert(error.message);
             }
         } else {
-            alert("개인정보 이용 동의 여부를 체크해주세요");
+            sAlert("개인정보 이용 동의 여부를 체크해주세요")
         }
     });
 });
@@ -282,6 +317,15 @@ function togglePasswordVisibility(inputElementId) {
     }
 }
 
+
+// sAlert('custom alert example!');
+function sAlert(txt, title = 'ERROR',) {
+    Swal.fire({
+        title: title,
+        text: txt,
+        confirmButtonText: '닫기'
+    });
+  }
 const signInText = document.getElementById("signInText");
 if (signInText) {
     signInText.addEventListener("click", function (e) {

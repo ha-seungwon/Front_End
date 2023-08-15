@@ -638,8 +638,10 @@
 }
 
 .error-message {
+  color: red;
   margin-top: 0;
   margin-bottom: 0;
+  font-size: 12px;
 }
 
 /*# sourceMappingURL=setting-account.42d43a4a.css.map */
